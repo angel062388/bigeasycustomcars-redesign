@@ -185,13 +185,13 @@ section{padding:clamp(56px,8vw,104px) 0}
 @media(max-width:900px){.tc-grid{grid-template-columns:1fr;gap:30px}}
 .tc-dial{position:relative;max-width:520px;width:100%;margin-inline:auto}
 .tc-svg{display:block;width:100%;height:auto;overflow:visible}
-.tc-arc{fill:none;stroke-width:16;stroke-linecap:butt;opacity:.22;transition:opacity .45s var(--ease)}
+.tc-arc{fill:none;stroke-width:16;stroke-linecap:butt;opacity:.16;transition:opacity .45s var(--ease)}
 .tc-arc.on{opacity:1;filter:drop-shadow(0 0 8px var(--g))}
 .tc-tick{stroke:rgba(255,255,255,.28);stroke-width:2}
 .tc-numl{fill:var(--steel);font:600 15px/1 var(--sans);letter-spacing:.06em;text-anchor:middle}
 .tc-numl.on{fill:var(--paper);filter:drop-shadow(0 0 6px rgba(255,255,255,.5))}
 .tc-needle{transform-origin:200px 200px;transition:transform .85s cubic-bezier(.34,1.3,.5,1)}
-.tc-needle path{fill:var(--amber);filter:drop-shadow(0 0 7px rgba(228,120,63,.95))}
+.tc-needle path{fill:var(--nc,#F7D14A);filter:drop-shadow(0 0 8px var(--nc,#F7D14A));transition:fill .4s var(--ease),filter .4s var(--ease)}
 .tc-needle.revving{transition:transform .15s linear}
 .tc-hub{fill:var(--ink-3);stroke:rgba(255,255,255,.22);stroke-width:2}
 .tc-read{text-align:center;margin-top:2px}
@@ -199,7 +199,7 @@ section{padding:clamp(56px,8vw,104px) 0}
   font-weight:700;color:var(--paper);line-height:1}
 .tc-read span{display:block;font-size:10px;font-weight:600;letter-spacing:.3em;
   text-transform:uppercase;color:var(--steel);margin-top:6px}
-.tc-redline{fill:var(--amber);font:700 11px/1 var(--sans);letter-spacing:.2em;text-anchor:middle}
+.tc-redline{fill:#E85C33;font:700 11px/1 var(--sans);letter-spacing:.2em;text-anchor:middle}
 /* stage list */
 .tc-list{display:flex;flex-direction:column;gap:8px}
 .tc-step{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;
@@ -559,11 +559,11 @@ section{padding:clamp(56px,8vw,104px) 0}
       <div class="tc-dial rv">
         <svg class="tc-svg" viewBox="0 0 400 250" aria-hidden="true" focusable="false">
           <!-- stage arcs, cool at idle through to amber at redline -->
-          <path class="tc-arc" data-i="0" stroke="#4A5058" style="--g:#7E8794" d="M 50 200 A 150 150 0 0 1 78.65 111.83"></path>
-          <path class="tc-arc" data-i="1" stroke="#7A6448" style="--g:#B79768" d="M 78.65 111.83 A 150 150 0 0 1 153.65 57.34"></path>
-          <path class="tc-arc" data-i="2" stroke="#A87038" style="--g:#D89A54" d="M 153.65 57.34 A 150 150 0 0 1 246.35 57.34"></path>
-          <path class="tc-arc" data-i="3" stroke="#C96A2C" style="--g:#E08A45" d="M 246.35 57.34 A 150 150 0 0 1 321.35 111.83"></path>
-          <path class="tc-arc" data-i="4" stroke="#E4783F" style="--g:#FF9358" d="M 321.35 111.83 A 150 150 0 0 1 350 200"></path>
+          <path class="tc-arc" data-i="0" stroke="#F7D14A" style="--g:#FFE070" d="M 50 200 A 150 150 0 0 1 78.65 111.83"></path>
+          <path class="tc-arc" data-i="1" stroke="#F5B02E" style="--g:#FFC757" d="M 78.65 111.83 A 150 150 0 0 1 153.65 57.34"></path>
+          <path class="tc-arc" data-i="2" stroke="#F08F2E" style="--g:#FFA957" d="M 153.65 57.34 A 150 150 0 0 1 246.35 57.34"></path>
+          <path class="tc-arc" data-i="3" stroke="#E97129" style="--g:#FF8C50" d="M 246.35 57.34 A 150 150 0 0 1 321.35 111.83"></path>
+          <path class="tc-arc" data-i="4" stroke="#DE4E25" style="--g:#FF6A44" d="M 321.35 111.83 A 150 150 0 0 1 350 200"></path>
 
           <!-- boundary ticks -->
           <g class="tc-tick">
@@ -1053,15 +1053,26 @@ if(tcSteps.length){
       tcNums=[].slice.call(document.querySelectorAll('.tc-numl[data-i]'));
   document.getElementById('tcOf').textContent='of 0'+tcSteps.length;
 
+  /* The needle takes the colour of the stage it is pointing at, so it runs
+     yellow at idle through to red at redline. */
+  var tcColours=['#F7D14A','#F5B02E','#F08F2E','#E97129','#DE4E25'];
+
+  /* Once the sweep has run, the dial STAYS lit across the full yellow to
+     orange ramp. Only the needle moves after that: the gauge is powered on,
+     it does not switch itself back off. */
+  var tcAllLit=false;
+
   /* Paint a stage. withList=false is used during the ignition sweep so the
      step cards do not flash open and shut while the needle is travelling. */
   function tcPaint(i,withList){
     /* five 36-degree stages across a 180-degree sweep; the needle points at
        the middle of the active stage, so stage 3 sits straight up. */
     tcNeedle.style.transform='rotate('+((i-2)*36)+'deg)';
+    tcNeedle.style.setProperty('--nc',tcColours[i]);
     tcNum.textContent='0'+(i+1);
-    tcArcs.forEach(function(a,n){a.classList.toggle('on',n<=i);});
-    tcNums.forEach(function(t,n){t.classList.toggle('on',n<=i);});
+    var lit=tcAllLit?tcArcs.length-1:i;
+    tcArcs.forEach(function(a,n){a.classList.toggle('on',n<=lit);});
+    tcNums.forEach(function(t,n){t.classList.toggle('on',n<=lit);});
     if(withList){
       tcSteps.forEach(function(s,n){
         s.classList.toggle('on',n===i);
@@ -1071,23 +1082,28 @@ if(tcSteps.length){
   }
   function tcGo(i){tcPaint(i,true);}
 
-  /* Ignition sweep: the needle runs up to redline, holds, then falls back to
-     stage one, illuminating each stage as it passes and dimming on the way
-     down. Fires once, when the section first scrolls into view. */
+  /* Ignition sweep: the needle runs up to redline lighting each stage as it
+     passes, holds, then falls back to stage one. The lights STAY on for the
+     fall, so the dial settles showing the whole yellow to orange ramp.
+     Fires once, when the section first scrolls into view. */
   var tcRevved=false;
   function tcRev(){
     if(tcRevved)return;
     tcRevved=true;
     tcNeedle.classList.add('revving');
     var t=0,plan=[];
-    for(var i=0;i<5;i++){plan.push([t,i]);t+=170;}   // up to redline
-    t+=460;                                          // hold at redline
-    for(var j=3;j>=0;j--){plan.push([t,j]);t+=140;}  // fall back to idle
+    for(var i=0;i<5;i++){plan.push([t,i,false]);t+=170;}   // up, lighting as it goes
+    t+=460;                                                // hold at redline
+    for(var j=3;j>=0;j--){plan.push([t,j,true]);t+=140;}   // fall back, stays lit
     plan.forEach(function(p){
-      setTimeout(function(){tcPaint(p[1],false);},p[0]);
+      setTimeout(function(){
+        if(p[2])tcAllLit=true;
+        tcPaint(p[1],false);
+      },p[0]);
     });
     setTimeout(function(){
       tcNeedle.classList.remove('revving');
+      tcAllLit=true;
       tcPaint(0,true);
     },t+80);
   }
@@ -1100,6 +1116,9 @@ if(tcSteps.length){
     });
   });
 
+  /* No sweep for reduced-motion visitors, so light the dial straight away
+     rather than leaving them looking at a dead gauge. */
+  if(reduce||!('IntersectionObserver' in window))tcAllLit=true;
   tcGo(0);
   if(!reduce&&'IntersectionObserver' in window){
     var tcIo=new IntersectionObserver(function(es){
