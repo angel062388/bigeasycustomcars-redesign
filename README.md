@@ -32,6 +32,18 @@ A static, single-page mockup. No build step, no dependencies. Open
 - **Radius:** 20px on all cards and imagery.
 - No em dashes. Non-ASCII as HTML entities.
 
+## Service-areas coverage map
+
+Layout is the Big Easy Bathrooms one (head / map card / numbered side list),
+rebuilt for a car shop. BEB ran water through a navy pipe with a drop
+travelling it. This is a night map: asphalt roads, animated amber lane dashes,
+and a lifted pickup driving the main route via `animateMotion`.
+
+All eight of the client's cities are placed with their real parishes. Lake
+Pontchartrain and the Mississippi are real; pin positions are not to scale.
+Under 700px the pin labels collapse to numbered dots, the same behaviour BEB
+uses. Every animation stops under `prefers-reduced-motion`.
+
 ## Verified
 
 - No console errors
