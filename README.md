@@ -32,6 +32,41 @@ A static, single-page mockup. No build step, no dependencies. Open
 - **Radius:** 20px on all cards and imagery.
 - No em dashes. Non-ASCII as HTML entities.
 
+## Builds collection carousel
+
+Pattern taken from the Gunther Werks collection: light ground, the active
+vehicle centred and full colour, its neighbours scaled back, desaturated and
+half off-frame, then the model name, spec pills, circular arrows and one
+outlined CTA underneath. Wraps around, dots track the active slide, arrow keys
+work inside the stage, and the slide transition is disabled under
+`prefers-reduced-motion`.
+
+### Photography: stock, and labelled as such
+
+The five carousel images are **Unsplash stock**, used under the
+[Unsplash Licence](https://unsplash.com/license) (free for commercial use, no
+attribution required). Unsplash was chosen over Freepik, Vecteezy and Pngtree
+specifically because those require attribution or a paid licence for much of
+their catalogue.
+
+**These are not Big Easy Custom Cars builds.** Every slide carries a "Stock
+photo" tag in the corner so nobody mistakes them for the shop's own work, and
+they must be replaced with real job photography before this goes anywhere
+public.
+
+| File | Unsplash photo ID | Subject |
+|---|---|---|
+| `build-blackout.jpg` | `1601252300554-4ad551483bd2` | Blacked-out lifted Silverado |
+| `build-trail.jpg` | `1559416523-140ddc3d238c` | Tan Tacoma, black wheels, light bar |
+| `build-offroad.jpg` | `1598110579456-122e6342daee` | Red RAM, grille guard, bronze wheels |
+| `build-crew.jpg` | `1552745998-234af3caf5b6` | White RAM crew cab |
+| `build-suspension.jpg` | `1659653198574-3218ea02ed36` | Wheel and coilover detail |
+
+A sixth candidate (a Silverado in deep snow) was downloaded, reviewed and
+rejected: snow reads wrong for a New Orleans shop. Semi-trucks and any frame
+containing a person were rejected too, per the house rule of no people and no
+faces.
+
 ## Service-areas coverage map
 
 Layout is the Big Easy Bathrooms one (head / map card / numbered side list),

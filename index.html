@@ -202,32 +202,58 @@ section{padding:clamp(56px,8vw,104px) 0}
 .svc.is-new .flagme{display:block;margin-top:12px;font-size:11px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--amber-2)}
 
-/* ---------- builds gallery ---------- */
-.builds{background:var(--paper-2)}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-.filters button{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.09em;
-  text-transform:uppercase;padding:11px 20px;border-radius:999px;cursor:pointer;
-  border:2px solid var(--line);background:#fff;color:var(--body);transition:.3s var(--ease)}
-.filters button:hover{border-color:var(--ink)}
-.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(266px,1fr));gap:20px;margin-top:30px}
-.bcard{border-radius:var(--r);overflow:hidden;background:var(--ink-3);position:relative;
-  aspect-ratio:4/3;display:flex;align-items:flex-end;text-decoration:none;
-  transition:.4s var(--ease);border:1px solid var(--line)}
-.bcard:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(11,12,14,.16)}
-.bcard .fill{position:absolute;inset:0;background:linear-gradient(150deg,#20242A,#0D0F12);
-  transition:transform .6s var(--ease)}
-.bcard:hover .fill{transform:scale(1.05)}
-.bcard .fill::after{content:"";position:absolute;inset:0;
-  background:radial-gradient(60% 50% at 30% 40%,rgba(228,120,63,.13),transparent 65%)}
-.bcard .meta{position:relative;z-index:2;padding:22px;width:100%;
-  background:linear-gradient(to top,rgba(6,7,9,.92),transparent)}
-.bcard .meta b{display:block;font-family:var(--serif);font-size:19px;color:var(--paper);font-weight:600}
-.bcard .meta span{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
-.bcard[hidden]{display:none}
-.ph-tag{position:absolute;top:13px;left:13px;z-index:3;font-size:9.5px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;color:#0B0C0E;background:rgba(255,255,255,.82);
-  padding:5px 9px;border-radius:5px}
+/* ---------- builds: collection carousel ----------
+   Pattern taken from the Gunther Werks collection: light ground, the active
+   vehicle centred and full colour, its neighbours scaled back, desaturated
+   and half off-frame, then the model name, spec pills, circular arrows and
+   one outlined CTA underneath. */
+.builds{background:var(--paper);overflow:hidden}
+.bc-head{text-align:center;max-width:none;margin-inline:auto}
+.bc-head .lead,.bc-head p{margin-inline:auto}
+.bc-head h2{letter-spacing:.01em}
+.bc-head .bc-lede{max-width:58ch;margin-inline:auto}
+.bc-stage{position:relative;height:clamp(220px,33vw,430px);
+  margin-top:clamp(26px,4vw,46px)}
+.bc-slide{position:absolute;top:0;left:50%;height:100%;
+  width:min(60%,740px);margin-left:calc(min(60%,740px) / -2);
+  border-radius:var(--r);overflow:hidden;background:var(--paper-2);
+  transition:transform .75s var(--ease),opacity .75s var(--ease),filter .75s var(--ease);
+  will-change:transform,opacity}
+.bc-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.bc-slide.is-active{transform:none;opacity:1;filter:none;z-index:3;
+  box-shadow:0 26px 62px rgba(11,12,14,.2)}
+.bc-slide.is-prev{transform:translateX(-84%) scale(.86);opacity:.28;filter:grayscale(1);z-index:2}
+.bc-slide.is-next{transform:translateX(84%) scale(.86);opacity:.28;filter:grayscale(1);z-index:2}
+.bc-slide.is-far{transform:scale(.72);opacity:0;z-index:1;pointer-events:none}
+.bc-tag{position:absolute;top:12px;left:12px;z-index:4;font-size:9px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:#0B0C0E;
+  background:rgba(255,255,255,.86);padding:5px 9px;border-radius:5px}
+.bc-meta{text-align:center;margin-top:clamp(22px,3vw,34px)}
+.bc-name{font-family:var(--serif);font-weight:600;color:var(--ink);line-height:1.05;
+  font-size:clamp(26px,3.6vw,42px);letter-spacing:-.01em}
+.bc-pills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:15px}
+.bc-pill{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;
+  padding:7px 15px;font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--body)}
+.bc-nav{display:flex;gap:11px;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
+.bc-arrow{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:#fff;border:1px solid var(--line);cursor:pointer;color:var(--ink);
+  font:400 18px/1 var(--sans);transition:.3s var(--ease)}
+.bc-arrow:hover{border-color:var(--ink);transform:translateY(-2px)}
+.bc-arrow:focus-visible{outline:2px solid var(--amber-ink);outline-offset:3px}
+.bc-explore{display:flex;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
+.bc-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+.bc-dots button{width:7px;height:7px;padding:0;border-radius:50%;cursor:pointer;
+  border:0;background:var(--line);transition:.3s var(--ease)}
+.bc-dots button[aria-current="true"]{background:var(--amber-ink);width:20px;border-radius:99px}
+@media(max-width:760px){
+  .bc-slide{width:82%;margin-left:-41%}
+  .bc-slide.is-prev{transform:translateX(-96%) scale(.84)}
+  .bc-slide.is-next{transform:translateX(96%) scale(.84)}
+}
+@media (prefers-reduced-motion:reduce){
+  .bc-slide{transition:none}
+}
 
 /* ---------- stats ---------- */
 .stats{background:var(--ink);color:var(--body-d)}
@@ -546,30 +572,50 @@ section{padding:clamp(56px,8vw,104px) 0}
      client supplies real build photography. -->
 <section class="builds" id="builds">
   <div class="wrap">
-    <div class="lead rv">
+    <div class="lead bc-head rv">
       <p class="eyeb">Our Work</p>
       <h2>What We&#39;ve <span class="kw">Built</span></h2>
-      <p>Every build gets its own page: the brief, the parts list, the problems we hit and the finished truck. This is the proof the current site is missing.</p>
+      <p class="bc-lede">Every build gets its own page: the brief, the parts list, the problems we hit and the finished truck. This is the proof the current site is missing.</p>
     </div>
 
-    <div class="filters rv" role="group" aria-label="Filter builds">
-      <button type="button" data-f="all" aria-pressed="true">All Builds</button>
-      <button type="button" data-f="current" aria-pressed="false">Current Builds</button>
-      <button type="button" data-f="trucks" aria-pressed="false">Trucks</button>
-      <button type="button" data-f="suvs" aria-pressed="false">SUVs</button>
-      <button type="button" data-f="offroad" aria-pressed="false">Off-Road</button>
+    <!-- Photography note, and it matters: these five are Unsplash stock under
+         the Unsplash Licence (free for commercial use, no attribution needed).
+         They are NOT Big Easy Custom Cars builds. Every one is tagged in the
+         corner so nobody mistakes them for the shop's own work. Replace them
+         with real job photography before this goes anywhere public. -->
+    <div class="bc-stage" id="bcStage">
+      <figure class="bc-slide" data-name="Silverado Blackout" data-pills="Blackout Package|Lifted Truck">
+        <span class="bc-tag">Stock photo</span>
+        <img src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted Chevrolet Silverado on a coastal road" loading="lazy">
+      </figure>
+      <figure class="bc-slide" data-name="Tacoma Trail Rig" data-pills="Trail Rig|Lift Kit &amp; Wheels">
+        <span class="bc-tag">Stock photo</span>
+        <img src="assets/builds/build-trail.jpg" alt="Lifted tan Toyota Tacoma with black off-road wheels and a light bar" loading="lazy">
+      </figure>
+      <figure class="bc-slide" data-name="RAM Off-Road" data-pills="Off-Road Build|Bronze Wheels">
+        <span class="bc-tag">Stock photo</span>
+        <img src="assets/builds/build-offroad.jpg" alt="Red lifted RAM with a grille guard and bronze wheels on a dirt trail" loading="lazy">
+      </figure>
+      <figure class="bc-slide" data-name="Crew Cab Build" data-pills="Crew Cab|Full Custom">
+        <span class="bc-tag">Stock photo</span>
+        <img src="assets/builds/build-crew.jpg" alt="White lifted RAM crew cab parked among trees" loading="lazy">
+      </figure>
+      <figure class="bc-slide" data-name="Suspension &amp; Wheels" data-pills="FOX &amp; BDS|Forged Wheels">
+        <span class="bc-tag">Stock photo</span>
+        <img src="assets/builds/build-suspension.jpg" alt="Close-up of a lifted truck front wheel showing the coilover and forged wheel" loading="lazy">
+      </figure>
     </div>
 
-    <div class="bgrid" id="bgrid">
-      <a class="bcard rv" href="#quote-form" data-cat="trucks"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>Lifted Truck</span><b>F-150 Blackout</b></span></a>
-      <a class="bcard rv" href="#quote-form" data-cat="suvs"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>Blackout Package</span><b>Tahoe Murdered Out</b></span></a>
-      <a class="bcard rv" href="#quote-form" data-cat="offroad"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>Trail Rig</span><b>Gladiator Overland</b></span></a>
-      <a class="bcard rv" href="#quote-form" data-cat="trucks current"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>In The Shop Now</span><b>Silverado Street Build</b></span></a>
-      <a class="bcard rv" href="#quote-form" data-cat="offroad current"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>In The Shop Now</span><b>RAM Power Wagon</b></span></a>
-      <a class="bcard rv" href="#quote-form" data-cat="suvs"><span class="ph-tag">Photo needed</span><span class="fill"></span><span class="meta"><span>Full Interior</span><b>Yukon Rebuild</b></span></a>
+    <div class="bc-meta rv">
+      <p class="bc-name" id="bcName">Silverado Blackout</p>
+      <div class="bc-pills" id="bcPills"></div>
+      <div class="bc-nav">
+        <button class="bc-arrow" type="button" id="bcPrev" aria-label="Previous build">&#8249;</button>
+        <button class="bc-arrow" type="button" id="bcNext" aria-label="Next build">&#8250;</button>
+      </div>
+      <div class="bc-explore"><a class="btn btn-s" href="#quote-form">Explore the Build &#8250;</a></div>
+      <div class="bc-dots" id="bcDots" role="tablist" aria-label="Choose a build"></div>
     </div>
-
-    <div class="btn-row rv"><a class="btn btn-s" href="#quote-form">Start a Build Like These</a></div>
   </div>
 </section>
 
@@ -892,18 +938,54 @@ if(reduce||!('IntersectionObserver' in window)){
   rv.forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
 }
 
-/* builds filter */
-var fbtns=document.querySelectorAll('.filters button');
-fbtns.forEach(function(b){
-  b.addEventListener('click',function(){
-    fbtns.forEach(function(x){x.setAttribute('aria-pressed','false');});
-    b.setAttribute('aria-pressed','true');
-    var f=b.dataset.f;
-    document.querySelectorAll('.bcard').forEach(function(c){
-      c.hidden = !(f==='all' || (c.dataset.cat||'').split(' ').indexOf(f)>-1);
-    });
+/* builds collection carousel */
+var bcSlides=[].slice.call(document.querySelectorAll('.bc-slide'));
+if(bcSlides.length){
+  var bcName=document.getElementById('bcName'),
+      bcPills=document.getElementById('bcPills'),
+      bcDots=document.getElementById('bcDots'),
+      bcIndex=0, bcN=bcSlides.length;
+
+  bcSlides.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.type='button';
+    d.setAttribute('role','tab');
+    d.setAttribute('aria-label','Build '+(i+1)+' of '+bcN);
+    d.addEventListener('click',function(){bcGo(i);});
+    bcDots.appendChild(d);
   });
-});
+
+  function bcGo(n){
+    bcIndex=(n%bcN+bcN)%bcN;
+    var prev=(bcIndex-1+bcN)%bcN, next=(bcIndex+1)%bcN;
+    bcSlides.forEach(function(s,i){
+      s.className='bc-slide '+(i===bcIndex?'is-active':i===prev?'is-prev':i===next?'is-next':'is-far');
+      s.setAttribute('aria-hidden',i===bcIndex?'false':'true');
+    });
+    var cur=bcSlides[bcIndex];
+    bcName.textContent=cur.dataset.name;
+    bcPills.innerHTML='';
+    (cur.dataset.pills||'').split('|').forEach(function(t){
+      if(!t)return;
+      var p=document.createElement('span');
+      p.className='bc-pill';
+      p.textContent=t;
+      bcPills.appendChild(p);
+    });
+    [].forEach.call(bcDots.children,function(d,i){
+      d.setAttribute('aria-current',i===bcIndex?'true':'false');
+    });
+  }
+
+  document.getElementById('bcPrev').addEventListener('click',function(){bcGo(bcIndex-1);});
+  document.getElementById('bcNext').addEventListener('click',function(){bcGo(bcIndex+1);});
+  /* arrow keys work once the carousel has been used */
+  document.getElementById('bcStage').addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')bcGo(bcIndex-1);
+    if(e.key==='ArrowRight')bcGo(bcIndex+1);
+  });
+  bcGo(0);
+}
 
 /* FAQ accordion: keep one open at a time */
 var faqs=document.querySelectorAll('.faq');
