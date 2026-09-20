@@ -183,18 +183,19 @@ section{padding:clamp(56px,8vw,104px) 0}
 .tc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,4vw,56px);
   align-items:center;margin-top:clamp(30px,4vw,50px)}
 @media(max-width:900px){.tc-grid{grid-template-columns:1fr;gap:30px}}
-.tc-dial{position:relative;max-width:470px;width:100%;margin-inline:auto}
+.tc-dial{position:relative;max-width:520px;width:100%;margin-inline:auto}
 .tc-svg{display:block;width:100%;height:auto;overflow:visible}
 .tc-arc{fill:none;stroke-width:16;stroke-linecap:butt;opacity:.22;transition:opacity .45s var(--ease)}
-.tc-arc.on{opacity:1}
+.tc-arc.on{opacity:1;filter:drop-shadow(0 0 8px var(--g))}
 .tc-tick{stroke:rgba(255,255,255,.28);stroke-width:2}
 .tc-numl{fill:var(--steel);font:600 15px/1 var(--sans);letter-spacing:.06em;text-anchor:middle}
-.tc-numl.on{fill:var(--paper)}
+.tc-numl.on{fill:var(--paper);filter:drop-shadow(0 0 6px rgba(255,255,255,.5))}
 .tc-needle{transform-origin:200px 200px;transition:transform .85s cubic-bezier(.34,1.3,.5,1)}
-.tc-needle path{fill:var(--amber)}
+.tc-needle path{fill:var(--amber);filter:drop-shadow(0 0 7px rgba(228,120,63,.95))}
+.tc-needle.revving{transition:transform .15s linear}
 .tc-hub{fill:var(--ink-3);stroke:rgba(255,255,255,.22);stroke-width:2}
-.tc-read{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);text-align:center;width:100%}
-.tc-read b{display:block;font-family:var(--serif);font-size:clamp(34px,4.6vw,52px);
+.tc-read{text-align:center;margin-top:2px}
+.tc-read b{display:block;font-family:var(--serif);font-size:clamp(30px,4vw,46px);
   font-weight:700;color:var(--paper);line-height:1}
 .tc-read span{display:block;font-size:10px;font-weight:600;letter-spacing:.3em;
   text-transform:uppercase;color:var(--steel);margin-top:6px}
@@ -558,11 +559,11 @@ section{padding:clamp(56px,8vw,104px) 0}
       <div class="tc-dial rv">
         <svg class="tc-svg" viewBox="0 0 400 250" aria-hidden="true" focusable="false">
           <!-- stage arcs, cool at idle through to amber at redline -->
-          <path class="tc-arc" data-i="0" stroke="#4A5058" d="M 50 200 A 150 150 0 0 1 78.65 111.83"></path>
-          <path class="tc-arc" data-i="1" stroke="#7A6448" d="M 78.65 111.83 A 150 150 0 0 1 153.65 57.34"></path>
-          <path class="tc-arc" data-i="2" stroke="#A87038" d="M 153.65 57.34 A 150 150 0 0 1 246.35 57.34"></path>
-          <path class="tc-arc" data-i="3" stroke="#C96A2C" d="M 246.35 57.34 A 150 150 0 0 1 321.35 111.83"></path>
-          <path class="tc-arc" data-i="4" stroke="#E4783F" d="M 321.35 111.83 A 150 150 0 0 1 350 200"></path>
+          <path class="tc-arc" data-i="0" stroke="#4A5058" style="--g:#7E8794" d="M 50 200 A 150 150 0 0 1 78.65 111.83"></path>
+          <path class="tc-arc" data-i="1" stroke="#7A6448" style="--g:#B79768" d="M 78.65 111.83 A 150 150 0 0 1 153.65 57.34"></path>
+          <path class="tc-arc" data-i="2" stroke="#A87038" style="--g:#D89A54" d="M 153.65 57.34 A 150 150 0 0 1 246.35 57.34"></path>
+          <path class="tc-arc" data-i="3" stroke="#C96A2C" style="--g:#E08A45" d="M 246.35 57.34 A 150 150 0 0 1 321.35 111.83"></path>
+          <path class="tc-arc" data-i="4" stroke="#E4783F" style="--g:#FF9358" d="M 321.35 111.83 A 150 150 0 0 1 350 200"></path>
 
           <!-- boundary ticks -->
           <g class="tc-tick">
@@ -586,7 +587,7 @@ section{padding:clamp(56px,8vw,104px) 0}
 
           <!-- needle -->
           <g class="tc-needle" id="tcNeedle">
-            <path d="M 195 203 L 198.5 84 L 201.5 84 L 205 203 Z"></path>
+            <path d="M 196 201 L 199 92 L 201 92 L 204 201 Z"></path>
           </g>
           <circle class="tc-hub" cx="200" cy="200" r="15"></circle>
         </svg>
@@ -1052,22 +1053,62 @@ if(tcSteps.length){
       tcNums=[].slice.call(document.querySelectorAll('.tc-numl[data-i]'));
   document.getElementById('tcOf').textContent='of 0'+tcSteps.length;
 
-  function tcGo(i){
+  /* Paint a stage. withList=false is used during the ignition sweep so the
+     step cards do not flash open and shut while the needle is travelling. */
+  function tcPaint(i,withList){
     /* five 36-degree stages across a 180-degree sweep; the needle points at
        the middle of the active stage, so stage 3 sits straight up. */
     tcNeedle.style.transform='rotate('+((i-2)*36)+'deg)';
     tcNum.textContent='0'+(i+1);
-    tcSteps.forEach(function(s,n){
-      s.classList.toggle('on',n===i);
-      s.setAttribute('aria-expanded',n===i?'true':'false');
-    });
     tcArcs.forEach(function(a,n){a.classList.toggle('on',n<=i);});
     tcNums.forEach(function(t,n){t.classList.toggle('on',n<=i);});
+    if(withList){
+      tcSteps.forEach(function(s,n){
+        s.classList.toggle('on',n===i);
+        s.setAttribute('aria-expanded',n===i?'true':'false');
+      });
+    }
   }
+  function tcGo(i){tcPaint(i,true);}
+
+  /* Ignition sweep: the needle runs up to redline, holds, then falls back to
+     stage one, illuminating each stage as it passes and dimming on the way
+     down. Fires once, when the section first scrolls into view. */
+  var tcRevved=false;
+  function tcRev(){
+    if(tcRevved)return;
+    tcRevved=true;
+    tcNeedle.classList.add('revving');
+    var t=0,plan=[];
+    for(var i=0;i<5;i++){plan.push([t,i]);t+=170;}   // up to redline
+    t+=460;                                          // hold at redline
+    for(var j=3;j>=0;j--){plan.push([t,j]);t+=140;}  // fall back to idle
+    plan.forEach(function(p){
+      setTimeout(function(){tcPaint(p[1],false);},p[0]);
+    });
+    setTimeout(function(){
+      tcNeedle.classList.remove('revving');
+      tcPaint(0,true);
+    },t+80);
+  }
+
   tcSteps.forEach(function(s){
-    s.addEventListener('click',function(){tcGo(+s.dataset.i);});
+    s.addEventListener('click',function(){
+      tcRevved=true;               /* a click means they are driving it now */
+      tcNeedle.classList.remove('revving');
+      tcGo(+s.dataset.i);
+    });
   });
+
   tcGo(0);
+  if(!reduce&&'IntersectionObserver' in window){
+    var tcIo=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){tcRev();tcIo.disconnect();}
+      });
+    },{threshold:.35});
+    tcIo.observe(document.querySelector('.tc-dial'));
+  }
 }
 
 /* builds collection carousel */
