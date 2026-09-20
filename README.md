@@ -54,18 +54,42 @@ photo" tag in the corner so nobody mistakes them for the shop's own work, and
 they must be replaced with real job photography before this goes anywhere
 public.
 
-| File | Unsplash photo ID | Subject |
-|---|---|---|
-| `build-blackout.jpg` | `1601252300554-4ad551483bd2` | Blacked-out lifted Silverado |
-| `build-trail.jpg` | `1559416523-140ddc3d238c` | Tan Tacoma, black wheels, light bar |
-| `build-offroad.jpg` | `1598110579456-122e6342daee` | Red RAM, grille guard, bronze wheels |
-| `build-crew.jpg` | `1552745998-234af3caf5b6` | White RAM crew cab |
-| `build-suspension.jpg` | `1659653198574-3218ea02ed36` | Wheel and coilover detail |
+The carousel deliberately **alternates cars and trucks**, because this is a
+full custom shop and not a truck shop (see the positioning note below).
 
-A sixth candidate (a Silverado in deep snow) was downloaded, reviewed and
-rejected: snow reads wrong for a New Orleans shop. Semi-trucks and any frame
-containing a person were rejected too, per the house rule of no people and no
-faces.
+| # | File | Unsplash photo ID | Subject | Type |
+|---|---|---|---|---|
+| 1 | `build-blackout.jpg` | `1601252300554-4ad551483bd2` | Blacked-out lifted Silverado | Truck |
+| 2 | `build-muscle.jpg` | `1609386464913-4cbfa39de540` | Challenger, amber halo headlights | Car |
+| 3 | `build-trail.jpg` | `1559416523-140ddc3d238c` | Tan Tacoma, black wheels, light bar | Truck |
+| 4 | `build-graphics.jpg` | `1625231334168-35067f8853ed` | Shelby with red racing stripes | Car |
+| 5 | `build-offroad.jpg` | `1598110579456-122e6342daee` | Red RAM, grille guard, bronze wheels | Truck |
+| 6 | `build-luxury.jpg` | `1628519592419-bf288f08cef5` | Matte black exotic on a wet street | Car |
+| 7 | `build-suspension.jpg` | `1659653198574-3218ea02ed36` | Wheel and coilover detail | Both |
+
+Rejected after review: a Silverado in deep snow (reads wrong for New Orleans),
+a white RAM shot from the rear (weakest of the set), semi-trucks (wrong
+business), and any frame containing a person (house rule: no people, no faces).
+
+All seven were re-encoded at 1280px wide, quality 72, progressive:
+**2,380 KB to 1,307 KB**, a saving of 1,072 KB.
+
+## Positioning: NOT a truck-only shop
+
+An earlier draft of this mockup was written truck-led. **That was wrong** and
+the client corrected it. The evidence was on their own site the whole time:
+
+- The portfolio filters on the live homepage are All / Trucks / SUVs /
+  **Luxury** / Off-Road, and the section is headed "Our Custom **Car** Projects".
+- All eight live service pages are vehicle-agnostic: paint and graphics,
+  upholstery, audio, window tint, tuning, body kits, lighting, restoration.
+- The brand name is Custom **Cars**, and the logo is a classic pickup.
+
+What misled the draft was the homepage body copy, which talks almost entirely
+about lifted trucks and SUVs. That copy is unrepresentative of the business.
+The mockup now reads **cars, trucks and SUVs** throughout: hero lede, services
+lede, builds lede, meta description, FAQ answers, footer and the quote form
+dropdown.
 
 ## Service-areas coverage map
 
