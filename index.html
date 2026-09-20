@@ -251,15 +251,89 @@ section{padding:clamp(56px,8vw,104px) 0}
 .rev .who span{display:block;font-weight:400;color:var(--steel);font-size:12px;
   letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 
-/* ---------- areas ---------- */
+/* ---------- areas: coverage map ----------
+   Layout lifted from the Big Easy Bathrooms homepage (head / map card /
+   numbered side list). The CONTENT is rebuilt for a car shop: BEB ran water
+   through a navy pipe with a drop travelling it. Here the routes are roads
+   with amber lane dashes and a pickup driving them, shot at night, which
+   suits the brand better than a cream daytime map. Lake Pontchartrain, the
+   Mississippi and the parishes are real; pin positions are not to scale. */
 .areas{background:var(--ink-2);color:var(--body-d)}
-.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(182px,1fr));gap:12px;margin-top:40px}
-.area{background:var(--ink-3);border:1px solid var(--line-d);border-radius:14px;
-  padding:19px 22px;text-decoration:none;color:var(--body-d);font-size:15px;font-weight:500;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;transition:.3s var(--ease)}
-.area:hover{background:var(--amber);border-color:var(--amber);color:#1A0600;transform:translateX(4px)}
-.area i{font-style:normal;opacity:.5;transition:.3s}
-.area:hover i{opacity:1;transform:translateX(3px)}
+.am-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,2.6vw,34px);align-items:start;margin-top:42px}
+.am-head{grid-column:1/-1;margin-top:0}
+.am-lede{max-width:60ch}
+.am-card{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(14px,1.8vw,20px);overflow:hidden}
+.am-prompt{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;margin-bottom:12px}
+.am-prompt .eyeb{margin:0}
+.am-prompt strong{font-size:12.5px;font-weight:500;color:var(--steel)}
+.am-stage{position:relative;border-radius:14px;overflow:hidden;background:#0A0C0F}
+.am-map{display:block;width:100%;height:auto}
+.am-land{fill:url(#bcTile)}
+.am-water{fill:#101A24}
+.am-waves path{fill:none;stroke:#1D2B39;stroke-width:2;animation:bcWave 9s linear infinite}
+@keyframes bcWave{to{transform:translateX(60px)}}
+.am-river{fill:none;stroke:#141F2B;stroke-width:9;stroke-linecap:round}
+.am-wlabel{fill:#5C6672;font:500 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.am-small{font-size:12.5px}
+.am-home{fill:var(--paper);font-size:16px;letter-spacing:.1em}
+/* road: dark asphalt casing with an amber dashed centre line running along it */
+.am-road{fill:none;stroke:#252A31;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+.am-lane{fill:none;stroke:var(--amber);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:14 20;opacity:.55;animation:bcLane 1.6s linear infinite}
+@keyframes bcLane{to{stroke-dashoffset:-34}}
+.am-dot .am-core{fill:var(--amber);stroke:#0A0C0F;stroke-width:3}
+.am-dot .am-ring{fill:none;stroke:var(--amber);stroke-width:2}
+.am-truck{filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+@media (prefers-reduced-motion:reduce){
+  .am-waves path,.am-lane{animation:none}
+  .am-lane{opacity:.45}
+  .am-map animate,.am-map animateMotion{display:none}
+}
+/* pins sit over the svg in percentage space so they scale with it */
+.am-pin{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-160%);
+  display:flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;
+  background:rgba(10,12,15,.9);border:1px solid var(--line-d);border-radius:999px;
+  padding:5px 11px 5px 6px;font-size:12px;font-weight:600;color:var(--paper);
+  backdrop-filter:blur(6px);transition:.28s var(--ease)}
+.am-pin b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  background:var(--amber);color:#1A0600;font-size:10px;font-weight:700}
+.am-pin:hover,.am-pin.on{background:var(--amber);border-color:var(--amber);color:#1A0600;
+  transform:translate(-50%,-180%)}
+.am-pin:hover b,.am-pin.on b{background:#1A0600;color:var(--amber)}
+.am-pin.am-l{transform:translate(-88%,-160%)}
+.am-pin.am-l:hover,.am-pin.am-l.on{transform:translate(-88%,-180%)}
+.am-pin.am-r{transform:translate(-12%,-160%)}
+.am-pin.am-r:hover,.am-pin.am-r.on{transform:translate(-12%,-180%)}
+@media(max-width:700px){
+  .am-pin span{display:none}
+  .am-pin{padding:4px;border-radius:50%}
+}
+.am-note{display:flex;align-items:center;gap:9px;margin-top:13px;font-size:13px;color:var(--steel)}
+.am-note svg{flex:0 0 auto}
+/* side list */
+.am-side{display:flex;flex-direction:column;gap:16px}
+.am-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.am-row{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--body-d);
+  background:var(--ink-3);border:1px solid var(--line-d);border-radius:13px;
+  padding:12px 15px;transition:.28s var(--ease)}
+.am-row b{display:grid;place-items:center;width:27px;height:27px;border-radius:8px;flex:0 0 auto;
+  background:rgba(228,120,63,.14);color:var(--amber);font-size:11.5px;font-weight:700}
+.am-txt{display:flex;flex-direction:column;line-height:1.25;flex:1 1 auto}
+.am-city{font-size:15px;font-weight:600;color:var(--paper)}
+.am-txt small{font-size:11.5px;color:var(--steel);letter-spacing:.06em}
+.am-row i{font-style:normal;opacity:.4;transition:.28s}
+.am-row:hover,.am-row.on{background:var(--amber);border-color:var(--amber);color:#1A0600}
+.am-row:hover .am-city,.am-row.on .am-city{color:#1A0600}
+.am-row:hover small,.am-row.on small{color:rgba(26,6,0,.72)}
+.am-row:hover b,.am-row.on b{background:#1A0600;color:var(--amber)}
+.am-row:hover i{opacity:1;transform:translateX(3px)}
+.am-cta{display:flex;flex-wrap:wrap;gap:10px}
+.am-cta .btn{flex:1 1 auto}
+@media(max-width:940px){
+  .am-grid{grid-template-columns:1fr}
+}
 
 /* ---------- faq ---------- */
 .faq-list{margin-top:40px;border-top:1px solid var(--line)}
@@ -539,19 +613,107 @@ section{padding:clamp(56px,8vw,104px) 0}
      The eight cities are the live site's own service-area pages. -->
 <section class="areas on-dark" id="areas">
   <div class="wrap">
-    <div class="lead rv">
-      <p class="eyeb">Where We Work</p>
-      <h2>Serving New Orleans and the <span class="kw">Surrounding Parishes</span></h2>
-    </div>
-    <div class="area-grid">
-      <a class="area rv" href="#quote-form">Abita Springs <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Covington <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Kenner <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Madisonville <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Mandeville <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Metairie <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">Slidell <i>&#8250;</i></a>
-      <a class="area rv" href="#quote-form">St. Rose <i>&#8250;</i></a>
+    <div class="am-grid">
+      <div class="lead am-head rv">
+        <p class="eyeb">Where We Work</p>
+        <h2>Serving New Orleans and the <span class="kw">Surrounding Parishes</span></h2>
+        <p class="am-lede">Eight service areas on both sides of the lake, all run out of the New Orleans shop. Pick your city on the map or in the list.</p>
+      </div>
+
+      <div class="am-card rv">
+        <div class="am-prompt"><span class="eyeb">Coverage map</span><strong>Tap a city to open its page</strong></div>
+        <div class="am-stage">
+          <svg class="am-map" viewBox="0 0 1000 640" aria-hidden="true" focusable="false">
+            <defs>
+              <pattern id="bcTile" width="34" height="34" patternUnits="userSpaceOnUse">
+                <rect width="34" height="34" fill="#12151A"></rect>
+                <path d="M0 34V0H34" fill="none" stroke="#181C22" stroke-width="2"></path>
+              </pattern>
+              <clipPath id="bcClip"><rect x="-200" y="-200" width="1400" height="1040"></rect></clipPath>
+              <clipPath id="bcLake"><ellipse cx="560" cy="330" rx="290" ry="88"></ellipse></clipPath>
+            </defs>
+            <g clip-path="url(#bcClip)">
+              <rect class="am-land" x="-200" y="-200" width="1400" height="1040"></rect>
+
+              <!-- Lake Pontchartrain, with wave lines drifting across it -->
+              <ellipse class="am-water" cx="560" cy="330" rx="290" ry="88"></ellipse>
+              <g class="am-waves" clip-path="url(#bcLake)">
+                <path d="M 220 306 q 15 -6 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0"></path>
+                <path d="M 220 331 q 15 -7 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" style="animation-delay:-3s"></path>
+                <path d="M 220 356 q 15 -6 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" style="animation-delay:-6s"></path>
+              </g>
+              <text class="am-wlabel" x="655" y="336">Lake Pontchartrain</text>
+
+              <!-- the river, south of the city -->
+              <path class="am-river" d="M -10 505 C 150 480 300 565 460 548 C 560 537 600 512 660 528 C 740 550 830 605 1010 565"></path>
+              <text class="am-wlabel am-small" x="250" y="592">Mississippi River</text>
+              <path class="am-water" d="M -200 1040 L -200 606 Q 500 646 1200 606 L 1200 1040 Z" opacity=".7"></path>
+
+              <!-- roads. Main run: St. Rose through Kenner and Metairie, over
+                   the causeway to Mandeville, on to Covington and Abita Springs.
+                   Branches east to Slidell and west to Madisonville. -->
+              <path class="am-road" d="M 290 470 L 390 462 L 500 470 L 542 222 L 455 110 L 600 120"></path>
+              <path class="am-road" d="M 500 470 L 640 485 L 860 266"></path>
+              <path class="am-road" d="M 542 222 L 425 232"></path>
+              <path id="bcRoute" class="am-lane" d="M 290 470 L 390 462 L 500 470 L 542 222 L 455 110 L 600 120"></path>
+              <path class="am-lane" d="M 500 470 L 640 485 L 860 266" style="animation-delay:-.6s"></path>
+              <path class="am-lane" d="M 542 222 L 425 232" style="animation-delay:-1s"></path>
+
+              <!-- markers: a pulse ring, then the core -->
+              <g class="am-dot" transform="translate(600 120)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="0s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="0s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(455 110)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(425 232)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(542 222)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(860 266)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(500 470)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(390 462)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="2.1s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="2.1s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(290 470)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="2.45s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="2.45s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+
+              <!-- New Orleans, where every build starts -->
+              <g transform="translate(640 485)"><circle r="7" fill="#F7F5F2" stroke="#0A0C0F" stroke-width="3"></circle><text class="am-wlabel am-home" x="16" y="6">New Orleans</text></g>
+
+              <!-- a lifted pickup drives the main route, out and back -->
+              <g class="am-truck">
+                <g transform="scale(1.15)">
+                  <path d="M -21 3 L -21 -3 L -13 -3 L -9 -10 L 1 -10 L 3 -3 L 21 -3 L 21 3 Z" fill="#E4783F" stroke="#0A0C0F" stroke-width="1.4" stroke-linejoin="round"></path>
+                  <path d="M -11.5 -4 L -8.5 -8.5 L 0 -8.5 L 1.4 -4 Z" fill="#0A0C0F" opacity=".55"></path>
+                  <circle cx="-12" cy="4" r="4.4" fill="#15181C" stroke="#3A4048" stroke-width="1.6"></circle>
+                  <circle cx="13" cy="4" r="4.4" fill="#15181C" stroke="#3A4048" stroke-width="1.6"></circle>
+                  <path d="M 21 -1 L 30 -4 L 30 2 Z" fill="#FFD9B0" opacity=".55"></path>
+                </g>
+                <animateMotion dur="22s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="linear" rotate="auto"><mpath href="#bcRoute"></mpath></animateMotion>
+              </g>
+            </g>
+          </svg>
+
+          <a class="am-pin am-r" style="--px:60%;--py:18.75%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>01</b><span>Abita Springs</span></a>
+          <a class="am-pin" style="--px:45.5%;--py:17.19%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>02</b><span>Covington</span></a>
+          <a class="am-pin am-l" style="--px:42.5%;--py:36.25%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>03</b><span>Madisonville</span></a>
+          <a class="am-pin am-r" style="--px:54.2%;--py:34.69%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>04</b><span>Mandeville</span></a>
+          <a class="am-pin am-r" style="--px:86%;--py:41.56%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>05</b><span>Slidell</span></a>
+          <a class="am-pin am-l" style="--px:50%;--py:73.44%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>06</b><span>Metairie</span></a>
+          <a class="am-pin am-l" style="--px:39%;--py:72.19%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>07</b><span>Kenner</span></a>
+          <a class="am-pin am-l" style="--px:29%;--py:73.44%" href="#quote-form" tabindex="-1" aria-hidden="true"><b>08</b><span>St. Rose</span></a>
+        </div>
+        <p class="am-note"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8" fill="none" stroke="#E4783F" stroke-width="2"></circle><path d="M6 10.5 L9 13.5 L14.5 7" fill="none" stroke="#E4783F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Free consultation in all eight areas.</p>
+      </div>
+
+      <div class="am-side rv">
+        <ol class="am-list" aria-label="Service areas">
+          <li><a class="am-row" href="#quote-form"><b>01</b><span class="am-txt"><span class="am-city">Abita Springs</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>02</b><span class="am-txt"><span class="am-city">Covington</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>03</b><span class="am-txt"><span class="am-city">Madisonville</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>04</b><span class="am-txt"><span class="am-city">Mandeville</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>05</b><span class="am-txt"><span class="am-city">Slidell</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>06</b><span class="am-txt"><span class="am-city">Metairie</span><small>Jefferson Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>07</b><span class="am-txt"><span class="am-city">Kenner</span><small>Jefferson Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>08</b><span class="am-txt"><span class="am-city">St. Rose</span><small>St. Charles Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+        </ol>
+        <div class="am-cta">
+          <a class="btn btn-p" href="#quote-form">Get a Free Estimate</a>
+          <a class="btn btn-o" href="tel:+15043848006">Call (504) 384-8006</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -686,15 +848,39 @@ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Hero video: phones under 768px and anyone with reduce-motion on get the
    poster image alone. The source is detached before it downloads, so those
-   visitors never pay for the 3.4 MB file. */
+   visitors never pay for the 3.4 MB file.
+
+   Two guards, both learned the hard way on the deployed build:
+   1. innerWidth can report 0 when the page is not laid out yet (hidden tab,
+      zero-size frame, some embeds). 0 is NOT a phone, so only strip the
+      source when the width is a real number below 768.
+   2. Re-run on resize, so rotating a phone or widening a window restores the
+      video instead of leaving it detached for the rest of the session. */
 var hv=document.getElementById('heroVid');
-if(hv && (reduce || matchMedia('(max-width:767px)').matches)){
-  hv.removeAttribute('autoplay');
+if(hv){
   var hs=hv.querySelector('source');
-  if(hs){hs.removeAttribute('src');}
-  hv.removeAttribute('preload');
-  hv.load();          /* re-evaluates sources; the poster stays on screen */
-  hv.pause();
+  var heroSrc=hs?hs.getAttribute('src'):null;
+  var heroMedia=function(){
+    if(!hs||!heroSrc)return;
+    var w=window.innerWidth||document.documentElement.clientWidth||0;
+    var posterOnly=reduce||(w>0&&w<768);
+    var attached=!!hs.getAttribute('src');
+    if(posterOnly&&attached){
+      hv.removeAttribute('autoplay');
+      hs.removeAttribute('src');
+      hv.removeAttribute('preload');
+      hv.load();        /* re-evaluates sources; the poster stays on screen */
+      hv.pause();
+    }else if(!posterOnly&&!attached){
+      hs.setAttribute('src',heroSrc);
+      hv.setAttribute('preload','metadata');
+      hv.load();
+      var p=hv.play();
+      if(p&&p.catch)p.catch(function(){});
+    }
+  };
+  heroMedia();
+  addEventListener('resize',heroMedia,{passive:true});
 }
 var rv=document.querySelectorAll('.rv');
 if(reduce||!('IntersectionObserver' in window)){
