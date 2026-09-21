@@ -70,7 +70,7 @@ a{color:inherit}
 /* Section rhythm. Two stacked sections each carrying 104px left about
    208px of dead space between a CTA and the next heading, which read as
    a gap rather than a break. */
-section{padding:clamp(40px,5vw,72px) 0}
+section{padding:clamp(28px,2.4vw,44px) 0}
 
 /* ---------- buttons: only these four exist ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -354,9 +354,6 @@ section{padding:clamp(40px,5vw,72px) 0}
 .bay-meta p{font-size:15.5px;line-height:1.62;max-width:52ch;
   transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .bay-meta.swap h3,.bay-meta.swap p{opacity:0;transform:translateY(8px)}
-.bay-note{display:inline-block;margin-top:12px;font-size:10.5px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--amber-2);
-  border:1px dashed var(--amber-2);border-radius:5px;padding:4px 9px}
 .bay-cta{margin-top:20px}
 @media (prefers-reduced-motion:reduce){
   .bay-img,.bay-door,.bay-row,.bay-row::before,.bay-meta h3,.bay-meta p{transition:none}
@@ -437,7 +434,7 @@ section{padding:clamp(40px,5vw,72px) 0}
    Mississippi and the parishes are real; pin positions are not to scale. */
 .areas{background:var(--ink-2);color:var(--body-d)}
 .am-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,2.6vw,34px);
-  align-items:stretch;margin-top:42px}
+  align-items:stretch;margin-top:0}
 .am-head{grid-column:1/-1;margin-top:0}
 .am-lede{max-width:60ch}
 .am-card{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);
@@ -529,18 +526,54 @@ section{padding:clamp(40px,5vw,72px) 0}
   .am-grid{grid-template-columns:1fr}
 }
 
-/* ---------- faq ---------- */
-.faq-list{margin-top:40px;border-top:1px solid var(--line)}
-.faq{border-bottom:1px solid var(--line)}
-.faq button{width:100%;text-align:left;background:none;border:0;cursor:pointer;
-  padding:24px 44px 24px 0;position:relative;font-family:var(--serif);
-  font-size:clamp(17px,2vw,21px);font-weight:600;color:var(--ink);line-height:1.35}
-.faq button::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
-  font-family:var(--sans);font-size:26px;font-weight:300;color:var(--amber-ink);transition:.3s var(--ease)}
-.faq[open] button::after{transform:translateY(-50%) rotate(45deg)}
-.faq .ans{overflow:hidden;max-height:0;transition:max-height .45s var(--ease)}
-.faq[open] .ans{max-height:340px}
-.faq .ans p{padding:0 44px 26px 0;font-size:15.5px}
+/* ---------- faq: the tool chest ----------
+   Not a list of lines. A stack of drawers in a shop chest: each one has a
+   handle and a number plate, and opening it slides the drawer out of the
+   cabinet with a shadow falling behind it. Dark, because it is a toolbox. */
+.fq{background:var(--ink-2)}
+.chest{margin-top:clamp(24px,3vw,38px);display:flex;flex-direction:column;gap:10px;
+  max-width:920px}
+.drawer{background:linear-gradient(180deg,#1F242A 0%,#171B20 58%,#12161A 100%);
+  border:1px solid var(--line-d);border-radius:14px;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),
+             border-color .4s var(--ease)}
+.drawer:hover{border-color:rgba(255,255,255,.2)}
+.drawer.open{transform:translateX(12px);border-color:rgba(228,120,63,.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),-16px 0 30px rgba(0,0,0,.5)}
+.drawer-face{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;
+  gap:clamp(12px,1.6vw,20px);width:100%;padding:17px clamp(14px,1.8vw,22px);
+  background:none;border:0;cursor:pointer;text-align:left;font-family:var(--sans)}
+/* the drawer pull */
+.handle{width:44px;height:9px;border-radius:99px;flex:0 0 auto;
+  background:linear-gradient(180deg,#535B65 0%,#333941 55%,#242A31 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 2px rgba(0,0,0,.5);
+  transition:background .4s var(--ease)}
+.drawer.open .handle{background:linear-gradient(180deg,#FFB27A 0%,var(--amber) 55%,var(--amber-2) 100%)}
+.plate{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
+  min-width:22px;font-variant-numeric:tabular-nums;transition:color .4s var(--ease)}
+.drawer.open .plate,.drawer:hover .plate{color:var(--amber)}
+.q-text{font-family:var(--serif);font-weight:600;line-height:1.3;color:var(--paper);
+  font-size:clamp(16px,1.75vw,19.5px)}
+.drawer-tog{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line-d);color:var(--steel);font-size:15px;line-height:1;
+  transition:.4s var(--ease);flex:0 0 auto}
+.drawer.open .drawer-tog{background:var(--amber);border-color:var(--amber);
+  color:#1A0600;transform:rotate(45deg)}
+.drawer-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.drawer.open .drawer-body{max-height:300px}
+.drawer-body p{margin:0;padding:0 clamp(14px,1.8vw,22px) 20px
+  calc(44px + clamp(12px,1.6vw,20px) + 22px + clamp(12px,1.6vw,20px));
+  font-size:15.5px;line-height:1.62;color:var(--body-d)}
+@media(max-width:620px){
+  .drawer-face{grid-template-columns:auto 1fr auto;gap:12px}
+  .handle{display:none}
+  .drawer-body p{padding-left:calc(22px + 12px + 14px)}
+  .drawer.open{transform:translateX(6px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .drawer,.handle,.drawer-tog,.drawer-body{transition:none}
+}
 
 /* ---------- quote band ---------- */
 .quote{background:var(--ink);color:var(--body-d);position:relative;overflow:hidden}
@@ -657,7 +690,7 @@ section{padding:clamp(40px,5vw,72px) 0}
     <h1 class="rv">Your Car Deserves the <span class="kw">Big Easy Touch</span></h1>
     <p class="hero-lede rv">Cars, trucks and SUVs, built to order out of a working shop in New Orleans. You get updates, options and final say at every step.</p>
     <div class="btn-row rv">
-      <a class="btn btn-p" href="#quote-form">Get a Free Estimate</a>
+      <a class="btn btn-p" href="#quote-form">Free Estimate</a>
       <a class="btn btn-o" href="https://www.bigeasycustomcars.com/services/"
          target="_blank" rel="noopener">See Our Work</a>
     </div>
@@ -865,7 +898,6 @@ section{padding:clamp(40px,5vw,72px) 0}
         <div class="bay-meta" id="bayMeta">
           <h3 id="bayTitle">Engine Tuning &amp; Performance</h3>
           <p id="bayDesc">Power, throttle response and drivability, tuned and tested before the keys go back.</p>
-          <span class="bay-note" id="bayNote" hidden>Proposed new page</span>
           <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Free Estimate</a></div>
         </div>
       </div>
@@ -974,7 +1006,7 @@ section{padding:clamp(40px,5vw,72px) 0}
           <li><a class="am-row" href="#quote-form"><b>08</b><span class="am-txt"><span class="am-city">St. Rose</span></span><i aria-hidden="true">&rarr;</i></a></li>
         </ol>
         <div class="am-cta">
-          <a class="btn btn-p" href="#quote-form">Get a Free Estimate</a>
+          <a class="btn btn-p" href="#quote-form">Free Estimate</a>
           <a class="btn btn-o" href="tel:+15043848006">Call (504) 384-8006</a>
         </div>
       </div>
@@ -1066,21 +1098,85 @@ section{padding:clamp(40px,5vw,72px) 0}
      All eight questions are the live site's own, carried over verbatim.
      Answers are authored, because the live site's accordion content was
      not readable. Flag to the client for approval. -->
-<section id="faqs">
+<section class="fq on-dark" id="faqs">
   <div class="wrap">
     <div class="lead rv">
       <p class="eyeb">Questions</p>
       <h2>Frequently Asked <span class="kw">Questions</span></h2>
     </div>
-    <div class="faq-list">
-      <details class="faq rv" open><summary style="list-style:none"><button type="button">What types of vehicles do you work on?</button></summary><div class="ans"><p>Cars, trucks and SUVs. Muscle cars, classics and luxury builds come through alongside lifted trucks and trail rigs, and any vehicle can come in for paint, audio, tint, upholstery or tuning.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">Can I bring in my current vehicle for upgrades?</button></summary><div class="ans"><p>Yes. Most builds start with a car or truck the owner already has. We can also source a vehicle for you if you would rather start fresh.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">Do you offer lift kits and suspension upgrades?</button></summary><div class="ans"><p>Yes. We fit FOX, BDS and Rough Country kits, and set ride height and ride quality together rather than chasing height alone.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">What kind of wheels and tires can I choose from?</button></summary><div class="ans"><p>Forged wheels and off-road tires from brands like Fuel Off-Road and Toyo. We size offset and fitment to your stance and how you actually drive it.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">Can you build a truck from scratch, including sourcing the vehicle?</button></summary><div class="ans"><p>Yes. Tell us the build you want and the budget, and we will find the right starting vehicle before any parts get ordered.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">Do your builds include lighting and interior upgrades?</button></summary><div class="ans"><p>They can. Light bars, smoked lenses, custom wiring, seats and full interior rebuilds are all done in house.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">How long does a custom build take?</button></summary><div class="ans"><p>It depends on the scope and on parts availability. You get a timeline at the consultation, and updates with photos as the build moves.</p></div></details>
-      <details class="faq rv"><summary style="list-style:none"><button type="button">Can I choose the parts and brands used in my build?</button></summary><div class="ans"><p>Yes. You get options and final say at every stage. We will tell you where a cheaper part is fine and where it is worth paying up.</p></div></details>
+    <div class="chest">
+      <div class="drawer rv open" data-i="0">
+        <button class="drawer-face" type="button" aria-expanded="true">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">01</span>
+          <span class="q-text">What types of vehicles do you work on?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Cars, trucks and SUVs. Muscle cars, classics and luxury builds come through alongside lifted trucks and trail rigs, and any vehicle can come in for paint, audio, tint, upholstery or tuning.</p></div>
+      </div>
+      <div class="drawer rv" data-i="1">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">02</span>
+          <span class="q-text">Can I bring in my current vehicle for upgrades?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Yes. Most builds start with a car or truck the owner already has. We can also source a vehicle for you if you would rather start fresh.</p></div>
+      </div>
+      <div class="drawer rv" data-i="2">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">03</span>
+          <span class="q-text">Do you offer lift kits and suspension upgrades?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Yes. We fit FOX, BDS and Rough Country kits, and set ride height and ride quality together rather than chasing height alone.</p></div>
+      </div>
+      <div class="drawer rv" data-i="3">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">04</span>
+          <span class="q-text">What kind of wheels and tires can I choose from?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Forged wheels and off-road tires from brands like Fuel Off-Road and Toyo. We size offset and fitment to your stance and how you actually drive it.</p></div>
+      </div>
+      <div class="drawer rv" data-i="4">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">05</span>
+          <span class="q-text">Can you build a truck from scratch, including sourcing the vehicle?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Yes. Tell us the build you want and the budget, and we will find the right starting vehicle before any parts get ordered.</p></div>
+      </div>
+      <div class="drawer rv" data-i="5">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">06</span>
+          <span class="q-text">Do your builds include lighting and interior upgrades?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>They can. Light bars, smoked lenses, custom wiring, seats and full interior rebuilds are all done in house.</p></div>
+      </div>
+      <div class="drawer rv" data-i="6">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">07</span>
+          <span class="q-text">How long does a custom build take?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>It depends on the scope and on parts availability. You get a timeline at the consultation, and updates with photos as the build moves.</p></div>
+      </div>
+      <div class="drawer rv" data-i="7">
+        <button class="drawer-face" type="button" aria-expanded="false">
+          <span class="handle" aria-hidden="true"></span>
+          <span class="plate">08</span>
+          <span class="q-text">Can I choose the parts and brands used in my build?</span>
+          <span class="drawer-tog" aria-hidden="true">+</span>
+        </button>
+        <div class="drawer-body"><p>Yes. You get options and final say at every stage. We will tell you where a cheaper part is fine and where it is worth paying up.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1467,7 +1563,6 @@ if(bayRows.length){
       bayDoor=document.getElementById('bayDoor'),
       bayTitle=document.getElementById('bayTitle'),
       bayDesc=document.getElementById('bayDesc'),
-      bayNote=document.getElementById('bayNote'),
       bayMeta=document.getElementById('bayMeta'),
       bayAt=0,bayBusy=false;
 
@@ -1476,8 +1571,6 @@ if(bayRows.length){
     var row=bayRows[i];
     bayTitle.innerHTML=row.querySelector('.bay-name').innerHTML;
     bayDesc.textContent=row.dataset.desc;
-    if(row.dataset.new==='1')bayNote.removeAttribute('hidden');
-    else bayNote.setAttribute('hidden','');
   }
 
   function bayGo(i){
@@ -1556,14 +1649,19 @@ if(bcSlides.length){
   bcGo(0);
 }
 
-/* FAQ accordion: keep one open at a time */
-var faqs=document.querySelectorAll('.faq');
-faqs.forEach(function(d){
-  d.querySelector('button').addEventListener('click',function(e){
-    e.preventDefault();
-    var wasOpen=d.hasAttribute('open');
-    faqs.forEach(function(o){o.removeAttribute('open');});
-    if(!wasOpen)d.setAttribute('open','');
+/* FAQ tool chest: one drawer out at a time */
+var drawers=[].slice.call(document.querySelectorAll('.drawer'));
+drawers.forEach(function(d){
+  d.querySelector('.drawer-face').addEventListener('click',function(){
+    var wasOpen=d.classList.contains('open');
+    drawers.forEach(function(o){
+      o.classList.remove('open');
+      o.querySelector('.drawer-face').setAttribute('aria-expanded','false');
+    });
+    if(!wasOpen){
+      d.classList.add('open');
+      d.querySelector('.drawer-face').setAttribute('aria-expanded','true');
+    }
   });
 });
 </script>
