@@ -164,16 +164,43 @@ section{padding:clamp(56px,8vw,104px) 0}
   text-transform:uppercase;margin-bottom:6px}
 @media(max-width:900px){.slot-note{display:none}}
 
-/* ---------- trust strip ---------- */
+/* ---------- trust strip ----------
+   Three figures that count up when the strip scrolls into view, then two
+   OFFER tiles. The offers are styled and behave differently from the facts
+   on purpose: they are the only things here a visitor can act on. */
 .trust{background:var(--ink-2);padding:0;border-top:1px solid var(--line-d)}
-.trust ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+.trust ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
   gap:1px;background:var(--line-d)}
-.trust li{background:var(--ink-2);padding:26px 20px;text-align:center;
-  font-size:13px;font-weight:500;letter-spacing:.05em;color:var(--body-d);
-  text-transform:uppercase;transition:background .3s var(--ease)}
-.trust li:hover{background:var(--ink-3);color:var(--paper)}
-.trust li b{display:block;font-family:var(--serif);font-size:27px;color:var(--amber);
-  margin-bottom:6px;font-weight:700}
+.trust li{background:var(--ink-2);text-align:center;transition:background .3s var(--ease)}
+.trust li:hover{background:var(--ink-3)}
+.tf{display:block;padding:26px 20px}
+.tf b{display:block;font-family:var(--serif);font-size:clamp(26px,3vw,34px);color:var(--amber);
+  font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.tf span{display:block;margin-top:8px;font-size:12px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--body-d)}
+/* offer tiles */
+.trust li.is-offer{background:linear-gradient(180deg,rgba(228,120,63,.13),rgba(228,120,63,.04))}
+.trust li.is-offer:hover{background:linear-gradient(180deg,rgba(228,120,63,.24),rgba(228,120,63,.08))}
+.to{display:block;padding:22px 18px;text-decoration:none;position:relative;overflow:hidden}
+.to i{display:grid;place-items:center;width:34px;height:34px;margin:0 auto 10px;border-radius:50%;
+  background:var(--amber);color:#1A0600;font-style:normal;font-size:16px;font-weight:700;
+  transition:transform .35s var(--ease)}
+.to:hover i{transform:scale(1.12) rotate(-6deg)}
+.to b{display:block;font-family:var(--serif);font-size:clamp(19px,2.1vw,23px);color:var(--paper);
+  font-weight:700;line-height:1.1}
+.to em{display:block;font-style:normal;font-size:12.5px;color:var(--body-d);margin-top:6px;line-height:1.45}
+.to u{display:inline-block;margin-top:11px;text-decoration:none;font-size:10.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);transition:.3s var(--ease)}
+.to:hover u{letter-spacing:.2em}
+.to u:after{content:" 92"}
+/* a slow shine crossing the offer tiles, so they read as live not static */
+.trust li.is-offer::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.12) 48%,transparent 58%);
+  transform:translateX(-100%);animation:toShine 5.5s var(--ease) infinite}
+.trust li.is-offer{position:relative}
+.trust li.is-offer:nth-of-type(5)::after{animation-delay:1.4s}
+@keyframes toShine{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.trust li.is-offer::after{animation:none;opacity:0}}
 
 /* ---------- process: the build tacho ----------
    Five stages laid out as a rev counter sweeping from idle to redline. The
@@ -224,18 +251,29 @@ section{padding:clamp(56px,8vw,104px) 0}
   .tc-needle,.tc-arc,.tc-step,.tc-step p{transition:none}
 }
 
-/* ---------- services ---------- */
+/* ---------- services ----------
+   Each card leads with a real photograph instead of a unicode glyph. The
+   images are Unsplash stock, credited in the README, and several are reused
+   from the builds carousel where the subject genuinely matches the service
+   (the Shelby stripes for custom paint, the Challenger halos for lighting,
+   the coilover detail for lift kits). */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:20px;margin-top:44px}
 .svc{background:#fff;border:1px solid var(--line);border-radius:var(--r);
-  padding:30px 26px;text-decoration:none;display:block;transition:.35s var(--ease)}
+  text-decoration:none;display:flex;flex-direction:column;overflow:hidden;
+  transition:.35s var(--ease)}
 .svc:hover{transform:translateY(-5px);border-color:var(--amber-2);
-  box-shadow:0 18px 44px rgba(11,12,14,.09)}
-.svc .ic{width:46px;height:46px;border-radius:13px;background:var(--amber-tint);
-  display:grid;place-items:center;margin-bottom:17px;font-size:21px}
-.svc h3{margin-bottom:9px;font-size:20px}
-.svc p{font-size:14.5px;line-height:1.6}
+  box-shadow:0 18px 44px rgba(11,12,14,.12)}
+.svc-img{height:158px;overflow:hidden;background:var(--ink-3);position:relative;flex:0 0 auto}
+.svc-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .65s var(--ease)}
+.svc:hover .svc-img img{transform:scale(1.07)}
+.svc-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,9,10,.4),transparent 55%)}
+.svc-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1 1 auto}
+.svc h3{margin-bottom:8px;font-size:19px}
+.svc p{font-size:14.5px;line-height:1.58}
 .svc.is-new{border-style:dashed;border-color:var(--amber-2);background:var(--amber-tint)}
-.svc.is-new .flagme{display:block;margin-top:12px;font-size:11px;font-weight:600;
+.svc.is-new .flagme{display:block;margin-top:auto;padding-top:12px;font-size:11px;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--amber-2)}
 
 /* ---------- builds: collection carousel ----------
@@ -243,7 +281,7 @@ section{padding:clamp(56px,8vw,104px) 0}
    vehicle centred and full colour, its neighbours scaled back, desaturated
    and half off-frame, then the model name, spec pills, circular arrows and
    one outlined CTA underneath. */
-.builds{background:var(--paper);overflow:hidden}
+.builds{background:var(--ink);overflow:hidden}
 .bc-head{text-align:center;max-width:none;margin-inline:auto}
 .bc-head .lead,.bc-head p{margin-inline:auto}
 .bc-head h2{letter-spacing:.01em}
@@ -252,36 +290,36 @@ section{padding:clamp(56px,8vw,104px) 0}
   margin-top:clamp(26px,4vw,46px)}
 .bc-slide{position:absolute;top:0;left:50%;height:100%;
   width:min(60%,740px);margin-left:calc(min(60%,740px) / -2);
-  border-radius:var(--r);overflow:hidden;background:var(--paper-2);
+  border-radius:var(--r);overflow:hidden;background:var(--ink-3);
   transition:transform .75s var(--ease),opacity .75s var(--ease),filter .75s var(--ease);
   will-change:transform,opacity}
 .bc-slide img{width:100%;height:100%;object-fit:cover;display:block}
 .bc-slide.is-active{transform:none;opacity:1;filter:none;z-index:3;
   box-shadow:0 26px 62px rgba(11,12,14,.2)}
-.bc-slide.is-prev{transform:translateX(-84%) scale(.86);opacity:.28;filter:grayscale(1);z-index:2}
-.bc-slide.is-next{transform:translateX(84%) scale(.86);opacity:.28;filter:grayscale(1);z-index:2}
+.bc-slide.is-prev{transform:translateX(-84%) scale(.86);opacity:.5;filter:brightness(.62);z-index:2}
+.bc-slide.is-next{transform:translateX(84%) scale(.86);opacity:.5;filter:brightness(.62);z-index:2}
 .bc-slide.is-far{transform:scale(.72);opacity:0;z-index:1;pointer-events:none}
 .bc-tag{position:absolute;top:12px;left:12px;z-index:4;font-size:9px;font-weight:600;
   letter-spacing:.14em;text-transform:uppercase;color:#0B0C0E;
   background:rgba(255,255,255,.86);padding:5px 9px;border-radius:5px}
 .bc-meta{text-align:center;margin-top:clamp(22px,3vw,34px)}
-.bc-name{font-family:var(--serif);font-weight:600;color:var(--ink);line-height:1.05;
+.bc-name{font-family:var(--serif);font-weight:600;color:var(--paper);line-height:1.05;
   font-size:clamp(26px,3.6vw,42px);letter-spacing:-.01em}
 .bc-pills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:15px}
-.bc-pill{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;
+.bc-pill{background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:999px;
   padding:7px 15px;font-size:10.5px;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--body)}
+  text-transform:uppercase;color:var(--body-d)}
 .bc-nav{display:flex;gap:11px;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
 .bc-arrow{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
-  background:#fff;border:1px solid var(--line);cursor:pointer;color:var(--ink);
+  background:rgba(255,255,255,.06);border:1px solid var(--line-d);cursor:pointer;color:var(--paper);
   font:400 18px/1 var(--sans);transition:.3s var(--ease)}
-.bc-arrow:hover{border-color:var(--ink);transform:translateY(-2px)}
+.bc-arrow:hover{background:var(--amber);border-color:var(--amber);color:#1A0600;transform:translateY(-2px)}
 .bc-arrow:focus-visible{outline:2px solid var(--amber-ink);outline-offset:3px}
 .bc-explore{display:flex;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
 .bc-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
 .bc-dots button{width:7px;height:7px;padding:0;border-radius:50%;cursor:pointer;
-  border:0;background:var(--line);transition:.3s var(--ease)}
-.bc-dots button[aria-current="true"]{background:var(--amber-ink);width:20px;border-radius:99px}
+  border:0;background:rgba(255,255,255,.22);transition:.3s var(--ease)}
+.bc-dots button[aria-current="true"]{background:var(--amber);width:20px;border-radius:99px}
 @media(max-width:760px){
   .bc-slide{width:82%;margin-left:-41%}
   .bc-slide.is-prev{transform:translateX(-96%) scale(.84)}
@@ -290,17 +328,6 @@ section{padding:clamp(56px,8vw,104px) 0}
 @media (prefers-reduced-motion:reduce){
   .bc-slide{transition:none}
 }
-
-/* ---------- stats ---------- */
-.stats{background:var(--ink);color:var(--body-d)}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:30px;text-align:center}
-.stat b{display:block;font-family:var(--serif);font-size:clamp(40px,5.4vw,64px);
-  font-weight:700;color:var(--paper);line-height:1}
-.stat span{display:block;margin-top:9px;font-size:11.5px;letter-spacing:.17em;
-  text-transform:uppercase;color:var(--steel)}
-.flag{margin-top:34px;border:1px dashed rgba(228,120,63,.55);border-radius:12px;
-  padding:16px 20px;font-size:13.5px;line-height:1.62;color:#CFC9C2;background:rgba(228,120,63,.05)}
-.flag b{color:var(--amber)}
 
 /* ---------- reviews ---------- */
 .revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(286px,1fr));gap:20px;margin-top:44px}
@@ -412,8 +439,14 @@ section{padding:clamp(56px,8vw,104px) 0}
 
 /* ---------- quote band ---------- */
 .quote{background:var(--ink);color:var(--body-d);position:relative;overflow:hidden}
-.quote::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(60% 70% at 78% 30%,rgba(228,120,63,.16),transparent 66%)}
+/* Real footage behind the closing band. It reuses the hero file, so it is
+   already in cache and costs no extra download. Heavily scrimmed, because
+   this band has to stay readable, not show off. */
+.q-bg{position:absolute;inset:0;z-index:0}
+.q-bg video{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.05)}
+.quote::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(8,9,10,.95) 0%,rgba(8,9,10,.86) 48%,rgba(8,9,10,.7) 100%),
+             radial-gradient(60% 70% at 78% 30%,rgba(228,120,63,.2),transparent 66%)}
 .q-in{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,5vw,64px);align-items:center}
 @media(max-width:900px){.q-in{grid-template-columns:1fr}}
 .q-form{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);padding:clamp(26px,3.4vw,38px)}
@@ -532,11 +565,11 @@ section{padding:clamp(56px,8vw,104px) 0}
 <section class="trust" aria-label="What Big Easy Custom Cars offers">
   <div class="wrap">
     <ul>
-      <li><b>15</b>Years Building</li>
-      <li><b>4.8</b>Average Rating</li>
-      <li><b>8</b>Parishes Served</li>
-      <li>Free<br>Consultation</li>
-      <li>Financing<br>Available</li>
+      <li><span class="tf"><b class="tcount" data-to="15">0</b><span>Years Building</span></span></li>
+      <li><span class="tf"><b class="tcount" data-to="4.8" data-dp="1">0</b><span>Average Rating</span></span></li>
+      <li><span class="tf"><b class="tcount" data-to="8">0</b><span>Parishes Served</span></span></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9733;</i><b>Free Consultation</b><em>Tell us the build. No obligation, no pressure.</em><u>Book yours</u></a></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9662;</i><b>Financing Available</b><em>Flexible payment plans. Ask what you qualify for.</em><u>See options</u></a></li>
     </ul>
   </div>
 </section>
@@ -644,19 +677,54 @@ section{padding:clamp(56px,8vw,104px) 0}
       <p>Muscle cars, luxury builds, lifted trucks and trail rigs. Paint, upholstery, audio, tint, tuning and full rebuilds, fitted by people who grew up wrenching.</p>
     </div>
     <div class="svc-grid">
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9881;</span><h3>Engine Tuning &amp; Performance</h3><p>Power, throttle response and drivability, tuned and tested before the keys go back.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9788;</span><h3>Lighting Upgrades</h3><p>Light bars, smoked lenses and custom wiring, done clean and sealed properly.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9998;</span><h3>Custom Paint &amp; Graphics</h3><p>Colour-matched trim, full respray and graphics work with a finish that holds up.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9812;</span><h3>Interior Upholstery</h3><p>Seats, trim and full interior rebuilds in the material and stitch you pick.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9681;</span><h3>Window Tinting &amp; Detailing</h3><p>Tint that lasts and a finish-level detail, inside and out.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9635;</span><h3>Body Kits &amp; Modifications</h3><p>Steel bumpers, power steps, fender work and full body modifications.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9834;</span><h3>Audio &amp; Lighting</h3><p>Sound systems built around the cabin, wired and tested, not just bolted in.</p></a>
-      <a class="svc rv" href="#quote-form"><span class="ic">&#9850;</span><h3>Restoration &amp; Rebuilds</h3><p>Full rebuilds from the frame up, planned stage by stage with you.</p></a>
-
-      <a class="svc is-new rv" href="#quote-form"><span class="ic">&#9650;</span><h3>Lift Kits &amp; Suspension</h3><p>FOX, BDS and Rough Country kits, set up for ride height and ride quality together.</p><span class="flagme">Proposed new page</span></a>
-      <a class="svc is-new rv" href="#quote-form"><span class="ic">&#9678;</span><h3>Wheels &amp; Tires</h3><p>Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want.</p><span class="flagme">Proposed new page</span></a>
-      <a class="svc is-new rv" href="#quote-form"><span class="ic">&#9968;</span><h3>Off-Road Builds</h3><p>Trail rigs with max clearance, armour and the recovery gear to back it up.</p><span class="flagme">Proposed new page</span></a>
-      <a class="svc is-new rv" href="#quote-form"><span class="ic">&#9724;</span><h3>Blackout Packages</h3><p>Blacked-out badging, smoked lenses and colour-match trim as one package.</p><span class="flagme">Proposed new page</span></a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/svc/svc-engine.jpg" alt="Modified engine bay with a gold valve cover and braided lines" loading="lazy"></span>
+        <span class="svc-body"><h3>Engine Tuning &amp; Performance</h3><p>Power, throttle response and drivability, tuned and tested before the keys go back.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy"></span>
+        <span class="svc-body"><h3>Lighting Upgrades</h3><p>Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-graphics.jpg" alt="Grey coupe with red and black racing stripes" loading="lazy"></span>
+        <span class="svc-body"><h3>Custom Paint &amp; Graphics</h3><p>Colour-matched trim, full respray, stripes and graphics with a finish that holds up.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/svc/svc-interior.jpg" alt="Pleated tan leather bench seat in raking light" loading="lazy"></span>
+        <span class="svc-body"><h3>Interior Upholstery</h3><p>Seats, trim and full interior rebuilds in the material and stitch you pick.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy"></span>
+        <span class="svc-body"><h3>Window Tinting &amp; Detailing</h3><p>Tint that lasts and a finish-level detail, inside and out.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/svc/svc-bodykit.jpg" alt="Stripped car shell in a workshop during body work" loading="lazy"></span>
+        <span class="svc-body"><h3>Body Kits &amp; Modifications</h3><p>Steel bumpers, power steps, fender work and full body modifications.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/svc/svc-audio.jpg" alt="Speaker grille set into a car door panel" loading="lazy"></span>
+        <span class="svc-body"><h3>Audio &amp; Lighting</h3><p>Sound systems built around the cabin, wired and tested, not just bolted in.</p></span>
+      </a>
+      <a class="svc rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy"></span>
+        <span class="svc-body"><h3>Restoration &amp; Rebuilds</h3><p>Full rebuilds from the frame up, planned stage by stage with you.</p></span>
+      </a>
+      <a class="svc is-new rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy"></span>
+        <span class="svc-body"><h3>Lift Kits &amp; Suspension</h3><p>FOX, BDS and Rough Country kits, set up for ride height and ride quality together.</p><span class="flagme">Proposed new page</span></span>
+      </a>
+      <a class="svc is-new rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy"></span>
+        <span class="svc-body"><h3>Wheels &amp; Tires</h3><p>Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want.</p><span class="flagme">Proposed new page</span></span>
+      </a>
+      <a class="svc is-new rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tyres and a light bar" loading="lazy"></span>
+        <span class="svc-body"><h3>Off-Road Builds</h3><p>Trail rigs with max clearance, armour and the recovery gear to back it up.</p><span class="flagme">Proposed new page</span></span>
+      </a>
+      <a class="svc is-new rv" href="#quote-form">
+        <span class="svc-img"><img src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy"></span>
+        <span class="svc-body"><h3>Blackout Packages</h3><p>Blacked-out badging, smoked lenses and colour-match trim as one package.</p><span class="flagme">Proposed new page</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -667,7 +735,7 @@ section{padding:clamp(56px,8vw,104px) 0}
      /builds/ all return 404), so this section is the single biggest gap
      the redesign closes. Tiles are empty panels on purpose until the
      client supplies real build photography. -->
-<section class="builds" id="builds">
+<section class="builds on-dark" id="builds">
   <div class="wrap">
     <div class="lead bc-head rv">
       <p class="eyeb">Our Work</p>
@@ -718,26 +786,9 @@ section{padding:clamp(56px,8vw,104px) 0}
         <button class="bc-arrow" type="button" id="bcPrev" aria-label="Previous build">&#8249;</button>
         <button class="bc-arrow" type="button" id="bcNext" aria-label="Next build">&#8250;</button>
       </div>
-      <div class="bc-explore"><a class="btn btn-s" href="#quote-form">Explore the Build &#8250;</a></div>
+      <div class="bc-explore"><a class="btn btn-o" href="#quote-form">Explore the Build &#8250;</a></div>
       <div class="bc-dots" id="bcDots" role="tablist" aria-label="Choose a build"></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ STATS ============ -->
-<section class="stats on-dark">
-  <div class="wrap">
-    <div class="stat-grid">
-      <div class="stat rv"><b>15</b><span>Years Experience</span></div>
-      <div class="stat rv"><b>500+</b><span>Builds Delivered</span></div>
-      <div class="stat rv"><b>4.8</b><span>Average Rating</span></div>
-      <div class="stat rv"><b>8</b><span>Parishes Served</span></div>
-    </div>
-    <p class="flag rv"><b>Flagged for the client, do not ship as-is.</b> The live
-    site shows &ldquo;500+ Builds&rdquo; in the hero but &ldquo;64 Custom Cars Built&rdquo; in its
-    counter, and claims &ldquo;244K square feet of build space&rdquo;, which is larger than a
-    Walmart Supercenter. These numbers need confirming before launch. See
-    CURRENT-SITE-AUDIT.md.</p>
   </div>
 </section>
 
@@ -898,6 +949,11 @@ section{padding:clamp(56px,8vw,104px) 0}
      asking for Country and Postal Code, which is friction with no purpose
      for a New Orleans walk-in customer. See CURRENT-SITE-AUDIT.md. -->
 <section class="quote on-dark" id="quote-form">
+  <div class="q-bg" aria-hidden="true">
+    <video id="quoteVid" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="wrap q-in">
     <div class="rv">
       <p class="eyeb">Free Consultation</p>
@@ -1008,31 +1064,34 @@ var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
       source when the width is a real number below 768.
    2. Re-run on resize, so rotating a phone or widening a window restores the
       video instead of leaving it detached for the rest of the session. */
-var hv=document.getElementById('heroVid');
-if(hv){
-  var hs=hv.querySelector('source');
-  var heroSrc=hs?hs.getAttribute('src'):null;
-  var heroMedia=function(){
-    if(!hs||!heroSrc)return;
+var vids=[].slice.call(document.querySelectorAll('#heroVid,#quoteVid')).map(function(v){
+  var src=v.querySelector('source');
+  return {el:v, src:src, url:src?src.getAttribute('src'):null};
+}).filter(function(o){return o.url;});
+
+if(vids.length){
+  var videoMedia=function(){
     var w=window.innerWidth||document.documentElement.clientWidth||0;
     var posterOnly=reduce||(w>0&&w<768);
-    var attached=!!hs.getAttribute('src');
-    if(posterOnly&&attached){
-      hv.removeAttribute('autoplay');
-      hs.removeAttribute('src');
-      hv.removeAttribute('preload');
-      hv.load();        /* re-evaluates sources; the poster stays on screen */
-      hv.pause();
-    }else if(!posterOnly&&!attached){
-      hs.setAttribute('src',heroSrc);
-      hv.setAttribute('preload','metadata');
-      hv.load();
-      var p=hv.play();
-      if(p&&p.catch)p.catch(function(){});
-    }
+    vids.forEach(function(o){
+      var attached=!!o.src.getAttribute('src');
+      if(posterOnly&&attached){
+        o.el.removeAttribute('autoplay');
+        o.src.removeAttribute('src');
+        o.el.removeAttribute('preload');
+        o.el.load();      /* re-evaluates sources; the poster stays on screen */
+        o.el.pause();
+      }else if(!posterOnly&&!attached){
+        o.src.setAttribute('src',o.url);
+        o.el.setAttribute('preload','metadata');
+        o.el.load();
+        var p=o.el.play();
+        if(p&&p.catch)p.catch(function(){});
+      }
+    });
   };
-  heroMedia();
-  addEventListener('resize',heroMedia,{passive:true});
+  videoMedia();
+  addEventListener('resize',videoMedia,{passive:true});
 }
 var rv=document.querySelectorAll('.rv');
 if(reduce||!('IntersectionObserver' in window)){
@@ -1042,6 +1101,50 @@ if(reduce||!('IntersectionObserver' in window)){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{rootMargin:'0px 0px -8% 0px',threshold:.08});
   rv.forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+}
+
+/* trust strip: figures count up once, when the strip scrolls into view */
+var tCounts=[].slice.call(document.querySelectorAll('.tcount'));
+if(tCounts.length){
+  function tRun(el){
+    var to=parseFloat(el.dataset.to), dp=+(el.dataset.dp||0), dur=1100, t0=null;
+    if(reduce){el.textContent=to.toFixed(dp);return;}
+    function frame(ts){
+      if(t0===null)t0=ts;
+      var k=Math.min((ts-t0)/dur,1);
+      k=1-Math.pow(1-k,3);               /* ease out, so it lands softly */
+      el.textContent=(to*k).toFixed(dp);
+      if(k<1)requestAnimationFrame(frame); else el.textContent=to.toFixed(dp);
+    }
+    requestAnimationFrame(frame);
+  }
+  function tFinal(){
+    tCounts.forEach(function(el){
+      el.textContent=parseFloat(el.dataset.to).toFixed(+(el.dataset.dp||0));
+    });
+  }
+  /* Observe the STRIP, not each figure. Observing them individually meant a
+     number scrolled past unseen kept a literal "0" on screen, which reads as
+     broken. The whole set now runs together, once. */
+  var tStrip=document.querySelector('.trust'),tDone=false;
+  function tStart(){
+    if(tDone)return;
+    tDone=true;
+    tCounts.forEach(tRun);
+  }
+  if(!tStrip||!('IntersectionObserver' in window)){
+    tFinal();
+  }else{
+    /* already scrolled past on load? show the finished figures, do not animate */
+    var tr=tStrip.getBoundingClientRect();
+    if(tr.bottom<0){tDone=true;tFinal();}
+    else{
+      var tIo=new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){tStart();tIo.disconnect();}});
+      },{threshold:.25});
+      tIo.observe(tStrip);
+    }
+  }
 }
 
 /* process: the build tacho */
@@ -1129,6 +1232,33 @@ if(tcSteps.length){
     tcIo.observe(document.querySelector('.tc-dial'));
   }
 }
+
+/* ---------------------------------------------------------------------
+   SAFETY NET. Reveals, the counters and the tacho sweep are all driven by
+   IntersectionObserver. In some embedded and background rendering contexts
+   IO exists but never fires a callback, and the page would then sit with
+   invisible content and counters reading a literal zero. That is exactly
+   the failure the client's live site has today, where a dead scroll library
+   leaves eight service cards invisible. So: if anything has not reached its
+   finished state after 3 seconds, force it there.
+   --------------------------------------------------------------------- */
+setTimeout(function(){
+  var stuck=document.querySelectorAll('.rv:not(.in)');
+  if(stuck.length){
+    [].forEach.call(stuck,function(el){el.classList.add('in');});
+  }
+  try{
+    if(typeof tCounts!=='undefined'&&tCounts.length&&parseFloat(tCounts[0].textContent)===0){
+      if(typeof tFinal==='function')tFinal();
+    }
+  }catch(e){}
+  try{
+    if(typeof tcArcs!=='undefined'&&tcArcs.length&&!document.querySelector('.tc-arc.on:nth-of-type(5)')){
+      tcAllLit=true;
+      if(typeof tcPaint==='function')tcPaint(0,true);
+    }
+  }catch(e){}
+},3000);
 
 /* builds collection carousel */
 var bcSlides=[].slice.call(document.querySelectorAll('.bc-slide'));

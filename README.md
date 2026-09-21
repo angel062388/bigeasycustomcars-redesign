@@ -125,3 +125,39 @@ uses. Every animation stops under `prefers-reduced-motion`.
 - **Four dashed service cards** (lift kits, wheels and tires, off-road builds,
   blackout packages) are proposals. The live site sells these in its copy but
   has no page for any of them.
+
+## Service card photography
+
+All twelve service cards lead with a real photograph. Five are new Unsplash
+downloads; seven reuse images from the builds carousel where the subject
+genuinely matches the service, which avoids extra downloads.
+
+| Service | Image | Source |
+|---|---|---|
+| Engine Tuning &amp; Performance | `svc/svc-engine.jpg` | Unsplash `1752774580658-730f2fafbe0b` |
+| Lighting Upgrades | `builds/build-muscle.jpg` | reused, the halo headlights |
+| Custom Paint &amp; Graphics | `builds/build-graphics.jpg` | reused, the racing stripes |
+| Interior Upholstery | `svc/svc-interior.jpg` | Unsplash `1563986642669-49162177a0bc` |
+| Window Tinting &amp; Detailing | `builds/build-luxury.jpg` | reused, matte black on a wet street |
+| Body Kits &amp; Modifications | `svc/svc-bodykit.jpg` | Unsplash `1577801342097-045874893030` |
+| Audio &amp; Lighting | `svc/svc-audio.jpg` | Unsplash `1758411898478-4f7e70d533d9` |
+| Restoration &amp; Rebuilds | `svc/svc-restoration.jpg` | Unsplash `1591278169757-deac26e49555` |
+| Lift Kits &amp; Suspension | `builds/build-suspension.jpg` | reused, the coilover detail |
+| Wheels &amp; Tires | `builds/build-offroad.jpg` | reused, the bronze wheels |
+| Off-Road Builds | `builds/build-trail.jpg` | reused, the trail rig |
+| Blackout Packages | `builds/build-blackout.jpg` | reused, the blacked-out truck |
+
+The five new files were reviewed by eye before use and optimised from 698 KB
+down to 348 KB. All are Unsplash Licence, same as the carousel.
+
+## Safety net on scroll animations
+
+Reveals, the trust counters and the tacho sweep are all driven by
+IntersectionObserver. In some embedded and background rendering contexts IO
+exists but never fires, and the page would then sit with invisible content and
+counters reading a literal zero.
+
+**That is exactly the bug the client's live site has today**, where a dead
+scroll library leaves eight service cards invisible. So a 3 second timer
+forces anything unfinished to its final state. The page can degrade to "no
+animation", never to "no content".
