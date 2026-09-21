@@ -49,10 +49,12 @@ attribution required). Unsplash was chosen over Freepik, Vecteezy and Pngtree
 specifically because those require attribution or a paid licence for much of
 their catalogue.
 
-**These are not Big Easy Custom Cars builds.** Every slide carries a "Stock
-photo" tag in the corner so nobody mistakes them for the shop's own work, and
-they must be replaced with real job photography before this goes anywhere
-public.
+**These are not Big Easy Custom Cars builds.** The visible "Stock photo" tags
+were removed at the client's request, so nothing on the rendered page says so
+any more. This README and the source comments are now the only record.
+
+> **Before this page goes public:** replace every image below with real job
+> photography, or the site implies work the shop did not do.
 
 The carousel deliberately **alternates cars and trucks**, because this is a
 full custom shop and not a truck shop (see the positioning note below).
@@ -161,3 +163,22 @@ counters reading a literal zero.
 scroll library leaves eight service cards invisible. So a 3 second timer
 forces anything unfinished to its final state. The page can degrade to "no
 animation", never to "no content".
+
+## Reviews are INVENTED
+
+The four testimonials in the reviews section were **written for the mockup at
+the client's request**. They are not real customers and not real quotes.
+
+The live site shows a 4.8 rating from 80+ reviews but does not publish the
+review text, so the genuine ones have to be pulled from Google.
+
+> **Before this page goes public:** swap in real reviews. Publishing invented
+> testimonials as genuine is a problem for the client, not just a content gap.
+
+## Known robustness fixes worth keeping
+
+- The reviews grid uses `minmax(min(286px,100%),1fr)`. A bare `minmax(286px,1fr)`
+  cannot shrink below its ideal width and pushed the page wider than the
+  viewport on very narrow screens.
+- The trust strip is flex, not grid. Five tiles never divide evenly, and grid
+  leaves the odd tile on the last row with a hole beside it.
