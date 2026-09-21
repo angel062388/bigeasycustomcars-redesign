@@ -67,7 +67,10 @@ a{color:inherit}
 .on-dark .eyeb,.hero .eyeb{color:var(--amber)}
 .lead{max-width:56ch}
 .lead p:not(.eyeb){margin-top:14px;font-size:clamp(15.5px,1.6vw,17.5px)}
-section{padding:clamp(56px,8vw,104px) 0}
+/* Section rhythm. Two stacked sections each carrying 104px left about
+   208px of dead space between a CTA and the next heading, which read as
+   a gap rather than a break. */
+section{padding:clamp(40px,5vw,72px) 0}
 
 /* ---------- buttons: only these four exist ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -183,7 +186,13 @@ section{padding:clamp(56px,8vw,104px) 0}
    Three figures that count up when the strip scrolls into view, then two
    OFFER tiles. The offers are styled and behave differently from the facts
    on purpose: they are the only things here a visitor can act on. */
-.trust{background:var(--ink);padding:clamp(14px,1.8vw,22px) 0;border-top:1px solid var(--line-d)}
+.trust{background:var(--ink);padding:clamp(14px,1.8vw,22px) 0;
+  border-top:1px solid var(--line-d);position:relative}
+/* The band and the section under it are both dark, so the edge vanished.
+   A hairline that warms to amber in the middle marks it without shouting. */
+.trust::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14) 14%,
+    rgba(228,120,63,.5) 50%,rgba(255,255,255,.14) 86%,transparent)}
 /* This band is meant to run edge to edge. Leaving it inside the 1220px
    wrap left a dead strip of background either side, which read as the
    band being cut short. */
@@ -286,7 +295,6 @@ section{padding:clamp(56px,8vw,104px) 0}
   transition:max-height .5s var(--ease),opacity .4s var(--ease),margin .4s var(--ease)}
 .tc-step.on p{max-height:180px;opacity:1;margin-top:9px}
 .tc-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px;padding-left:16px}
-.tc-hint{font-size:12.5px;color:var(--steel)}
 @media (prefers-reduced-motion:reduce){
   .tc-needle,.tc-arc,.tc-step,.tc-step p{transition:none}
 }
@@ -755,7 +763,7 @@ section{padding:clamp(56px,8vw,104px) 0}
         </button>
         <div class="tc-foot">
           <a class="btn btn-p" href="#quote-form">Free Estimate</a>
-          <span class="tc-hint">Pick a stage to see what happens.</span>
+          <a class="btn btn-o" href="tel:+15043848006">Call Us (504) 384-8006</a>
         </div>
       </div>
     </div>
