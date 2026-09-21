@@ -410,20 +410,49 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   .bc-slide{transition:none}
 }
 
-/* ---------- reviews ---------- */
-/* min() so the track can shrink below its ideal width on very narrow
-   screens. A bare minmax(286px,1fr) cannot, and pushes the page wider
-   than the viewport. */
-.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(286px,100%),1fr));
-  gap:20px;margin-top:44px}
-.rev{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 27px}
-.rev .qs{font-family:var(--serif);font-size:48px;color:var(--amber-2);line-height:.6;
-  display:block;margin-bottom:14px}
-.rev p{font-size:15.5px;line-height:1.68}
-.rev .who{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
-  font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.04em}
-.rev .who span{display:block;font-weight:400;color:var(--steel);font-size:12px;
-  letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+/* ---------- reviews: the plate wall ----------
+   Each customer gets a Louisiana plate: state name up top, stars where the
+   registration goes, their parish town stamped across it, bolt holes and all.
+   The card under it carries the quote and what we built. Regional, and it
+   could not belong to any other kind of business. */
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
+  gap:20px;margin-top:clamp(24px,3vw,38px)}
+.rev{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),
+             box-shadow .35s var(--ease)}
+.rev:hover{transform:translateY(-5px);border-color:rgba(228,120,63,.4);
+  box-shadow:0 20px 44px rgba(11,12,14,.45)}
+
+/* the plate */
+.plate{position:relative;border-radius:9px;padding:9px 14px 10px;
+  background:linear-gradient(180deg,#FCFAF6 0%,#F1EDE4 60%,#E4DFD4 100%);
+  border:2px solid #CFC7B8;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.75),0 3px 10px rgba(0,0,0,.45);
+  text-align:center;overflow:hidden}
+/* bolt holes */
+.plate::before,.plate::after{content:"";position:absolute;top:7px;width:7px;height:7px;
+  border-radius:50%;background:radial-gradient(circle at 35% 30%,#9A9285,#5E584E);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.5)}
+.plate::before{left:9px}
+.plate::after{right:9px}
+.plate-state{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.34em;
+  text-transform:uppercase;color:#9A5A22;line-height:1}
+.plate-num{font-family:var(--serif);font-weight:700;color:#1B242E;line-height:1;
+  font-size:clamp(17px,2vw,21px);letter-spacing:.1em;margin-top:5px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  text-shadow:0 1px 0 rgba(255,255,255,.9)}
+.plate-num em{font-style:normal;color:#B4551E;letter-spacing:1px;font-size:.78em}
+.plate-foot{font-family:var(--sans);font-size:7.5px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:#7C7466;margin-top:5px}
+
+.rev-quote{margin:18px 0 0;font-size:15.5px;line-height:1.68;color:var(--body-d);flex:1 1 auto}
+.rev-who{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-d);
+  display:flex;flex-direction:column;gap:3px}
+.rev-who b{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--paper)}
+.rev-who span{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber)}
+@media (prefers-reduced-motion:reduce){.rev{transition:none}}
 
 /* ---------- areas: coverage map ----------
    Layout lifted from the Big Easy Bathrooms homepage (head / map card /
@@ -526,53 +555,62 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   .am-grid{grid-template-columns:1fr}
 }
 
-/* ---------- faq: the tool chest ----------
-   Not a list of lines. A stack of drawers in a shop chest: each one has a
-   handle and a number plate, and opening it slides the drawer out of the
-   cabinet with a shadow falling behind it. Dark, because it is a toolbox. */
+/* ---------- faq: the dashboard ----------
+   A cluster of warning lights over a driver display. Pick a light and it
+   illuminates amber while the readout below prints the answer. Deliberately
+   not another list-and-panel: the lights sit ABOVE the display, the way a
+   real cluster does, so this section does not repeat the bay board or the
+   coverage map. */
 .fq{background:var(--ink-2)}
-.chest{margin-top:clamp(24px,3vw,38px);display:flex;flex-direction:column;gap:10px;
-  max-width:920px}
-.drawer{background:linear-gradient(180deg,#1F242A 0%,#171B20 58%,#12161A 100%);
-  border:1px solid var(--line-d);border-radius:14px;overflow:hidden;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease),
-             border-color .4s var(--ease)}
-.drawer:hover{border-color:rgba(255,255,255,.2)}
-.drawer.open{transform:translateX(12px);border-color:rgba(228,120,63,.45);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),-16px 0 30px rgba(0,0,0,.5)}
-.drawer-face{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;
-  gap:clamp(12px,1.6vw,20px);width:100%;padding:17px clamp(14px,1.8vw,22px);
-  background:none;border:0;cursor:pointer;text-align:left;font-family:var(--sans)}
-/* the drawer pull */
-.handle{width:44px;height:9px;border-radius:99px;flex:0 0 auto;
-  background:linear-gradient(180deg,#535B65 0%,#333941 55%,#242A31 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 2px rgba(0,0,0,.5);
-  transition:background .4s var(--ease)}
-.drawer.open .handle{background:linear-gradient(180deg,#FFB27A 0%,var(--amber) 55%,var(--amber-2) 100%)}
-.plate{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
-  min-width:22px;font-variant-numeric:tabular-nums;transition:color .4s var(--ease)}
-.drawer.open .plate,.drawer:hover .plate{color:var(--amber)}
-.q-text{font-family:var(--serif);font-weight:600;line-height:1.3;color:var(--paper);
-  font-size:clamp(16px,1.75vw,19.5px)}
-.drawer-tog{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
-  border:1px solid var(--line-d);color:var(--steel);font-size:15px;line-height:1;
-  transition:.4s var(--ease);flex:0 0 auto}
-.drawer.open .drawer-tog{background:var(--amber);border-color:var(--amber);
-  color:#1A0600;transform:rotate(45deg)}
-.drawer-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.drawer.open .drawer-body{max-height:300px}
-.drawer-body p{margin:0;padding:0 clamp(14px,1.8vw,22px) 20px
-  calc(44px + clamp(12px,1.6vw,20px) + 22px + clamp(12px,1.6vw,20px));
-  font-size:15.5px;line-height:1.62;color:var(--body-d)}
-@media(max-width:620px){
-  .drawer-face{grid-template-columns:auto 1fr auto;gap:12px}
-  .handle{display:none}
-  .drawer-body p{padding-left:calc(22px + 12px + 14px)}
-  .drawer.open{transform:translateX(6px)}
-}
+.dash{margin-top:clamp(22px,3vw,34px)}
+.cluster{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+@media(max-width:1080px){.cluster{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:560px){.cluster{grid-template-columns:repeat(4,1fr);gap:7px}}
+.tell{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:14px 8px 12px;cursor:pointer;font-family:var(--sans);
+  background:linear-gradient(180deg,#1C2026,#14181D);
+  border:1px solid var(--line-d);border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  transition:border-color .3s var(--ease),transform .3s var(--ease),
+             background .3s var(--ease)}
+.tell:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22)}
+.tell svg{width:26px;height:26px;stroke:#5C646E;fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s var(--ease)}
+.tell b{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--steel);text-align:center;line-height:1.25;transition:color .35s var(--ease)}
+/* the lamp, lit */
+.tell.on{border-color:rgba(228,120,63,.6);
+  background:linear-gradient(180deg,rgba(228,120,63,.18),rgba(228,120,63,.05))}
+.tell.on svg{stroke:var(--amber);filter:drop-shadow(0 0 7px rgba(228,120,63,.85))}
+.tell.on b{color:var(--amber)}
+.tell.on::after{content:"";position:absolute;top:7px;right:9px;width:6px;height:6px;
+  border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);
+  animation:tellBlip 1.9s var(--ease) infinite}
+@keyframes tellBlip{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* the driver display */
+.readout{margin-top:14px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#0C1014,#080B0E);
+  border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(22px,3vw,34px) clamp(20px,3vw,36px);
+  box-shadow:inset 0 0 44px rgba(0,0,0,.7)}
+/* faint scanlines, like a cluster screen */
+.readout::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(255,255,255,.022) 3px 4px)}
+.readout-code{display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.readout-code i{width:7px;height:7px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 8px var(--amber);font-style:normal}
+.readout h3{font-family:var(--serif);font-weight:600;color:var(--paper);
+  font-size:clamp(19px,2.4vw,27px);line-height:1.25;margin-bottom:12px;position:relative}
+.readout p{font-size:15.5px;line-height:1.65;color:var(--body-d);max-width:70ch;
+  margin:0;position:relative}
+/* the swap: text dims and lifts, like a cluster redrawing */
+.readout h3,.readout p{transition:opacity .28s var(--ease),transform .28s var(--ease)}
+.readout.swap h3,.readout.swap p{opacity:0;transform:translateY(7px)}
 @media (prefers-reduced-motion:reduce){
-  .drawer,.handle,.drawer-tog,.drawer-body{transition:none}
+  .tell,.tell svg,.tell b,.readout h3,.readout p{transition:none}
+  .tell.on::after{animation:none}
 }
 
 /* ---------- quote band ---------- */
@@ -1105,11 +1143,34 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <h2>What Our <span class="kw">Clients Say</span></h2>
     </div>
     <div class="revs">
-      <article class="rev rv"><span class="qs">&ldquo;</span><p>Brought them my F-150 for a lift and new wheels. They talked me out of the taller kit I had my heart set on and they were right, it rides better than it did stock. Got photos every week without having to chase them.</p><p class="who">Marcus D.<span>Metairie, LA</span></p></article>
-      <article class="rev rv"><span class="qs">&ldquo;</span><p>Paint and stripes on my Challenger. It ran about a week past the quoted date, but they rang me before it slipped instead of after, which is more than the last shop did. Finish still looks wet.</p><p class="who">Tyrell J.<span>Slidell, LA</span></p></article>
-      <article class="rev rv"><span class="qs">&ldquo;</span><p>Full interior and a sound system. Every wire is tucked away properly, no rattles, nothing hanging under the dash. You can tell straight away who actually cares about the work.</p><p class="who">Danielle R.<span>Covington, LA</span></p></article>
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>METAIRIE</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">Brought them my F-150 for a lift and new wheels. They talked me out of the taller kit I had my heart set on and they were right, it rides better than it did stock. Got photos every week without having to chase them.</p>
+        <p class="rev-who"><b>Marcus D.</b><span>F-150 &#183; Lift &amp; Wheels</span></p>
+      </article>
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>SLIDELL</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">Paint and stripes on my Challenger. It ran about a week past the quoted date, but they rang me before it slipped instead of after, which is more than the last shop did. Finish still looks wet.</p>
+        <p class="rev-who"><b>Tyrell J.</b><span>Challenger &#183; Paint &amp; Stripes</span></p>
+      </article>
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>COVINGTON</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">Full interior and a sound system. Every wire is tucked away properly, no rattles, nothing hanging under the dash. You can tell straight away who actually cares about the work.</p>
+        <p class="rev-who"><b>Danielle R.</b><span>Full Interior &#183; Audio</span></p>
+      </article>
     </div>
-  </div>
 </section>
 
 <!-- ============ FAQ ============
@@ -1122,81 +1183,47 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <p class="eyeb">Questions</p>
       <h2>Frequently Asked <span class="kw">Questions</span></h2>
     </div>
-    <div class="chest">
-      <div class="drawer rv open" data-i="0">
-        <button class="drawer-face" type="button" aria-expanded="true">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">01</span>
-          <span class="q-text">What types of vehicles do you work on?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
+    <div class="dash">
+      <div class="cluster" role="group" aria-label="Choose a question">
+        <button class="tell on" type="button" data-i="0" data-q="What types of vehicles do you work on?" data-a="Cars, trucks and SUVs. Muscle cars, classics and luxury builds come through alongside lifted trucks and trail rigs, and any vehicle can come in for paint, audio, tint, upholstery or tuning." aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15l1.6-4.6A2 2 0 0 1 7.5 9h9a2 2 0 0 1 1.9 1.4L20 15v4h-2.5"/><path d="M6.5 19H4v-4h16"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/></svg>
+          <b>Vehicles</b>
         </button>
-        <div class="drawer-body"><p>Cars, trucks and SUVs. Muscle cars, classics and luxury builds come through alongside lifted trucks and trail rigs, and any vehicle can come in for paint, audio, tint, upholstery or tuning.</p></div>
+        <button class="tell" type="button" data-i="1" data-q="Can I bring in my current vehicle for upgrades?" data-a="Yes. Most builds start with a car or truck the owner already has. We can also source a vehicle for you if you would rather start fresh." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="3.2"/><path d="M11.2 12H21"/><path d="M17.5 12v3"/><path d="M20 12v2.2"/></svg>
+          <b>Your Ride</b>
+        </button>
+        <button class="tell" type="button" data-i="2" data-q="Do you offer lift kits and suspension upgrades?" data-a="Yes. We fit FOX, BDS and Rough Country kits, and set ride height and ride quality together rather than chasing height alone." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M8.5 6.5L12 3l3.5 3.5"/><path d="M4 18h16"/><path d="M6 21h12"/></svg>
+          <b>Lift Kits</b>
+        </button>
+        <button class="tell" type="button" data-i="3" data-q="What kind of wheels and tires can I choose from?" data-a="Forged wheels and off-road tires from brands like Fuel Off-Road and Toyo. We size offset and fitment to your stance and how you actually drive it." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3"/><path d="M12 3.8v5.2M12 15v5.2M3.8 12h5.2M15 12h5.2"/></svg>
+          <b>Wheels</b>
+        </button>
+        <button class="tell" type="button" data-i="4" data-q="Can you build a truck from scratch, including sourcing the vehicle?" data-a="Yes. Tell us the build you want and the budget, and we will find the right starting vehicle before any parts get ordered." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 4.2a5 5 0 0 0-6 6.4L4 16.1V20h3.9l5.5-5.5a5 5 0 0 0 6.4-6l-3 3-2.6-.4-.4-2.6z"/></svg>
+          <b>From Scratch</b>
+        </button>
+        <button class="tell" type="button" data-i="5" data-q="Do your builds include lighting and interior upgrades?" data-a="They can. Light bars, smoked lenses, custom wiring, seats and full interior rebuilds are all done in house." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.2 16.5a5.8 5.8 0 1 1 5.6 0"/><path d="M10 19h4"/><path d="M10.5 21.5h3"/></svg>
+          <b>Lighting</b>
+        </button>
+        <button class="tell" type="button" data-i="6" data-q="How long does a custom build take?" data-a="It depends on the scope and on parts availability. You get a timeline at the consultation, and updates with photos as the build moves." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.2V12l3.2 2"/></svg>
+          <b>Timeline</b>
+        </button>
+        <button class="tell" type="button" data-i="7" data-q="Can I choose the parts and brands used in my build?" data-a="Yes. You get options and final say at every stage. We will tell you where a cheaper part is fine and where it is worth paying up." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M19.2 14.6a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7h-.2a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.2-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+          <b>Parts</b>
+        </button>
       </div>
-      <div class="drawer rv" data-i="1">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">02</span>
-          <span class="q-text">Can I bring in my current vehicle for upgrades?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>Yes. Most builds start with a car or truck the owner already has. We can also source a vehicle for you if you would rather start fresh.</p></div>
-      </div>
-      <div class="drawer rv" data-i="2">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">03</span>
-          <span class="q-text">Do you offer lift kits and suspension upgrades?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>Yes. We fit FOX, BDS and Rough Country kits, and set ride height and ride quality together rather than chasing height alone.</p></div>
-      </div>
-      <div class="drawer rv" data-i="3">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">04</span>
-          <span class="q-text">What kind of wheels and tires can I choose from?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>Forged wheels and off-road tires from brands like Fuel Off-Road and Toyo. We size offset and fitment to your stance and how you actually drive it.</p></div>
-      </div>
-      <div class="drawer rv" data-i="4">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">05</span>
-          <span class="q-text">Can you build a truck from scratch, including sourcing the vehicle?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>Yes. Tell us the build you want and the budget, and we will find the right starting vehicle before any parts get ordered.</p></div>
-      </div>
-      <div class="drawer rv" data-i="5">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">06</span>
-          <span class="q-text">Do your builds include lighting and interior upgrades?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>They can. Light bars, smoked lenses, custom wiring, seats and full interior rebuilds are all done in house.</p></div>
-      </div>
-      <div class="drawer rv" data-i="6">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">07</span>
-          <span class="q-text">How long does a custom build take?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>It depends on the scope and on parts availability. You get a timeline at the consultation, and updates with photos as the build moves.</p></div>
-      </div>
-      <div class="drawer rv" data-i="7">
-        <button class="drawer-face" type="button" aria-expanded="false">
-          <span class="handle" aria-hidden="true"></span>
-          <span class="plate">08</span>
-          <span class="q-text">Can I choose the parts and brands used in my build?</span>
-          <span class="drawer-tog" aria-hidden="true">+</span>
-        </button>
-        <div class="drawer-body"><p>Yes. You get options and final say at every stage. We will tell you where a cheaper part is fine and where it is worth paying up.</p></div>
+      <div class="readout" id="readout">
+        <p class="readout-code"><i></i><span id="roCode">Question 01 of 08</span></p>
+        <h3 id="roQ">What types of vehicles do you work on?</h3>
+        <p id="roA">Cars, trucks and SUVs. Muscle cars, classics and luxury builds come through alongside lifted trucks and trail rigs, and any vehicle can come in for paint, audio, tint, upholstery or tuning.</p>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- ============ QUOTE BAND ============
@@ -1678,21 +1705,40 @@ if(bcSlides.length){
   bcGo(0);
 }
 
-/* FAQ tool chest: one drawer out at a time */
-var drawers=[].slice.call(document.querySelectorAll('.drawer'));
-drawers.forEach(function(d){
-  d.querySelector('.drawer-face').addEventListener('click',function(){
-    var wasOpen=d.classList.contains('open');
-    drawers.forEach(function(o){
-      o.classList.remove('open');
-      o.querySelector('.drawer-face').setAttribute('aria-expanded','false');
+/* FAQ dashboard: pick a warning light, the driver display prints the answer */
+var tells=[].slice.call(document.querySelectorAll('.tell'));
+if(tells.length){
+  var ro=document.getElementById('readout'),
+      roQ=document.getElementById('roQ'),
+      roA=document.getElementById('roA'),
+      roCode=document.getElementById('roCode'),
+      roBusy=false;
+  function roGo(i){
+    if(roBusy)return;
+    tells.forEach(function(t,n){
+      t.classList.toggle('on',n===i);
+      t.setAttribute('aria-pressed',n===i?'true':'false');
     });
-    if(!wasOpen){
-      d.classList.add('open');
-      d.querySelector('.drawer-face').setAttribute('aria-expanded','true');
+    var t=tells[i];
+    if(reduce){
+      roQ.textContent=t.dataset.q;roA.textContent=t.dataset.a;
+      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      return;
     }
+    roBusy=true;
+    ro.classList.add('swap');
+    setTimeout(function(){
+      roQ.textContent=t.dataset.q;
+      roA.textContent=t.dataset.a;
+      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      ro.classList.remove('swap');
+      setTimeout(function(){roBusy=false;},300);
+    },290);
+  }
+  tells.forEach(function(t){
+    t.addEventListener('click',function(){roGo(+t.dataset.i);});
   });
-});
+}
 </script>
 </body>
 </html>
