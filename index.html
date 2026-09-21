@@ -116,18 +116,18 @@ section{padding:clamp(56px,8vw,104px) 0}
    typographic wordmark. The badge already contains the name, so no text
    is set beside it. */
 .brand{display:block;text-decoration:none;flex:0 0 auto}
-.brand img{height:58px;width:auto;transition:height .35s var(--ease)}
-.head.shrink .brand img{height:46px}
-@media(max-width:700px){.brand img{height:44px}.head.shrink .brand img{height:40px}}
-.nav{display:flex;gap:28px;list-style:none}
-.nav a{text-decoration:none;color:var(--body-d);font-size:14px;font-weight:500;
+.brand img{height:74px;width:auto;transition:height .35s var(--ease)}
+.head.shrink .brand img{height:58px}
+@media(max-width:700px){.brand img{height:54px}.head.shrink .brand img{height:46px}}
+.nav{display:flex;gap:26px;list-style:none;align-items:center}
+.nav a{text-decoration:none;color:var(--body-d);font-size:16px;font-weight:500;
   padding:6px 0;border-bottom:2px solid transparent;transition:.25s}
 .nav a:hover,.nav a.active{color:var(--paper);border-bottom-color:var(--amber)}
 /* Menu mirrors the live site: Home, About, Services, Services Areas,
    Testimonials, Contact, with the same two dropdowns. "Services Areas"
    is the client's own spelling, carried over deliberately. */
 .nav>li{position:relative}
-.nav .has-sub>a::after{content:" BE";font-size:9px;opacity:.65}
+.nav .has-sub>a::after{content:"▾";margin-left:6px;font-size:9px;opacity:.65}
 .nav .sub{position:absolute;left:-10px;top:100%;min-width:246px;list-style:none;
   background:rgba(11,12,14,.97);border:1px solid var(--line-d);border-radius:14px;
   padding:8px;display:block;opacity:0;visibility:hidden;transform:translateY(8px);
@@ -136,7 +136,7 @@ section{padding:clamp(56px,8vw,104px) 0}
 .nav .has-sub:hover .sub,.nav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
 .nav .sub li{margin:0}
 .nav .sub a{display:block;padding:9px 12px;border-radius:9px;border-bottom:0;
-  font-size:13.5px;font-weight:400;color:var(--body-d);white-space:nowrap}
+  font-size:14.5px;font-weight:400;color:var(--body-d);white-space:nowrap}
 .nav .sub a:hover{background:rgba(255,255,255,.07);color:var(--paper);border-bottom:0}
 .head .btn{padding:12px 22px}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
@@ -226,14 +226,21 @@ section{padding:clamp(56px,8vw,104px) 0}
   letter-spacing:.16em;text-transform:uppercase;color:var(--amber);transition:.3s var(--ease)}
 .to:hover u{letter-spacing:.2em}
 
-/* a slow shine crossing the offer tiles, so they read as live not static */
-.trust li.is-offer::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.12) 48%,transparent 58%);
+/* A slow shine crossing every tile, so the whole band reads as live.
+   Staggered so they do not all flash together, and brighter on the two
+   offer tiles since those are the ones a visitor can act on. */
+.trust li::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.09) 48%,transparent 58%);
   transform:translateX(-100%);animation:toShine 5.5s var(--ease) infinite}
-.trust li.is-offer{position:relative}
-.trust li.is-offer:nth-of-type(5)::after{animation-delay:1.4s}
+.trust li.is-offer::after{
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.14) 48%,transparent 58%)}
+.trust li:nth-child(1)::after{animation-delay:0s}
+.trust li:nth-child(2)::after{animation-delay:.45s}
+.trust li:nth-child(3)::after{animation-delay:.9s}
+.trust li:nth-child(4)::after{animation-delay:1.35s}
+.trust li:nth-child(5)::after{animation-delay:1.8s}
 @keyframes toShine{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
-@media (prefers-reduced-motion:reduce){.trust li.is-offer::after{animation:none;opacity:0}}
+@media (prefers-reduced-motion:reduce){.trust li::after{animation:none;opacity:0}}
 
 /* ---------- process: the build tacho ----------
    Five stages laid out as a rev counter sweeping from idle to redline. The
@@ -482,6 +489,7 @@ section{padding:clamp(56px,8vw,104px) 0}
   .am-pin{padding:3px}
   .am-pin b{width:17px;height:17px;font-size:9px}
   .am-pin:hover,.am-pin.on{padding:3px 10px 3px 3px}
+}
 /* Below about 340px the stage is small enough that even the dots crowd,
    so they shrink again. Checked at 280, 320, 390 and 1500. */
 @media(max-width:340px){
@@ -947,14 +955,14 @@ section{padding:clamp(56px,8vw,104px) 0}
 
       <div class="am-side rv">
         <ol class="am-list" aria-label="Service areas">
-          <li><a class="am-row" href="#quote-form"><b>01</b><span class="am-txt"><span class="am-city">Abita Springs</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>02</b><span class="am-txt"><span class="am-city">Covington</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>03</b><span class="am-txt"><span class="am-city">Madisonville</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>04</b><span class="am-txt"><span class="am-city">Mandeville</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>05</b><span class="am-txt"><span class="am-city">Slidell</span><small>St. Tammany Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>06</b><span class="am-txt"><span class="am-city">Metairie</span><small>Jefferson Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>07</b><span class="am-txt"><span class="am-city">Kenner</span><small>Jefferson Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li><a class="am-row" href="#quote-form"><b>08</b><span class="am-txt"><span class="am-city">St. Rose</span><small>St. Charles Parish</small></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>01</b><span class="am-txt"><span class="am-city">Abita Springs</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>02</b><span class="am-txt"><span class="am-city">Covington</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>03</b><span class="am-txt"><span class="am-city">Madisonville</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>04</b><span class="am-txt"><span class="am-city">Mandeville</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>05</b><span class="am-txt"><span class="am-city">Slidell</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>06</b><span class="am-txt"><span class="am-city">Metairie</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>07</b><span class="am-txt"><span class="am-city">Kenner</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="#quote-form"><b>08</b><span class="am-txt"><span class="am-city">St. Rose</span></span><i aria-hidden="true">&rarr;</i></a></li>
         </ol>
         <div class="am-cta">
           <a class="btn btn-p" href="#quote-form">Get a Free Estimate</a>
