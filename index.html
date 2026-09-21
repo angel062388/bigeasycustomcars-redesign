@@ -123,6 +123,21 @@ section{padding:clamp(56px,8vw,104px) 0}
 .nav a{text-decoration:none;color:var(--body-d);font-size:14px;font-weight:500;
   padding:6px 0;border-bottom:2px solid transparent;transition:.25s}
 .nav a:hover,.nav a.active{color:var(--paper);border-bottom-color:var(--amber)}
+/* Menu mirrors the live site: Home, About, Services, Services Areas,
+   Testimonials, Contact, with the same two dropdowns. "Services Areas"
+   is the client's own spelling, carried over deliberately. */
+.nav>li{position:relative}
+.nav .has-sub>a::after{content:" BE";font-size:9px;opacity:.65}
+.nav .sub{position:absolute;left:-10px;top:100%;min-width:246px;list-style:none;
+  background:rgba(11,12,14,.97);border:1px solid var(--line-d);border-radius:14px;
+  padding:8px;display:block;opacity:0;visibility:hidden;transform:translateY(8px);
+  box-shadow:0 18px 44px rgba(0,0,0,.5);backdrop-filter:blur(12px);z-index:80;
+  transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.nav .has-sub:hover .sub,.nav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.nav .sub li{margin:0}
+.nav .sub a{display:block;padding:9px 12px;border-radius:9px;border-bottom:0;
+  font-size:13.5px;font-weight:400;color:var(--body-d);white-space:nowrap}
+.nav .sub a:hover{background:rgba(255,255,255,.07);color:var(--paper);border-bottom:0}
 .head .btn{padding:12px 22px}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger i{display:block;width:22px;height:2px;background:var(--paper);margin:5px 0;transition:.3s}
@@ -440,27 +455,38 @@ section{padding:clamp(56px,8vw,104px) 0}
   .am-lane{opacity:.45}
   .am-map animate,.am-map animateMotion{display:none}
 }
-/* pins sit over the svg in percentage space so they scale with it */
-.am-pin{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-160%);
-  display:flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;
+/* Pins sit over the svg in percentage space so they scale with it.
+   They are numbered DOTS by default and only open their label on hover,
+   focus or when their row is active. Eight labels on a map this size will
+   always collide if they are all open at once; hand-tuning coordinates just
+   moves the collision somewhere else. One label at a time cannot collide. */
+.am-pin{position:absolute;left:var(--px);top:var(--py);
+  transform:translate(-50%,-50%);display:flex;align-items:center;gap:0;
+  text-decoration:none;white-space:nowrap;
   background:rgba(10,12,15,.9);border:1px solid var(--line-d);border-radius:999px;
-  padding:5px 11px 5px 6px;font-size:12px;font-weight:600;color:var(--paper);
-  backdrop-filter:blur(6px);transition:.28s var(--ease)}
+  padding:4px;font-size:12px;font-weight:600;color:var(--paper);
+  backdrop-filter:blur(6px);z-index:2;
+  transition:transform .28s var(--ease),background .28s var(--ease),
+             border-color .28s var(--ease),padding .28s var(--ease)}
 .am-pin b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
-  background:var(--amber);color:#1A0600;font-size:10px;font-weight:700}
-.am-pin:hover,.am-pin.on{background:var(--amber);border-color:var(--amber);color:#1A0600;
-  transform:translate(-50%,-180%)}
-.am-pin:hover b,.am-pin.on b{background:#1A0600;color:var(--amber)}
-.am-pin.am-l{transform:translate(-88%,-160%)}
-.am-pin.am-l:hover,.am-pin.am-l.on{transform:translate(-88%,-180%)}
-.am-pin.am-r{transform:translate(-12%,-160%)}
-/* label hangs below its dot instead of above, to break up a tight cluster */
-.am-pin.am-b{transform:translate(-50%,62%)}
-.am-pin.am-b:hover,.am-pin.am-b.on{transform:translate(-50%,78%)}
-.am-pin.am-r:hover,.am-pin.am-r.on{transform:translate(-12%,-180%)}
+  background:var(--amber);color:#1A0600;font-size:10px;font-weight:700;flex:0 0 auto}
+.am-pin span{max-width:0;opacity:0;overflow:hidden;
+  transition:max-width .3s var(--ease),opacity .25s var(--ease),margin .3s var(--ease)}
+.am-pin:hover,.am-pin:focus-visible,.am-pin.on{
+  z-index:5;background:var(--amber);border-color:var(--amber);color:#1A0600;
+  padding:4px 12px 4px 4px;transform:translate(-50%,-50%) scale(1.04)}
+.am-pin:hover b,.am-pin:focus-visible b,.am-pin.on b{background:#1A0600;color:var(--amber)}
+.am-pin:hover span,.am-pin:focus-visible span,.am-pin.on span{
+  max-width:170px;opacity:1;margin-left:7px}
 @media(max-width:700px){
-  .am-pin span{display:none}
-  .am-pin{padding:4px;border-radius:50%}
+  .am-pin{padding:3px}
+  .am-pin b{width:17px;height:17px;font-size:9px}
+  .am-pin:hover,.am-pin.on{padding:3px 10px 3px 3px}
+/* Below about 340px the stage is small enough that even the dots crowd,
+   so they shrink again. Checked at 280, 320, 390 and 1500. */
+@media(max-width:340px){
+  .am-pin{padding:2px}
+  .am-pin b{width:14px;height:14px;font-size:8px}
 }
 .am-note{display:flex;align-items:center;gap:9px;margin-top:13px;font-size:13px;color:var(--steel)}
 .am-note svg{flex:0 0 auto}
@@ -576,11 +602,11 @@ section{padding:clamp(56px,8vw,104px) 0}
     <a class="brand" href="#top"><img src="assets/logo.png" alt="Big Easy Custom Cars" fetchpriority="high"></a>
     <nav><ul class="nav">
       <li><a href="#top" class="active">Home</a></li>
-      <li><a href="#builds">Builds</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#areas">Service Areas</a></li>
-      <li><a href="#faqs">FAQs</a></li>
+      <li><a href="#process">About</a></li>
+      <li class="has-sub"><a href="#services">Services</a><ul class="sub"><li><a href="#services">Audio &amp; Lighting</a></li><li><a href="#services">Body Kits &amp; Modifications</a></li><li><a href="#services">Custom Paint &amp; Graphics</a></li><li><a href="#services">Engine Tuning &amp; Performance</a></li><li><a href="#services">Interior Upholstery</a></li><li><a href="#services">Lighting Upgrades</a></li><li><a href="#services">Restoration &amp; Rebuilds</a></li><li><a href="#services">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="#areas">Services Areas</a><ul class="sub"><li><a href="#areas">Abita Springs</a></li><li><a href="#areas">Covington</a></li><li><a href="#areas">Kenner</a></li><li><a href="#areas">Madisonville</a></li><li><a href="#areas">Mandeville</a></li><li><a href="#areas">Metairie</a></li><li><a href="#areas">Slidell</a></li><li><a href="#areas">St. Rose</a></li></ul></li>
+      <li><a href="#reviews">Testimonials</a></li>
+      <li><a href="#quote-form">Contact</a></li>
     </ul></nav>
     <a class="btn btn-p" href="#quote-form">Start Your Build</a>
     <button class="burger" type="button" aria-label="Open menu"><i></i><i></i><i></i></button>
@@ -873,17 +899,17 @@ section{padding:clamp(56px,8vw,104px) 0}
               <!-- roads. Main run: St. Rose through Kenner and Metairie, over
                    the causeway to Mandeville, on to Covington and Abita Springs.
                    Branches east to Slidell and west to Madisonville. -->
-              <path class="am-road" d="M 238 488 L 375 452 L 512 478 L 542 222 L 455 110 L 600 120"></path>
+              <path class="am-road" d="M 238 488 L 375 452 L 512 478 L 542 222 L 428 102 L 655 104"></path>
               <path class="am-road" d="M 512 478 L 640 485 L 860 266"></path>
-              <path class="am-road" d="M 542 222 L 425 232"></path>
-              <path id="bcRoute" class="am-lane" d="M 238 488 L 375 452 L 512 478 L 542 222 L 455 110 L 600 120"></path>
+              <path class="am-road" d="M 542 222 L 415 240"></path>
+              <path id="bcRoute" class="am-lane" d="M 238 488 L 375 452 L 512 478 L 542 222 L 428 102 L 655 104"></path>
               <path class="am-lane" d="M 512 478 L 640 485 L 860 266" style="animation-delay:-.6s"></path>
-              <path class="am-lane" d="M 542 222 L 425 232" style="animation-delay:-1s"></path>
+              <path class="am-lane" d="M 542 222 L 415 240" style="animation-delay:-1s"></path>
 
               <!-- markers: a pulse ring, then the core -->
-              <g class="am-dot" transform="translate(600 120)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="0s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="0s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
-              <g class="am-dot" transform="translate(455 110)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
-              <g class="am-dot" transform="translate(425 232)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(655 104)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="0s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="0s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(428 102)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(415 240)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".7s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
               <g class="am-dot" transform="translate(542 222)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
               <g class="am-dot" transform="translate(860 266)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
               <g class="am-dot" transform="translate(512 478)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
@@ -907,14 +933,14 @@ section{padding:clamp(56px,8vw,104px) 0}
             </g>
           </svg>
 
-          <a class="am-pin am-r" style="--px:60.0000%;--py:18.7500%" data-x="600" data-y="120" href="#quote-form" tabindex="-1" aria-hidden="true"><b>01</b><span>Abita Springs</span></a>
-          <a class="am-pin" style="--px:45.5000%;--py:17.1875%" data-x="455" data-y="110" href="#quote-form" tabindex="-1" aria-hidden="true"><b>02</b><span>Covington</span></a>
-          <a class="am-pin am-l" style="--px:42.5000%;--py:36.2500%" data-x="425" data-y="232" href="#quote-form" tabindex="-1" aria-hidden="true"><b>03</b><span>Madisonville</span></a>
-          <a class="am-pin am-r" style="--px:54.2000%;--py:34.6875%" data-x="542" data-y="222" href="#quote-form" tabindex="-1" aria-hidden="true"><b>04</b><span>Mandeville</span></a>
-          <a class="am-pin am-r" style="--px:86.0000%;--py:41.5625%" data-x="860" data-y="266" href="#quote-form" tabindex="-1" aria-hidden="true"><b>05</b><span>Slidell</span></a>
-          <a class="am-pin am-l" style="--px:51.2000%;--py:0%" data-x="512" data-y="478" href="#quote-form" tabindex="-1" aria-hidden="true"><b>06</b><span>Metairie</span></a>
-          <a class="am-pin am-b" style="--px:37.5000%;--py:0%" data-x="375" data-y="452" href="#quote-form" tabindex="-1" aria-hidden="true"><b>07</b><span>Kenner</span></a>
-          <a class="am-pin am-l" style="--px:23.8000%;--py:0%" data-x="238" data-y="488" href="#quote-form" tabindex="-1" aria-hidden="true"><b>08</b><span>St. Rose</span></a>
+          <a class="am-pin am-r" style="--px:65.5000%;--py:18.7500%" data-x="655" data-y="104" href="#quote-form" aria-hidden="true"><b>01</b><span>Abita Springs</span></a>
+          <a class="am-pin" style="--px:42.8000%;--py:17.1875%" data-x="428" data-y="102" href="#quote-form" aria-hidden="true"><b>02</b><span>Covington</span></a>
+          <a class="am-pin am-l" style="--px:39.8000%;--py:0%" data-x="415" data-y="240" href="#quote-form" aria-hidden="true"><b>03</b><span>Madisonville</span></a>
+          <a class="am-pin am-r" style="--px:54.2000%;--py:34.6875%" data-x="542" data-y="222" href="#quote-form" aria-hidden="true"><b>04</b><span>Mandeville</span></a>
+          <a class="am-pin am-r" style="--px:86.0000%;--py:41.5625%" data-x="860" data-y="266" href="#quote-form" aria-hidden="true"><b>05</b><span>Slidell</span></a>
+          <a class="am-pin am-l" style="--px:51.2000%;--py:0%" data-x="512" data-y="478" href="#quote-form" aria-hidden="true"><b>06</b><span>Metairie</span></a>
+          <a class="am-pin am-b" style="--px:37.5000%;--py:0%" data-x="375" data-y="452" href="#quote-form" aria-hidden="true"><b>07</b><span>Kenner</span></a>
+          <a class="am-pin am-l" style="--px:23.8000%;--py:0%" data-x="238" data-y="488" href="#quote-form" aria-hidden="true"><b>08</b><span>St. Rose</span></a>
         </div>
         <p class="am-note"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8" fill="none" stroke="#E4783F" stroke-width="2"></circle><path d="M6 10.5 L9 13.5 L14.5 7" fill="none" stroke="#E4783F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Free consultation in all eight areas.</p>
       </div>
@@ -1015,7 +1041,6 @@ section{padding:clamp(56px,8vw,104px) 0}
       <article class="rev rv"><span class="qs">&ldquo;</span><p>Brought them my F-150 for a lift and new wheels. They talked me out of the taller kit I had my heart set on and they were right, it rides better than it did stock. Got photos every week without having to chase them.</p><p class="who">Marcus D.<span>Metairie, LA</span></p></article>
       <article class="rev rv"><span class="qs">&ldquo;</span><p>Paint and stripes on my Challenger. It ran about a week past the quoted date, but they rang me before it slipped instead of after, which is more than the last shop did. Finish still looks wet.</p><p class="who">Tyrell J.<span>Slidell, LA</span></p></article>
       <article class="rev rv"><span class="qs">&ldquo;</span><p>Full interior and a sound system. Every wire is tucked away properly, no rattles, nothing hanging under the dash. You can tell straight away who actually cares about the work.</p><p class="who">Danielle R.<span>Covington, LA</span></p></article>
-      <article class="rev rv"><span class="qs">&ldquo;</span><p>Second truck I have had done here. First was a blackout package on a Silverado, this one is a trail build. Same crew, same standard, and they remembered the first one.</p><p class="who">Kevin M.<span>Kenner, LA</span></p></article>
     </div>
   </div>
 </section>
@@ -1278,6 +1303,27 @@ if(amMap&&amStage){
   amFit();
   addEventListener('resize',amFit,{passive:true});
   if('ResizeObserver' in window)new ResizeObserver(amFit).observe(amStage);
+}
+
+/* Hovering a city in the list opens its pin on the map, and the other way
+   round, so the two halves of the section stay tied together. */
+var amRows=[].slice.call(document.querySelectorAll('.am-row')),
+    amPinEls=[].slice.call(document.querySelectorAll('.am-pin'));
+if(amRows.length&&amRows.length===amPinEls.length){
+  function amLink(i,on){
+    if(amPinEls[i])amPinEls[i].classList.toggle('on',on);
+    if(amRows[i])amRows[i].classList.toggle('on',on);
+  }
+  amRows.forEach(function(r,i){
+    r.addEventListener('mouseenter',function(){amLink(i,true);});
+    r.addEventListener('mouseleave',function(){amLink(i,false);});
+    r.addEventListener('focus',function(){amLink(i,true);});
+    r.addEventListener('blur',function(){amLink(i,false);});
+  });
+  amPinEls.forEach(function(pn,i){
+    pn.addEventListener('mouseenter',function(){amLink(i,true);});
+    pn.addEventListener('mouseleave',function(){amLink(i,false);});
+  });
 }
 
 /* process: the build tacho */
