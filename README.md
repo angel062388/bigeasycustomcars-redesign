@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Seven static pages. No build step, no dependencies. Open `index.html` or serve
+Eight static pages. No build step, no dependencies. Open `index.html` or serve
 the folder.
 
 | File | What it is |
@@ -20,16 +20,17 @@ the folder.
 | `testimonials.html` | Testimonials |
 | `contact.html` | Contact |
 | `blog.html` | Blog (proposed posts, see below) |
+| `post-how-much-does-it-cost-to-lift-a-truck.html` | The model blog post every future post follows |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
 | `assets/logo.png` | The client's own logo, unchanged |
 
-### The six inner pages are generated, not hand-written
+### The seven inner pages are generated, not hand-written
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all six scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all seven scripts:**
 
 ```
 python scratch/build-about.py
@@ -38,7 +39,11 @@ python scratch/build-areas.py
 python scratch/build-testimonials.py
 python scratch/build-contact.py
 python scratch/build-blog.py
+python scratch/build-post.py
 ```
+
+Blog titles, dates, images and excerpts live in `scratch/blog_data.py`, shared
+by the listing and the post, so the two cannot drift.
 
 Every inner page carries a written `<title>`, a written meta description and
 exactly one H1. The live site has an H1 on the homepage only and a meta
@@ -238,7 +243,48 @@ Next in line, same pull: leveling kit vs lift kit (600, KD 0), best window
 tint percentage (150, KD 0), does tuning void warranty (90, KD 0), custom
 paint job cost (80, KD 7), car audio installation cost (70, KD 0).
 
+### Card dates are placeholders
+
+Added at the client's request so the listing reads as a live blog: weekly,
+Tuesdays, newest first (Sep 15 back to Aug 11, 2026). Replace each with the
+real publish date when the post goes live.
+
+## The model blog post
+
+`post-how-much-does-it-cost-to-lift-a-truck.html` is the template for every
+future post, laid out on the pattern of the TurnKey sister project's posts
+and built only from this site's homepage parts:
+
+- **Hero:** the hero component with the post's photo in place of the video,
+  a heavier centre-weighted scrim, category, date, read time and byline.
+- **Sticky rail:** table of contents on the service board's numbered rows,
+  lit for the section being read, then a Free Estimate / Call Us card.
+- **Article:** the About page's prose styles, a "short answer" box, a cost
+  table (stacks on phones), check lists, a photo, an FAQ.
+- **Then:** trust strip, three related posts, the quote form.
+- **Structured data:** BlogPosting and FAQPage JSON-LD. The URL is the
+  intended live slug; add the featured image URL at launch.
+
+The article was written with the blog-content-creator skill: 1,110 words,
+no banned words, keyword in the title, first 100 words, an H2 and the close.
+**Every price is a typical US parts range, not a Big Easy price**, taken from:
+
+| Figure | Source |
+|---|---|
+| Leveling kits $99 to $1,000; premium kits over $10,000; labor about the kit price | [AmericanTrucks](https://www.americantrucks.com/cost-to-lift-a-truck.html), 2022-11-30 |
+| Body lift kits $180 to $450 | [RealTruck](https://realtruck.com/blog/cost-to-lift-a-truck/), updated 2025-12-30 |
+| Suspension lift kits $1,000 to $5,000+; install 7 to 15 shop hours | [NYE Chevrolet](https://www.nyechevrolet.com/complete-guide-to-truck-lift-kit-costs/), 2026-01-12 |
+| Aftermarket parts do not void a warranty; the maker must prove the part caused the damage | [FTC](https://consumer.ftc.gov/articles/auto-warranties-and-auto-service-contracts) |
+
+> **Before publishing:** the client approves the copy and confirms the date.
+
 ## Known robustness fixes worth keeping
+
+- The bay-board script is scoped to `#bayList .bay-row`. Unscoped, it bound
+  to the blog post's table-of-contents rows and would throw on hover.
+- Post heroes use a heavier scrim. Over the red truck photo, the amber
+  headline keyword measured 2.63:1 average and 1.44:1 worst pixel with the
+  standard scrim; 5.39:1 and 3.17:1 with the post scrim.
 
 - `html{scroll-padding-top:108px}` (88px on phones). The header is sticky and
   in flow, so without it every in-page jump, including every Free Estimate

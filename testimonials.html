@@ -545,6 +545,109 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   border-color:rgba(228,120,63,.35);background:rgba(228,120,63,.08)}
 .rev-post h3{color:var(--paper);font-size:clamp(19px,1.9vw,22px);line-height:1.22}
 .rev-post p{font-size:15px;line-height:1.62;color:var(--body-d)}
+/* Publish date: the review card's footer row (.rev-who) reused, a hairline
+   divider with an amber micro-label under it. margin-top:auto pins it to the
+   bottom of the card, so dates line up across the grid whatever the title
+   length. */
+.rev-post .rp-date{margin-top:auto;width:100%;padding-top:14px;
+  border-top:1px solid var(--line-d);display:flex;align-items:center;gap:8px;
+  font-size:10.5px;line-height:1.3;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+.rev-post .rp-date svg{width:14px;height:14px;flex:0 0 auto;fill:none;
+  stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* A card whose post exists: the title link is stretched over the whole card,
+   so the card is one click target and a screen reader still hears the title.
+   The focus ring is drawn on the stretched layer so it traces the card. */
+.rev-post{position:relative}
+.rev-post h3 a{color:inherit;text-decoration:none}
+.rev-post h3 a::after{content:"";position:absolute;inset:0;z-index:1;border-radius:var(--r)}
+.rev-post h3 a:focus-visible{outline:none}
+.rev-post h3 a:focus-visible::after{outline:2px solid var(--amber);outline-offset:-3px}
+.rev-post .rp-read{margin-left:auto;color:var(--paper);transition:color .3s var(--ease)}
+.rev-post:hover .rp-read{color:var(--amber)}
+
+/* ---------- blog post: the model every post follows ----------
+   Built from homepage parts: the hero (a still instead of the video), the bay
+   board's numbered rows as the table of contents, the About page's .story
+   prose, .q-why check lists, the review-card shell for the rail call to
+   action and the blog card for related posts. Long-form text needs a few
+   rules the homepage never had (h2/h3 rhythm, a table); they use the same
+   tokens throughout. */
+.hero-post{min-height:clamp(460px,66svh,640px)}
+/* A photograph is far brighter than the night-time hero video, and the
+   standard scrim is weighted to the bottom-left. Post heroes get a heavier,
+   centre-weighted scrim so the headline, and the amber keyword in particular,
+   stays readable over any image (a red truck behind amber text was the case
+   that caught this). */
+.hero-post .hero-scrim{background:
+  radial-gradient(75% 70% at 50% 52%,rgba(5,6,7,.8) 0%,rgba(5,6,7,.6) 70%,rgba(5,6,7,.66) 100%),
+  linear-gradient(to top,rgba(5,6,7,.9) 0%,rgba(5,6,7,0) 45%)}
+.post-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:10px 14px;margin-top:18px;font-size:11.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:#DFDAD3}
+.post-meta .bc-pill{padding:6px 13px;font-size:10px;color:var(--amber);
+  border-color:rgba(228,120,63,.45);background:rgba(228,120,63,.12)}
+.post-meta i{font-style:normal;opacity:.45}
+
+.art-grid{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);
+  gap:clamp(28px,5vw,72px);align-items:start}
+.art-rail{position:sticky;top:124px}
+@media(max-width:960px){.art-grid{grid-template-columns:minmax(0,1fr)}.art-rail{position:static}}
+.art-rail > .eyeb{margin-bottom:12px}
+.toc a.bay-row{text-decoration:none;padding-top:12px;padding-bottom:12px}
+.toc .bay-name{font-size:15.5px}
+.rail-cta.rev{margin-top:24px;padding:22px}
+.rail-cta h3{color:var(--paper);font-size:20px;margin-bottom:8px}
+.rail-cta p{font-size:14.5px;line-height:1.6;color:var(--body-d);margin-bottom:16px}
+.rail-cta .btn{width:100%;justify-content:center;text-align:center;
+  /* the rail is 280px: at the standard 28px side padding the phone number
+     needed 176px and got 175px, so it broke mid-number. 16px gives 201px. */
+  padding-left:16px;padding-right:16px;white-space:nowrap}
+.rail-cta .btn + .btn{margin-top:10px}
+
+.story.art-body{max-width:72ch;margin:0}
+.art-body h2{font-size:clamp(25px,2.8vw,34px);margin:clamp(34px,4vw,48px) 0 14px}
+.art-body h3{font-size:clamp(19px,2vw,22px);margin:26px 0 10px}
+.art-body .q-why{margin:4px 0 22px}
+.art-body .q-why li{font-size:clamp(15.5px,1.65vw,17px);line-height:1.65}
+.art-body .q-why li::before{border-color:var(--amber-ink)}
+.art-body .q-why b,.art-body p b{color:var(--ink);font-weight:600}
+/* quick answer: the offer tile's amber wash with the bay row's amber bar */
+.art-quick{position:relative;margin:6px 0 30px;padding:20px 22px 20px 28px;
+  border-radius:var(--r);border:1px solid rgba(166,78,35,.22);
+  background:linear-gradient(180deg,rgba(228,120,63,.11),rgba(228,120,63,.04))}
+.art-quick::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;
+  border-radius:3px;background:var(--amber-ink)}
+.art-quick .eyeb{margin-bottom:8px}
+.story .art-quick p{margin:0;color:var(--ink);font-size:clamp(15.5px,1.65vw,17px);line-height:1.66}
+/* cost table */
+.art-table-wrap{margin:10px 0 8px;border-radius:var(--r);border:1px solid var(--line);
+  overflow-x:auto;background:rgba(255,255,255,.55)}
+.art-table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+.art-table th{background:var(--ink);color:var(--paper);text-align:left;padding:13px 16px;
+  font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.art-table td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top}
+.art-table td:first-child{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.art-table td:last-child{font-weight:600;color:var(--amber-ink);white-space:nowrap}
+.story p.art-note{font-size:13px;line-height:1.55;color:var(--steel);margin-bottom:24px}
+/* Phones: at 390px the table measured 378px inside a 357px frame and scrolled
+   sideways. Each row stacks instead: lift type and price on one line, what
+   it raises underneath. The header row is hidden visually but kept for
+   screen readers. */
+@media(max-width:560px){
+  .art-table thead{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .art-table tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;
+    padding:14px 16px;border-top:1px solid var(--line)}
+  .art-table tbody tr:first-child{border-top:0}
+  .art-table td{padding:0;border-top:0}
+  .art-table td:nth-child(2){grid-column:1 / -1;grid-row:2;font-size:14px}
+}
+/* in-article photograph, on the .story-figure pattern */
+.art-figure{margin:30px 0;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-3)}
+.art-figure img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.art-figure figcaption{padding:12px 18px;font-size:13px;line-height:1.5;color:var(--body-d)}
 @media (prefers-reduced-motion:reduce){.rev-post .rp-img img{transition:none}}
 
 /* ---------- areas: coverage map ----------
@@ -1390,7 +1493,10 @@ setTimeout(function(){
 
 /* services: the bay board. Picking a job shuts the roll-up door, swaps the
    photograph and the spec behind it, then lifts the door again. */
-var bayRows=[].slice.call(document.querySelectorAll('.bay-row'));
+/* scoped to #bayList: the blog post reuses .bay-row for its table of
+   contents, and without the scope this script would bind to those rows
+   and throw on hover, because a post has no bay door or image panel. */
+var bayRows=[].slice.call(document.querySelectorAll('#bayList .bay-row'));
 if(bayRows.length){
   var bayImgs=[].slice.call(document.querySelectorAll('.bay-img')),
       bayDoor=document.getElementById('bayDoor'),
