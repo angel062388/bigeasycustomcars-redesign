@@ -383,6 +383,17 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   font-size:9px;font-weight:700;letter-spacing:.14em;vertical-align:middle;
   color:var(--amber-2);border:1px solid var(--amber-2);border-radius:3px;padding:2px 5px}
 
+/* Short bay variant. With only six jobs the list runs about half the height
+   of the panel and leaves a large hole beneath it. Here the rows stretch to
+   meet the panel and the stage is a little shallower, so the two columns
+   finish together. The homepage keeps its twelve rows and its sticky panel
+   untouched. */
+.bay.bay-short{align-items:stretch}
+.bay.bay-short .bay-panel{position:static}
+.bay.bay-short .bay-stage{aspect-ratio:16/11}
+.bay.bay-short .bay-list{justify-content:stretch}
+.bay.bay-short .bay-row{flex:1 1 auto;min-height:62px}
+
 /* the bay itself */
 .bay-panel{position:sticky;top:96px}
 .bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
@@ -841,7 +852,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <p class="eyeb">What We Build</p>
       <h2>Cars, Trucks and SUVs, Built <span class="kw">Your Way</span></h2>
     </div>
-    <div class="bay">
+    <div class="bay bay-short">
       <div class="bay-list" id="bayList">
         <button class="bay-row on" type="button" data-i="0" data-desc="Lift kits, forged wheels and off-road tires, set up so ride height and ride quality work together rather than chasing height alone." data-new="0">
           <span class="bay-no">01</span>

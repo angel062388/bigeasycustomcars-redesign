@@ -383,6 +383,17 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   font-size:9px;font-weight:700;letter-spacing:.14em;vertical-align:middle;
   color:var(--amber-2);border:1px solid var(--amber-2);border-radius:3px;padding:2px 5px}
 
+/* Short bay variant. With only six jobs the list runs about half the height
+   of the panel and leaves a large hole beneath it. Here the rows stretch to
+   meet the panel and the stage is a little shallower, so the two columns
+   finish together. The homepage keeps its twelve rows and its sticky panel
+   untouched. */
+.bay.bay-short{align-items:stretch}
+.bay.bay-short .bay-panel{position:static}
+.bay.bay-short .bay-stage{aspect-ratio:16/11}
+.bay.bay-short .bay-list{justify-content:stretch}
+.bay.bay-short .bay-row{flex:1 1 auto;min-height:62px}
+
 /* the bay itself */
 .bay-panel{position:sticky;top:96px}
 .bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
@@ -756,7 +767,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <a class="brand" href="#top"><img src="assets/logo.png" alt="Big Easy Custom Cars" fetchpriority="high"></a>
     <nav><ul class="nav">
       <li><a href="#top" class="active">Home</a></li>
-      <li><a href="#process">About</a></li>
+      <li><a href="about.html">About</a></li>
       <li class="has-sub"><a href="#services">Services</a><ul class="sub"><li><a href="#services">Audio &amp; Lighting</a></li><li><a href="#services">Body Kits &amp; Modifications</a></li><li><a href="#services">Custom Paint &amp; Graphics</a></li><li><a href="#services">Engine Tuning &amp; Performance</a></li><li><a href="#services">Interior Upholstery</a></li><li><a href="#services">Lighting Upgrades</a></li><li><a href="#services">Restoration &amp; Rebuilds</a></li><li><a href="#services">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="#areas">Services Areas</a><ul class="sub"><li><a href="#areas">Abita Springs</a></li><li><a href="#areas">Covington</a></li><li><a href="#areas">Kenner</a></li><li><a href="#areas">Madisonville</a></li><li><a href="#areas">Mandeville</a></li><li><a href="#areas">Metairie</a></li><li><a href="#areas">Slidell</a></li><li><a href="#areas">St. Rose</a></li></ul></li>
       <li><a href="#reviews">Testimonials</a></li>
