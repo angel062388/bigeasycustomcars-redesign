@@ -618,12 +618,30 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .foot-bot{margin-top:clamp(36px,5vw,56px);border-top:1px solid rgba(255,255,255,.1);
   padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px}
 
-/* ---------- floating call button ---------- */
-.fab{position:fixed;right:18px;bottom:18px;z-index:70;display:none;
-  background:var(--amber);color:#1A0600;border-radius:999px;padding:15px 22px;
-  text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;box-shadow:0 12px 30px rgba(0,0,0,.4)}
-@media(max-width:980px){.fab{display:block}}
+/* ---------- floating CTA bar ----------
+   Same pattern as turnkeypooldesigners.com: a pill that slides up once the
+   visitor is past the hero, carrying the primary action and the phone number
+   together. Replaces the old mobile-only Call Now button, and now shows at
+   every width rather than only on phones. */
+.fab-quote{position:fixed;right:16px;bottom:16px;z-index:180;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(10,12,15,.92);backdrop-filter:blur(10px);
+  border:1px solid rgba(228,120,63,.45);border-radius:999px;padding:5px;
+  box-shadow:0 14px 36px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .45s var(--ease),transform .5s var(--ease)}
+.fab-quote.on{opacity:1;transform:none;pointer-events:auto}
+.fab-quote .btn{padding:11px 18px;font-size:11.5px;white-space:nowrap}
+.fab-tel{font-family:var(--sans);font-weight:700;font-size:12.5px;letter-spacing:.06em;
+  color:var(--paper);text-decoration:none;padding:10px 14px;white-space:nowrap;
+  transition:color .25s var(--ease)}
+.fab-tel:hover{color:var(--amber)}
+@media(max-width:560px){
+  .fab-quote{left:12px;right:12px;bottom:12px;justify-content:center}
+  .fab-quote .btn{padding:11px 14px;font-size:11px}
+  .fab-tel{padding:10px 8px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){.fab-quote{transition:none}}
 
 /* ---------- mobile ---------- */
 @media(max-width:700px){
@@ -1281,9 +1299,20 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   </div>
 </footer>
 
-<a class="fab" href="tel:+15043848006">Call Now</a>
+<div class="fab-quote" id="fabQuote">
+  <a class="btn btn-p" href="#quote-form">Free Estimate <span aria-hidden="true">&rarr;</span></a>
+  <a class="fab-tel" href="tel:+15043848006">(504) 384-8006</a>
+</div>
 
 <script>
+/* Floating CTA bar: slides up once the visitor is past the hero. */
+var fabQ=document.getElementById('fabQuote');
+if(fabQ){
+  var fabCheck=function(){fabQ.classList.toggle('on',window.scrollY>700);};
+  addEventListener('scroll',fabCheck,{passive:true});
+  fabCheck();
+}
+
 /* sticky header shrink */
 var head=document.getElementById('head');
 function onScroll(){head.classList.toggle('shrink',window.scrollY>60);}
