@@ -46,7 +46,17 @@
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;
+  /* The header is sticky, so without this every in-page jump (all the
+     Free Estimate buttons, the footer links, the dropdown items) lands
+     the section top UNDER the header and hides its heading.
+     The value is the UNSHRUNK header (74px logo + 32px padding + 1px
+     border = 107px), not the shrunk one. The header is in flow, so when it
+     shrinks after the jump it pulls everything below it up by 30px.
+     Measured: at 78px the eyebrow ended 2px under the header. At 108px it
+     clears it by 32px whether or not the header has shrunk. */
+  scroll-padding-top:108px}
+@media(max-width:700px){html{scroll-padding-top:88px}}  /* 54px logo + 32 + 1 */
 body{background:var(--paper);color:var(--body);font-family:var(--sans);
   font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
@@ -518,6 +528,24 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .rev-who span{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--amber)}
 @media (prefers-reduced-motion:reduce){.rev{transition:none}}
+
+/* Blog post card. A variant of the review card above, not a new component:
+   the same .rev shell (ink card, 20px radius, amber hover lift), an image
+   frame on the .bay-stage pattern, and a .bc-pill category tag. Headings
+   default to ink, which vanishes on an ink card, so the title colour is set
+   here explicitly. Same variant approach as .revs-2 and .bay-short. */
+.rev.rev-post{padding:0;overflow:hidden}
+.rev-post .rp-img{aspect-ratio:16/10;overflow:hidden;background:var(--ink-2)}
+.rev-post .rp-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease)}
+.rev-post:hover .rp-img img{transform:scale(1.05)}
+.rev-post .rp-body{padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;
+  align-items:flex-start;gap:12px;flex:1 1 auto}
+.rev-post .bc-pill{padding:6px 13px;font-size:10px;color:var(--amber);
+  border-color:rgba(228,120,63,.35);background:rgba(228,120,63,.08)}
+.rev-post h3{color:var(--paper);font-size:clamp(19px,1.9vw,22px);line-height:1.22}
+.rev-post p{font-size:15px;line-height:1.62;color:var(--body-d)}
+@media (prefers-reduced-motion:reduce){.rev-post .rp-img img{transition:none}}
 
 /* ---------- areas: coverage map ----------
    Layout lifted from the Big Easy Bathrooms homepage (head / map card /
@@ -1034,6 +1062,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
           <li><a href="services.html#build">Services</a></li>
           <li><a href="index.html#process">Process</a></li>
           <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

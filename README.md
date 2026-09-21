@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Six static pages. No build step, no dependencies. Open `index.html` or serve
+Seven static pages. No build step, no dependencies. Open `index.html` or serve
 the folder.
 
 | File | What it is |
@@ -19,16 +19,17 @@ the folder.
 | `services-areas.html` | Service Areas (slug matches the live site's) |
 | `testimonials.html` | Testimonials |
 | `contact.html` | Contact |
+| `blog.html` | Blog (proposed posts, see below) |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
 | `assets/logo.png` | The client's own logo, unchanged |
 
-### The five inner pages are generated, not hand-written
+### The six inner pages are generated, not hand-written
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all five scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all six scripts:**
 
 ```
 python scratch/build-about.py
@@ -36,6 +37,7 @@ python scratch/build-services.py
 python scratch/build-areas.py
 python scratch/build-testimonials.py
 python scratch/build-contact.py
+python scratch/build-blog.py
 ```
 
 Every inner page carries a written `<title>`, a written meta description and
@@ -208,7 +210,42 @@ The homepage shows the first three. `testimonials.html` shows all four.
 > placeholder copy is known to exist on it. The live site also claims 4.8 from
 > 80+ reviews, so there should be far more than four to pull from Google.
 
+## Blog: the six posts do not exist yet
+
+The live `/blog/` page is **empty**. It renders its heading and an empty post
+loop, and `post-sitemap.xml` lists only `/blog/` itself. It is also linked
+from **nowhere** on the live site: not the menu, not the footer. The mockup
+adds it to the footer only, because the header menu has to match live.
+
+The six cards on `blog.html` are **proposed posts**, one per service, so the
+layout can be reviewed. Each title targets a real keyword. Excerpts are
+placeholders and deliberately state no prices and no legal limits, because
+none are verified. Cards are not links, because there are no post pages.
+
+Ahrefs Keywords Explorer, **United States**, pulled 2026-09-22. Volumes are
+US-wide monthly searches, **not** New Orleans figures.
+
+| Card | Target keyword | US vol/mo | KD |
+|---|---|---|---|
+| How Much Does It Cost to Lift a Truck? | how much does it cost to lift a truck | 800 | 0 |
+| Car Wrap vs Paint | car wrap vs paint | 600 | 0 |
+| Ceramic Coating vs Wax | ceramic coating vs wax | 500 | 0 |
+| Louisiana Window Tint Law | louisiana window tint law | 400 | 1 |
+| Reupholster Car Seats | how much to reupholster car seats | 350 | 1 |
+| Classic Car Restoration Costs | how much does it cost to restore a classic car | 150 | 2 |
+
+Next in line, same pull: leveling kit vs lift kit (600, KD 0), best window
+tint percentage (150, KD 0), does tuning void warranty (90, KD 0), custom
+paint job cost (80, KD 7), car audio installation cost (70, KD 0).
+
 ## Known robustness fixes worth keeping
+
+- `html{scroll-padding-top:108px}` (88px on phones). The header is sticky and
+  in flow, so without it every in-page jump, including every Free Estimate
+  button, landed the section heading under the header. The value is the
+  **unshrunk** header height on purpose: the header shrinks after the jump and
+  pulls the content up 30px, so the shrunk height (78px) left the eyebrow 2px
+  under the header when measured.
 
 - The reviews grid uses `minmax(min(286px,100%),1fr)`. A bare `minmax(286px,1fr)`
   cannot shrink below its ideal width and pushed the page wider than the
