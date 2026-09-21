@@ -169,10 +169,16 @@ section{padding:clamp(56px,8vw,104px) 0}
    OFFER tiles. The offers are styled and behave differently from the facts
    on purpose: they are the only things here a visitor can act on. */
 .trust{background:var(--ink-2);padding:0;border-top:1px solid var(--line-d)}
-.trust ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
-  gap:1px;background:var(--line-d)}
-.trust li{background:var(--ink-2);text-align:center;display:flex;align-items:center;
-  justify-content:center;transition:background .3s var(--ease)}
+/* This band is meant to run edge to edge. Leaving it inside the 1220px
+   wrap left a dead strip of background either side, which read as the
+   band being cut short. */
+.trust > .wrap{max-width:none;padding:0}
+/* Flex, not grid. Grid leaves the odd tile on the last row sitting in one
+   track with a hole beside it; flex lets that row grow to fill. Five tiles
+   never divide evenly, so this matters at most widths. */
+.trust ul{list-style:none;display:flex;flex-wrap:wrap;gap:1px;background:var(--line-d)}
+.trust li{flex:1 1 178px;background:var(--ink-2);text-align:center;display:flex;
+  align-items:center;justify-content:center;transition:background .3s var(--ease)}
 .trust li:hover{background:var(--ink-3)}
 .tf{display:block;padding:20px 18px;width:100%}
 .tf b{display:block;font-family:var(--serif);font-size:clamp(26px,3vw,34px);color:var(--amber);
