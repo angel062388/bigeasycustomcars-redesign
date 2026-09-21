@@ -171,28 +171,29 @@ section{padding:clamp(56px,8vw,104px) 0}
 .trust{background:var(--ink-2);padding:0;border-top:1px solid var(--line-d)}
 .trust ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
   gap:1px;background:var(--line-d)}
-.trust li{background:var(--ink-2);text-align:center;transition:background .3s var(--ease)}
+.trust li{background:var(--ink-2);text-align:center;display:flex;align-items:center;
+  justify-content:center;transition:background .3s var(--ease)}
 .trust li:hover{background:var(--ink-3)}
-.tf{display:block;padding:26px 20px}
+.tf{display:block;padding:20px 18px;width:100%}
 .tf b{display:block;font-family:var(--serif);font-size:clamp(26px,3vw,34px);color:var(--amber);
   font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.tf span{display:block;margin-top:8px;font-size:12px;font-weight:500;letter-spacing:.14em;
+.tf span{display:block;margin-top:6px;font-size:11.5px;font-weight:500;letter-spacing:.14em;
   text-transform:uppercase;color:var(--body-d)}
 /* offer tiles */
 .trust li.is-offer{background:linear-gradient(180deg,rgba(228,120,63,.13),rgba(228,120,63,.04))}
 .trust li.is-offer:hover{background:linear-gradient(180deg,rgba(228,120,63,.24),rgba(228,120,63,.08))}
-.to{display:block;padding:22px 18px;text-decoration:none;position:relative;overflow:hidden}
-.to i{display:grid;place-items:center;width:34px;height:34px;margin:0 auto 10px;border-radius:50%;
+.to{display:block;padding:18px 16px;text-decoration:none;position:relative;overflow:hidden;width:100%}
+.to i{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 8px;border-radius:50%;
   background:var(--amber);color:#1A0600;font-style:normal;font-size:16px;font-weight:700;
   transition:transform .35s var(--ease)}
 .to:hover i{transform:scale(1.12) rotate(-6deg)}
-.to b{display:block;font-family:var(--serif);font-size:clamp(19px,2.1vw,23px);color:var(--paper);
+.to b{display:block;font-family:var(--serif);font-size:clamp(17px,1.8vw,20px);color:var(--paper);
   font-weight:700;line-height:1.1}
-.to em{display:block;font-style:normal;font-size:12.5px;color:var(--body-d);margin-top:6px;line-height:1.45}
-.to u{display:inline-block;margin-top:11px;text-decoration:none;font-size:10.5px;font-weight:700;
+.to em{display:block;font-style:normal;font-size:12px;color:var(--body-d);margin-top:5px;line-height:1.4}
+.to u{display:inline-block;margin-top:9px;text-decoration:none;font-size:10.5px;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;color:var(--amber);transition:.3s var(--ease)}
 .to:hover u{letter-spacing:.2em}
-.to u:after{content:" 92"}
+
 /* a slow shine crossing the offer tiles, so they read as live not static */
 .trust li.is-offer::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.12) 48%,transparent 58%);
@@ -251,30 +252,72 @@ section{padding:clamp(56px,8vw,104px) 0}
   .tc-needle,.tc-arc,.tc-step,.tc-step p{transition:none}
 }
 
-/* ---------- services ----------
-   Each card leads with a real photograph instead of a unicode glyph. The
-   images are Unsplash stock, credited in the README, and several are reused
-   from the builds carousel where the subject genuinely matches the service
-   (the Shelby stripes for custom paint, the Challenger halos for lighting,
-   the coilover detail for lift kits). */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:20px;margin-top:44px}
-.svc{background:#fff;border:1px solid var(--line);border-radius:var(--r);
-  text-decoration:none;display:flex;flex-direction:column;overflow:hidden;
+/* ---------- services: the bay board ----------
+   Not a card grid. A numbered job board on the left, a workshop bay on the
+   right. Picking a job rolls the bay door up over the photograph, the way a
+   shop door opens, and the spec underneath changes with it. The panel is
+   sticky so the bay stays in view while you read down the list. */
+.bay{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(20px,3vw,44px);
+  align-items:start;margin-top:clamp(28px,4vw,46px)}
+@media(max-width:900px){.bay{grid-template-columns:1fr;gap:18px}}
+
+.bay-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.bay-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
+  width:100%;text-align:left;background:none;cursor:pointer;
+  border:0;border-bottom:1px solid var(--line);padding:15px 4px;
+  font-family:var(--sans);color:var(--body);position:relative;
+  transition:padding .35s var(--ease),color .35s var(--ease)}
+/* the amber bar that grows in from the left on the active job */
+.bay-row::before{content:"";position:absolute;left:-4px;top:0;bottom:0;width:3px;
+  background:var(--amber-ink);transform:scaleY(0);transform-origin:center;
+  transition:transform .4s var(--ease)}
+.bay-row:hover{padding-left:12px;color:var(--ink)}
+.bay-row.on{padding-left:14px}
+.bay-row.on::before{transform:scaleY(1)}
+.bay-no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
+  min-width:26px;transition:color .35s var(--ease);font-variant-numeric:tabular-nums}
+.bay-row.on .bay-no,.bay-row:hover .bay-no{color:var(--amber-ink)}
+.bay-name{font-family:var(--serif);font-size:clamp(16px,1.7vw,19px);font-weight:600;
+  color:var(--ink);line-height:1.2}
+.bay-row.on .bay-name{color:var(--amber-ink)}
+.bay-tick{font-size:15px;color:var(--steel);opacity:0;transform:translateX(-6px);
   transition:.35s var(--ease)}
-.svc:hover{transform:translateY(-5px);border-color:var(--amber-2);
-  box-shadow:0 18px 44px rgba(11,12,14,.12)}
-.svc-img{height:158px;overflow:hidden;background:var(--ink-3);position:relative;flex:0 0 auto}
-.svc-img img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .65s var(--ease)}
-.svc:hover .svc-img img{transform:scale(1.07)}
-.svc-img::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(8,9,10,.4),transparent 55%)}
-.svc-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1 1 auto}
-.svc h3{margin-bottom:8px;font-size:19px}
-.svc p{font-size:14.5px;line-height:1.58}
-.svc.is-new{border-style:dashed;border-color:var(--amber-2);background:var(--amber-tint)}
-.svc.is-new .flagme{display:block;margin-top:auto;padding-top:12px;font-size:11px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--amber-2)}
+.bay-row.on .bay-tick,.bay-row:hover .bay-tick{opacity:1;transform:none;color:var(--amber-ink)}
+.bay-row.is-new .bay-name::after{content:"NEW";margin-left:9px;font-family:var(--sans);
+  font-size:9px;font-weight:700;letter-spacing:.14em;vertical-align:middle;
+  color:var(--amber-2);border:1px solid var(--amber-2);border-radius:3px;padding:2px 5px}
+
+/* the bay itself */
+.bay-panel{position:sticky;top:96px}
+.bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
+  aspect-ratio:4/3;background:var(--ink-3)}
+.bay-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;clip-path:inset(100% 0 0 0);transform:scale(1.06);
+  transition:opacity .55s var(--ease),clip-path .65s var(--ease),transform .9s var(--ease)}
+.bay-img.on{opacity:1;clip-path:inset(0 0 0 0);transform:scale(1)}
+/* the roll-up door: slats that lift away as the job changes */
+.bay-door{position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:repeating-linear-gradient(to bottom,
+    rgba(12,14,17,.96) 0 14px, rgba(24,27,32,.96) 14px 16px);
+  transform:translateY(-101%);transition:transform .6s var(--ease)}
+.bay-door.shut{transform:translateY(0)}
+.bay-badge{position:absolute;left:14px;top:14px;z-index:4;font-size:9px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:#0B0C0E;
+  background:rgba(255,255,255,.86);padding:5px 9px;border-radius:5px}
+.bay-meta{padding:20px 2px 0}
+.bay-meta h3{font-size:clamp(20px,2.3vw,26px);margin-bottom:9px;
+  transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.bay-meta p{font-size:15.5px;line-height:1.62;max-width:52ch;
+  transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.bay-meta.swap h3,.bay-meta.swap p{opacity:0;transform:translateY(8px)}
+.bay-note{display:inline-block;margin-top:12px;font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--amber-2);
+  border:1px dashed var(--amber-2);border-radius:5px;padding:4px 9px}
+.bay-cta{margin-top:20px}
+@media (prefers-reduced-motion:reduce){
+  .bay-img,.bay-door,.bay-row,.bay-row::before,.bay-meta h3,.bay-meta p{transition:none}
+  .bay-door{display:none}
+}
 
 /* ---------- builds: collection carousel ----------
    Pattern taken from the Gunther Werks collection: light ground, the active
@@ -568,8 +611,8 @@ section{padding:clamp(56px,8vw,104px) 0}
       <li><span class="tf"><b class="tcount" data-to="15">0</b><span>Years Building</span></span></li>
       <li><span class="tf"><b class="tcount" data-to="4.8" data-dp="1">0</b><span>Average Rating</span></span></li>
       <li><span class="tf"><b class="tcount" data-to="8">0</b><span>Parishes Served</span></span></li>
-      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9733;</i><b>Free Consultation</b><em>Tell us the build. No obligation, no pressure.</em><u>Book yours</u></a></li>
-      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9662;</i><b>Financing Available</b><em>Flexible payment plans. Ask what you qualify for.</em><u>See options</u></a></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9733;</i><b>Free Consultation</b><em>Tell us the build. No obligation, no pressure.</em><u>Book yours &#8594;</u></a></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9662;</i><b>Financing Available</b><em>Flexible payment plans. Ask what you qualify for.</em><u>See options &#8594;</u></a></li>
     </ul>
   </div>
 </section>
@@ -676,55 +719,94 @@ section{padding:clamp(56px,8vw,104px) 0}
       <h2>Custom Rides Built for the <span class="kw">Big Easy Life</span></h2>
       <p>Muscle cars, luxury builds, lifted trucks and trail rigs. Paint, upholstery, audio, tint, tuning and full rebuilds, fitted by people who grew up wrenching.</p>
     </div>
-    <div class="svc-grid">
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/svc/svc-engine.jpg" alt="Modified engine bay with a gold valve cover and braided lines" loading="lazy"></span>
-        <span class="svc-body"><h3>Engine Tuning &amp; Performance</h3><p>Power, throttle response and drivability, tuned and tested before the keys go back.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy"></span>
-        <span class="svc-body"><h3>Lighting Upgrades</h3><p>Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-graphics.jpg" alt="Grey coupe with red and black racing stripes" loading="lazy"></span>
-        <span class="svc-body"><h3>Custom Paint &amp; Graphics</h3><p>Colour-matched trim, full respray, stripes and graphics with a finish that holds up.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/svc/svc-interior.jpg" alt="Pleated tan leather bench seat in raking light" loading="lazy"></span>
-        <span class="svc-body"><h3>Interior Upholstery</h3><p>Seats, trim and full interior rebuilds in the material and stitch you pick.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy"></span>
-        <span class="svc-body"><h3>Window Tinting &amp; Detailing</h3><p>Tint that lasts and a finish-level detail, inside and out.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/svc/svc-bodykit.jpg" alt="Stripped car shell in a workshop during body work" loading="lazy"></span>
-        <span class="svc-body"><h3>Body Kits &amp; Modifications</h3><p>Steel bumpers, power steps, fender work and full body modifications.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/svc/svc-audio.jpg" alt="Speaker grille set into a car door panel" loading="lazy"></span>
-        <span class="svc-body"><h3>Audio &amp; Lighting</h3><p>Sound systems built around the cabin, wired and tested, not just bolted in.</p></span>
-      </a>
-      <a class="svc rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy"></span>
-        <span class="svc-body"><h3>Restoration &amp; Rebuilds</h3><p>Full rebuilds from the frame up, planned stage by stage with you.</p></span>
-      </a>
-      <a class="svc is-new rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy"></span>
-        <span class="svc-body"><h3>Lift Kits &amp; Suspension</h3><p>FOX, BDS and Rough Country kits, set up for ride height and ride quality together.</p><span class="flagme">Proposed new page</span></span>
-      </a>
-      <a class="svc is-new rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy"></span>
-        <span class="svc-body"><h3>Wheels &amp; Tires</h3><p>Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want.</p><span class="flagme">Proposed new page</span></span>
-      </a>
-      <a class="svc is-new rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tyres and a light bar" loading="lazy"></span>
-        <span class="svc-body"><h3>Off-Road Builds</h3><p>Trail rigs with max clearance, armour and the recovery gear to back it up.</p><span class="flagme">Proposed new page</span></span>
-      </a>
-      <a class="svc is-new rv" href="#quote-form">
-        <span class="svc-img"><img src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy"></span>
-        <span class="svc-body"><h3>Blackout Packages</h3><p>Blacked-out badging, smoked lenses and colour-match trim as one package.</p><span class="flagme">Proposed new page</span></span>
-      </a>
+    <div class="bay">
+      <div class="bay-list" id="bayList">
+          <button class="bay-row on" type="button" data-i="0" data-desc="Power, throttle response and drivability, tuned and tested before the keys go back." data-new="0">
+            <span class="bay-no">01</span>
+            <span class="bay-name">Engine Tuning &amp; Performance</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="1" data-desc="Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly." data-new="0">
+            <span class="bay-no">02</span>
+            <span class="bay-name">Lighting Upgrades</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="2" data-desc="Colour-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
+            <span class="bay-no">03</span>
+            <span class="bay-name">Custom Paint &amp; Graphics</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="3" data-desc="Seats, trim and full interior rebuilds in the material and stitch you pick." data-new="0">
+            <span class="bay-no">04</span>
+            <span class="bay-name">Interior Upholstery</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="4" data-desc="Tint that lasts and a finish-level detail, inside and out." data-new="0">
+            <span class="bay-no">05</span>
+            <span class="bay-name">Window Tinting &amp; Detailing</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="5" data-desc="Steel bumpers, power steps, fender work and full body modifications." data-new="0">
+            <span class="bay-no">06</span>
+            <span class="bay-name">Body Kits &amp; Modifications</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="6" data-desc="Sound systems built around the cabin, wired and tested, not just bolted in." data-new="0">
+            <span class="bay-no">07</span>
+            <span class="bay-name">Audio &amp; Lighting</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row" type="button" data-i="7" data-desc="Full rebuilds from the frame up, planned stage by stage with you." data-new="0">
+            <span class="bay-no">08</span>
+            <span class="bay-name">Restoration &amp; Rebuilds</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row is-new" type="button" data-i="8" data-desc="FOX, BDS and Rough Country kits, set up for ride height and ride quality together." data-new="1">
+            <span class="bay-no">09</span>
+            <span class="bay-name">Lift Kits &amp; Suspension</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row is-new" type="button" data-i="9" data-desc="Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want." data-new="1">
+            <span class="bay-no">10</span>
+            <span class="bay-name">Wheels &amp; Tires</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row is-new" type="button" data-i="10" data-desc="Trail rigs with max clearance, armour and the recovery gear to back it up." data-new="1">
+            <span class="bay-no">11</span>
+            <span class="bay-name">Off-Road Builds</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+          <button class="bay-row is-new" type="button" data-i="11" data-desc="Blacked-out badging, smoked lenses and colour-match trim as one package." data-new="1">
+            <span class="bay-no">12</span>
+            <span class="bay-name">Blackout Packages</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </button>
+      </div>
+
+      <div class="bay-panel">
+        <div class="bay-stage">
+          <span class="bay-badge">Stock photo</span>
+            <img class="bay-img on" src="assets/svc/svc-engine.jpg" alt="Modified engine bay with a gold valve cover and braided lines" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-graphics.jpg" alt="Grey coupe with red and black racing stripes" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-interior.jpg" alt="Pleated tan leather bench seat in raking light" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-bodykit.jpg" alt="Stripped car shell in a workshop during body work" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-audio.jpg" alt="Speaker grille set into a car door panel" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tyres and a light bar" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy">
+          <span class="bay-door" id="bayDoor" aria-hidden="true"></span>
+        </div>
+        <div class="bay-meta" id="bayMeta">
+          <h3 id="bayTitle">Engine Tuning &amp; Performance</h3>
+          <p id="bayDesc">Power, throttle response and drivability, tuned and tested before the keys go back.</p>
+          <span class="bay-note" id="bayNote" hidden>Proposed new page</span>
+          <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Start This Build</a></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1053,6 +1135,11 @@ onScroll();addEventListener('scroll',onScroll,{passive:true});
 
 /* reveal on scroll, skipped entirely when reduced motion is requested */
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* Set by the first IntersectionObserver callback of any kind. It tells the
+   safety net below the difference between 'IO is broken' and 'the visitor
+   simply has not scrolled there yet'. Without it the net fired blind after
+   3s and robbed the counters of their animation. */
+var ioAlive=false;
 
 /* Hero video: phones under 768px and anyone with reduce-motion on get the
    poster image alone. The source is detached before it downloads, so those
@@ -1098,6 +1185,7 @@ if(reduce||!('IntersectionObserver' in window)){
   rv.forEach(function(el){el.classList.add('in');});
 }else{
   var io=new IntersectionObserver(function(es){
+    ioAlive=true;
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{rootMargin:'0px 0px -8% 0px',threshold:.08});
   rv.forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
@@ -1140,6 +1228,7 @@ if(tCounts.length){
     if(tr.bottom<0){tDone=true;tFinal();}
     else{
       var tIo=new IntersectionObserver(function(es){
+        ioAlive=true;
         es.forEach(function(e){if(e.isIntersecting){tStart();tIo.disconnect();}});
       },{threshold:.25});
       tIo.observe(tStrip);
@@ -1225,6 +1314,7 @@ if(tcSteps.length){
   tcGo(0);
   if(!reduce&&'IntersectionObserver' in window){
     var tcIo=new IntersectionObserver(function(es){
+      ioAlive=true;
       es.forEach(function(e){
         if(e.isIntersecting){tcRev();tcIo.disconnect();}
       });
@@ -1243,6 +1333,8 @@ if(tcSteps.length){
    finished state after 3 seconds, force it there.
    --------------------------------------------------------------------- */
 setTimeout(function(){
+  /* IO is working, the visitor just has not scrolled down yet. Leave it be. */
+  if(ioAlive)return;
   var stuck=document.querySelectorAll('.rv:not(.in)');
   if(stuck.length){
     [].forEach.call(stuck,function(el){el.classList.add('in');});
@@ -1259,6 +1351,54 @@ setTimeout(function(){
     }
   }catch(e){}
 },3000);
+
+/* services: the bay board. Picking a job shuts the roll-up door, swaps the
+   photograph and the spec behind it, then lifts the door again. */
+var bayRows=[].slice.call(document.querySelectorAll('.bay-row'));
+if(bayRows.length){
+  var bayImgs=[].slice.call(document.querySelectorAll('.bay-img')),
+      bayDoor=document.getElementById('bayDoor'),
+      bayTitle=document.getElementById('bayTitle'),
+      bayDesc=document.getElementById('bayDesc'),
+      bayNote=document.getElementById('bayNote'),
+      bayMeta=document.getElementById('bayMeta'),
+      bayAt=0,bayBusy=false;
+
+  function bayApply(i){
+    bayImgs.forEach(function(im,n){im.classList.toggle('on',n===i);});
+    var row=bayRows[i];
+    bayTitle.innerHTML=row.querySelector('.bay-name').innerHTML;
+    bayDesc.textContent=row.dataset.desc;
+    if(row.dataset.new==='1')bayNote.removeAttribute('hidden');
+    else bayNote.setAttribute('hidden','');
+  }
+
+  function bayGo(i){
+    if(i===bayAt||bayBusy)return;
+    bayAt=i;
+    bayRows.forEach(function(r,n){
+      r.classList.toggle('on',n===i);
+      r.setAttribute('aria-current',n===i?'true':'false');
+    });
+    if(reduce){bayApply(i);return;}
+    bayBusy=true;
+    bayDoor.classList.add('shut');      /* door comes down */
+    bayMeta.classList.add('swap');
+    setTimeout(function(){
+      bayApply(i);                      /* swap behind the closed door */
+      bayDoor.classList.remove('shut'); /* and lift it again */
+      bayMeta.classList.remove('swap');
+      setTimeout(function(){bayBusy=false;},520);
+    },420);
+  }
+
+  bayRows.forEach(function(r){
+    r.addEventListener('click',function(){bayGo(+r.dataset.i);});
+    r.addEventListener('mouseenter',function(){bayGo(+r.dataset.i);});
+    r.addEventListener('focus',function(){bayGo(+r.dataset.i);});
+  });
+  bayRows[0].setAttribute('aria-current','true');
+}
 
 /* builds collection carousel */
 var bcSlides=[].slice.call(document.querySelectorAll('.bc-slide'));
