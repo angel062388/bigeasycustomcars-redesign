@@ -1,6 +1,6 @@
 # Big Easy Custom Cars &#8211; redesign mockup
 
-Homepage mockup for [bigeasycustomcars.com](https://www.bigeasycustomcars.com/),
+Redesign mockup for [bigeasycustomcars.com](https://www.bigeasycustomcars.com/),
 built on the design system carried over from the Big Easy Bathrooms and
 TurnKey Pool redesigns.
 
@@ -8,16 +8,39 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-A static, single-page mockup. No build step, no dependencies. Open
-`index.html` or serve the folder.
+Six static pages. No build step, no dependencies. Open `index.html` or serve
+the folder.
 
 | File | What it is |
 |---|---|
-| `index.html` | The homepage mockup |
+| `index.html` | Homepage |
+| `about.html` | About |
+| `services.html` | Services |
+| `services-areas.html` | Service Areas (slug matches the live site's) |
+| `testimonials.html` | Testimonials |
+| `contact.html` | Contact |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
 | `assets/logo.png` | The client's own logo, unchanged |
+
+### The five inner pages are generated, not hand-written
+
+Each one is produced by a script in `scratch/` (not committed) that slices the
+header, trust strip, quote band and footer straight out of `index.html`, so the
+pages cannot drift apart. **Edit `index.html`, then re-run all five scripts:**
+
+```
+python scratch/build-about.py
+python scratch/build-services.py
+python scratch/build-areas.py
+python scratch/build-testimonials.py
+python scratch/build-contact.py
+```
+
+Every inner page carries a written `<title>`, a written meta description and
+exactly one H1. The live site has an H1 on the homepage only and a meta
+description on no page at all.
 
 ## Design system
 
@@ -164,16 +187,26 @@ scroll library leaves eight service cards invisible. So a 3 second timer
 forces anything unfinished to its final state. The page can degrade to "no
 animation", never to "no content".
 
-## Reviews are INVENTED
+## Reviews: now the client's own, no longer invented
 
-The four testimonials in the reviews section were **written for the mockup at
-the client's request**. They are not real customers and not real quotes.
+The reviews were placeholders while I believed the live site published none.
+It does, on `/testimonials/`, a page the live homepage never links to. On
+2026-09-21 all placeholder copy was replaced with the client's own text,
+verbatim:
 
-The live site shows a 4.8 rating from 80+ reviews but does not publish the
-review text, so the genuine ones have to be pulled from Google.
+| Reviewer | Town | Build |
+|---|---|---|
+| Tyler B. | Metairie, LA | Camaro, custom paint and graphics |
+| Monique R. | Covington | Full interior upholstery |
+| Darren S. | Slidell, LA | Truck, engine tuning |
+| Rachel D. | Covington | Interior upholstery |
 
-> **Before this page goes public:** swap in real reviews. Publishing invented
-> testimonials as genuine is a problem for the client, not just a content gap.
+The homepage shows the first three. `testimonials.html` shows all four.
+
+> **Still to confirm with the client:** that these four are genuine customers.
+> The same site carries five demo team pages all named "John Smithson", so
+> placeholder copy is known to exist on it. The live site also claims 4.8 from
+> 80+ reviews, so there should be far more than four to pull from Google.
 
 ## Known robustness fixes worth keeping
 
