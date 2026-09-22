@@ -390,6 +390,15 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .bay-tick{font-size:15px;color:var(--steel);opacity:0;transform:translateX(-6px);
   transition:.35s var(--ease)}
 .bay-row.on .bay-tick,.bay-row:hover .bay-tick{opacity:1;transform:none;color:var(--amber-ink)}
+/* Group tag after a bay row's name. Service pages use it for the live H3 a row
+   sits under (Audio / Lighting / Integration), which tells apart three rows
+   that are all called some kind of "Integration". The bay script copies the
+   row name into the panel title, tag and all, so the title carries it too. */
+.bay-grp{font-style:normal;font-family:var(--sans);font-size:9.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--steel);margin-left:10px;
+  vertical-align:middle;white-space:nowrap;transition:color .35s var(--ease)}
+.bay-row.on .bay-grp,.bay-row:hover .bay-grp{color:var(--amber-ink)}
+.bay-meta .bay-grp{font-size:10px;margin-left:12px}
 .bay-row.is-new .bay-name::after{content:"NEW";margin-left:9px;font-family:var(--sans);
   font-size:9px;font-weight:700;letter-spacing:.14em;vertical-align:middle;
   color:var(--amber-2);border:1px solid var(--amber-2);border-radius:3px;padding:2px 5px}
@@ -919,7 +928,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <nav><ul class="nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="services.html#build">Audio &amp; Lighting</a></li><li><a href="services.html#build">Body Kits &amp; Modifications</a></li><li><a href="services.html#build">Custom Paint &amp; Graphics</a></li><li><a href="services.html#build">Engine Tuning &amp; Performance</a></li><li><a href="services.html#build">Interior Upholstery</a></li><li><a href="services.html#build">Lighting Upgrades</a></li><li><a href="services.html#build">Restoration &amp; Rebuilds</a></li><li><a href="services.html#build">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="services.html#build">Body Kits &amp; Modifications</a></li><li><a href="services.html#build">Custom Paint &amp; Graphics</a></li><li><a href="services.html#build">Engine Tuning &amp; Performance</a></li><li><a href="services.html#build">Interior Upholstery</a></li><li><a href="services.html#build">Lighting Upgrades</a></li><li><a href="services.html#build">Restoration &amp; Rebuilds</a></li><li><a href="services.html#build">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="services-areas.html#areas">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>

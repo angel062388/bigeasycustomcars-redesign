@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Eight static pages. No build step, no dependencies. Open `index.html` or serve
+Nine static pages. No build step, no dependencies. Open `index.html` or serve
 the folder.
 
 | File | What it is |
@@ -21,16 +21,17 @@ the folder.
 | `contact.html` | Contact |
 | `blog.html` | Blog (proposed posts, see below) |
 | `post-how-much-does-it-cost-to-lift-a-truck.html` | The model blog post every future post follows |
+| `audio-lighting.html` | Audio & Lighting: the model for all eight service pages |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
 | `assets/logo.png` | The client's own logo, unchanged |
 
-### The seven inner pages are generated, not hand-written
+### The eight inner pages are generated, not hand-written
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all seven scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all eight scripts:**
 
 ```
 python scratch/build-about.py
@@ -40,6 +41,7 @@ python scratch/build-testimonials.py
 python scratch/build-contact.py
 python scratch/build-blog.py
 python scratch/build-post.py
+python scratch/build-service.py
 ```
 
 Blog titles, dates, images and excerpts live in `scratch/blog_data.py`, shared
@@ -277,6 +279,42 @@ no banned words, keyword in the title, first 100 words, an H2 and the close.
 | Aftermarket parts do not void a warranty; the maker must prove the part caused the damage | [FTC](https://consumer.ftc.gov/articles/auto-warranties-and-auto-service-contracts) |
 
 > **Before publishing:** the client approves the copy and confirms the date.
+
+## The model service page: Audio & Lighting
+
+`audio-lighting.html` (live: `/services/audio-lighting/`) is the template for
+all eight service pages. `scratch/build-service.py` is **data-driven**: each
+service is one dict, and the section renderers never change, so the other
+seven pages are a matter of adding their content.
+
+Every section is a homepage component: video hero, trust strip, the About
+page's text-and-photo split (twice), the services bay board (10 rows), the
+blog card shell, the process gauge, the Louisiana plates, the coverage map and
+the quote band (its form preselects "Interior or audio").
+
+**Copy is the client's own, word for word**, reorganised into those
+components. The live H1 is kept. Two process-stage headings are authored
+("Scope, Timeline and Cost", "Fitted and Tested") because the gauge has five
+stages and the live page has three steps; marked in the markup.
+
+Flags for the client:
+
+- **A fourth "years" figure.** This page says "over 25 years of experience".
+  Home says 15, About says 20+. The counter strip on this page shows reviews,
+  rating and parishes instead, so no animated number contradicts the text.
+- **The live site has 8 reviews, not 4.** This page's slider carries four
+  that `/testimonials/` does not. Kevin T. (Kenner) is the one about audio and
+  lighting, so he leads the plates here.
+- **Photos:** four are the client's own, referenced from the live site
+  (`/wp-content/uploads/`), the rest are the mockup's Unsplash stock. Three
+  repeat, never next to each other. Row 08 uses a wide banner, slightly
+  upscaled. More audio and lighting photos would fix both.
+- **Live meta description** is auto-generated from the first paragraph, about
+  300 characters and cut off mid-sentence. The mockup's is written, 137.
+- **Live copy** leans on words like "seamlessly", "ensure" and "flawlessly".
+  Kept as the client's; a copy pass would tighten it.
+- **Structured data:** `Service` JSON-LD with nine service areas. Add the
+  street address once the client supplies one.
 
 ## Known robustness fixes worth keeping
 
