@@ -267,15 +267,22 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .on-dark .story a:hover{border-bottom-color:var(--amber)}
 
 /* ---------- city page: "All About" block ----------
-   The about story split again, photo in the About page's own frame (4:5 on
-   desktop, 16:10 on phones), then the town's lists in two columns of plain
-   text. Shown whole at 4:3 the photo stood 365px beside 813px of text, so
-   it keeps the tall frame. NO caption under the photo (client, 2026-09-22):
+   The about story split again (with .fit below: the photo follows the
+   text's height; 16:10 on phones), then the town's lists in two balanced
+   columns of plain text. NO caption under the photo (client, 2026-09-22):
    a photo credit its license requires goes in the footer's small print
    (.foot-credit). No cards below: the lists run to very different lengths,
    and equal-height cards would leave empty boxes, the "big space" the
    client flagged on the service boards. */
 .area-shot img{object-position:58% 50%}
+/* .fit (city pages): the photo takes the height of the text beside it, from
+   320px up to 640px, so short copy never leaves a hole under the text
+   (Covington's overview text ended 208px above its 4:5 photo). Long copy
+   keeps a 640px photo that stays in view while you read. */
+.story-split.fit{align-items:stretch}
+.story-split.fit .story-figure{aspect-ratio:auto;align-self:stretch;min-height:320px;max-height:640px}
+.story-split.fit .story-figure img{position:absolute;inset:0}
+@media(max-width:900px){.story-split.fit .story-figure{aspect-ratio:16/10;min-height:0;max-height:none}}
 /* The three lists flow through two BALANCED columns, newspaper style: a list
    may carry on at the top of the second column, headings stay with their
    first item, no item splits. Fixed columns could not balance every town
@@ -288,7 +295,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .area-fact p{font-size:15.5px;line-height:1.66;margin-bottom:12px}
 .area-fact p,.area-fact li{break-inside:avoid}
 .area-fact p:last-child{margin-bottom:0}
-.area-fact .q-why{margin-top:14px}
+/* a list never starts a new column away from its heading or lead-in line
+   (Madisonville's "include:" line sat alone at the foot of column one).
+   Short lists may split: keeping them whole left too few break points and
+   Kenner's columns ended 259px apart. */
+.area-fact .q-why{margin-top:14px;break-before:avoid}
 .area-fact .q-why li:last-child{margin-bottom:0}
 @media(max-width:900px){.area-facts{column-count:1}}
 
@@ -1012,7 +1023,7 @@ a.bay-row{text-decoration:none}
 <!-- ============ HEADER ============ -->
 <header class="head" id="head">
   <div class="wrap head-in">
-    <a class="brand" href="#top"><img src="assets/logo.png" alt="Big Easy Custom Cars" fetchpriority="high"></a>
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Big Easy Custom Cars" fetchpriority="high"></a>
     <nav><ul class="nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -1070,7 +1081,7 @@ a.bay-row{text-decoration:none}
       <p class="eyeb">Overview</p>
       <h2>Why Choose Big Easy Custom Cars in <span class="kw">Saint Rose</span></h2>
     </div>
-    <div class="story-split">
+    <div class="story-split fit">
       <div class="story rv">
         <p>Whether you&#39;re cruising River Road or heading out on the trails, we deliver custom work that turns heads and performs the way a truck should.</p>
         <p>Born in New Orleans, trusted across the Gulf South, and now proudly serving Saint Rose and all of St. Charles Parish.</p>
@@ -1103,7 +1114,7 @@ a.bay-row{text-decoration:none}
       <div class="lead am-head rv">
         <p class="eyeb">Where We Work</p>
         <h2>Areas We Serve Near <span class="kw">Saint Rose, LA</span></h2>
-        <p class="am-lede">Big Easy Custom Cars proudly serves truck and SUV owners throughout St.</p>
+        <p class="am-lede">Big Easy Custom Cars proudly serves truck and SUV owners throughout St. Charles Parish, Jefferson Parish, and the Greater New Orleans metro area.</p>
       </div>
 
       <div class="am-card rv">
@@ -1368,13 +1379,13 @@ a.bay-row{text-decoration:none}
       <p class="eyeb">The Area</p>
       <h2>All About <span class="kw">Saint Rose, LA</span></h2>
     </div>
-    <div class="story-split">
+    <div class="story-split fit">
       <div class="story rv">
         <p>Saint Rose is an unincorporated community in St. Charles Parish, Louisiana, on the east bank of the Mississippi River, about 15 miles west of New Orleans. It&#39;s part of the Greater New Orleans metropolitan area and falls under ZIP code 70087.</p>
         <h3 style="margin-top:26px">Interesting Facts About Saint Rose</h3>
         <ul class="q-why">
           <li>Saint Rose was once home to the Delta Match Corporation, which opened in 1952 as the first large wooden match manufacturing plant in the South and grew to be the largest in the world before closing in the 1980s.</li>
-          <li><b>The &#8220;LaBranche&#8221; name has a fun origin:</b> the founding Zweig family was German, and &#8220;Zweig&#8221; sounds like &#8220;twig.&#8221; French officials translated it to &#8220;branch,&#8221; creating &#8220;LaBranche.&#8221;</li>
+          <li>The &#8220;LaBranche&#8221; name has a fun origin: the founding Zweig family was German, and &#8220;Zweig&#8221; sounds like &#8220;twig.&#8221; French officials translated it to &#8220;branch,&#8221; creating &#8220;LaBranche.&#8221;</li>
           <li>Despite its small size, St. Rose has produced a remarkable number of NFL players, nearly all of whom attended Destrehan High School, making it one of the most impressive small-town football pipelines in the country.</li>
           <li>Saint Rose sits along the historic River Road corridor, once lined with sugar cane plantations that drove the region&#39;s economy.</li>
         </ul>
@@ -1475,7 +1486,7 @@ a.bay-row{text-decoration:none}
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="#top"><img src="assets/ftr-logo.png" alt="Big Easy Custom Cars" loading="lazy" style="height:84px"></a>
+        <a class="brand" href="index.html"><img src="assets/ftr-logo.png" alt="Big Easy Custom Cars" loading="lazy" style="height:84px"></a>
         <p style="margin-top:16px;max-width:34ch">Born in New Orleans. We build cars, trucks and SUVs that stand out and stay strong.</p>
         <p style="margin-top:16px"><a href="tel:+15043848006"><b style="color:var(--amber);font-size:19px">(504) 384-8006</b></a></p>
         <div class="foot-social">
@@ -1493,9 +1504,9 @@ a.bay-row{text-decoration:none}
       <div>
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="#top">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="index.html#builds">Builds</a></li>
-          <li><a href="services.html#build">Services</a></li>
+          <li><a href="services.html">Services</a></li>
           <li><a href="index.html#process">Process</a></li>
           <li><a href="testimonials.html">Testimonials</a></li>
           <li><a href="blog.html">Blog</a></li>
@@ -1516,11 +1527,13 @@ a.bay-row{text-decoration:none}
       <div>
         <h4>Service Areas</h4>
         <ul>
-          <li><a href="metairie.html">Metairie</a></li>
-          <li><a href="kenner.html">Kenner</a></li>
-          <li><a href="slidell.html">Slidell</a></li>
+          <li><a href="abita-springs.html">Abita Springs</a></li>
           <li><a href="covington.html">Covington</a></li>
+          <li><a href="kenner.html">Kenner</a></li>
+          <li><a href="madisonville.html">Madisonville</a></li>
           <li><a href="mandeville.html">Mandeville</a></li>
+          <li><a href="metairie.html">Metairie</a></li>
+          <li><a href="slidell.html">Slidell</a></li>
           <li><a href="st-rose.html">St. Rose</a></li>
         </ul>
       </div>

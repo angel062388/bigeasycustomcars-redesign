@@ -404,8 +404,8 @@ Copy comes from snapshots of the live pages (`scratch/live-areas/<slug>.html`)
 through `live_parse.py`, verbatim. The live city pages were written
 separately and differ a lot (headings, order, one has no Notable Residents,
 two have empty H1s), so each town has a short **plan** saying which live
-section feeds which part. The menu's Services Areas items open these pages
-on every page; the footer's shorter list (six towns) does too.
+section feeds which part. The menu's Services Areas items and the footer's
+Service Areas list open these pages on every page.
 
 Order follows the client's brief (map, services, reviews, All About,
 footer), plus three parts that are not in the brief: the trust strip and
@@ -440,14 +440,31 @@ move below the map or go.
 6. **All About <Town>, LA:** the live block under the client's four
    headings. About and Interesting Facts sit beside the photo (the About
    page's split); Things To Do, Notable Residents and Public Transportation
-   flow through two balanced columns underneath (measured at 1280px: the
-   columns end 2 to 105px apart, at most one list item; no heading splits
-   from its list).
+   flow through two balanced columns underneath (measured at 1280px and
+   1856px: the columns end 2 to 118px apart; no heading or lead-in line is
+   left at the foot of a column away from its list). A fact bullet that
+   repeats the paragraph beside it is used once (Covington, Madisonville,
+   Slidell).
 7. **Quote band:** the town's live closing section. Then the footer, which
    on these pages carries the photo credit.
 
 **Notable Residents are checked** against each person's own Wikipedia
 article (2026-09-22), because this is where the first review found errors.
+Rule used: live names are removed only when shown wrong; names added here
+must be confirmed by the person's own article.
+
+**On these pages the photo follows the text** (`.story-split.fit`): its
+height matches the copy beside it, 320 to 640px, so short copy never leaves
+a hole under the text (Covington's overview text ended 208px above a 4:5
+photo). Phones: 16:10.
+
+**Second review, fixed:** the sentence splitter cut "St. Tammany" and "St.
+Charles" in two on the Madisonville hero, the Slidell map intro and the
+Saint Rose map intro (now abbreviation-aware; the build fails if any
+passage ends on "St."); Kenner's overview repeated "a complete system, not a
+random mix of parts" a line before "a complete build, not a random
+collection"; duplicate fact bullets removed; Saint Rose's one labelled fact
+now plain like the rest.
 
 ### Errors on the LIVE city pages (tell the client; the live site shows them today)
 
@@ -468,6 +485,13 @@ article (2026-09-22), because this is where the first review found errors.
 | Metairie | Live title reads "Custom Truck & SUV Builds Metairie": "in" added. Rhett Lewis's current NFL Network shows could not be confirmed. |
 | Covington | Left out: an intro line that describes the page itself ("This Covington service-area page is crafted for..."). |
 | Saint Rose | Live title 68 characters: written one used. The page says "Saint Rose" throughout, so the rows do; menu and map keep "St. Rose". Left out: a tagline and a button label the parser reads as text. |
+| Covington | Heath B. Jones and Amanda Shaw are on Wikipedia's Covington list but their own articles never mention Covington (Shaw's says she is from Mandeville). Live copy, kept: client to confirm. A small bronze statue stands at the far right of the church photo; not visible at the sizes shown. |
+| Slidell | John Besh: "Finalist on Iron Chef America" matches Wikipedia's Slidell list, not his own article (which mentions judging Iron Chef Showdown), and his article has a 2017 sexual-misconduct section. **Client's call whether to feature him.** |
+| Kenner | Jon Batiste "attended schools in the Jefferson Parish area": his article names St. Augustine High and NOCCA, both in New Orleans. Live copy, kept. |
+| Saint Rose | Margaret Taylor-Burroughs "(1917-2010)": her article gives 1915 (some sources 1917). "'Zweig' sounds like 'twig'": Zweig means twig. Live copy, kept. |
+| Mandeville | Pat Brister, "Business professional with ties to the local community": she was St. Tammany Parish President (2012-2020). Live copy, kept. |
+| Metairie | "Jefferson Parish Transit (JP Transit)": the system is Jefferson Transit (JeT), as Kenner's page says. Live copy, kept. |
+| All | Live lines in the "not X, but Y" pattern are kept as the client's (e.g. "We build with you, not around you"); a copy pass could tighten them. |
 | All | Written copy needs client approval: 3 titles, 2 meta descriptions, 2 H1s, the Madisonville and Abita Springs additions, labels. Overview, board and "All About" copy is live. |
 
 ### Photos (one per town, no people, credit in the footer, never under the photo)
@@ -488,6 +512,13 @@ mockup; **self-host at launch and keep the credits**.
 | Saint Rose | Hale Boggs Memorial Bridge | Jonathan Sorrel | CC BY 2.0 |
 
 ## Known robustness fixes worth keeping
+
+- **Navigation from inner pages.** Both logos and the footer "Home" link
+  pointed at `#top`, the top of the SAME page, so from an inner page they
+  never reached the homepage; the footer "Services" link pointed at a
+  `#build` section the Services page does not have. All fixed in
+  `index.html` (2026-09-22, second review). The footer's Service Areas list
+  now carries all eight towns.
 
 - **Photo captions stay on their photo on phones.** `.story-figure` turned
   `position:static` under 900px, so an overlaid caption escaped to the page
