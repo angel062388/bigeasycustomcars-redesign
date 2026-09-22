@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Nine static pages. No build step, no dependencies. Open `index.html` or serve
+Sixteen static pages. No build step, no dependencies. Open `index.html` or serve
 the folder.
 
 | File | What it is |
@@ -22,6 +22,7 @@ the folder.
 | `blog.html` | Blog (proposed posts, see below) |
 | `post-how-much-does-it-cost-to-lift-a-truck.html` | The model blog post every future post follows |
 | `audio-lighting.html` | Audio & Lighting: the model for all eight service pages |
+| `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven service pages, same template |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -317,6 +318,46 @@ Flags for the client:
   Kept as the client's; a copy pass would tighten it.
 - **Structured data:** `Service` JSON-LD with nine service areas. Add the
   street address once the client supplies one.
+
+## All eight service pages: how they are built
+
+`scratch/build-service.py` builds all eight. **No client copy is typed.**
+`scratch/live_parse.py` reads a snapshot of each live service page
+(`scratch/live/<slug>.html`, gitignored, taken with curl) and hands over its
+headings, paragraphs, list items (in page order), FAQ, testimonials and
+photos. Each page then has a short plan saying which live section goes into
+which homepage component. Text arrives verbatim, with curly quotes as entities
+and em dashes as commas.
+
+**Why parse instead of retype:** it found a service the hand-built Audio page
+had missed (DSP Processors, now restored) and seven photo URLs that had been
+typed from truncated listings and did not exist. Photos are now looked up by
+a unique fragment of their file name, and the build stops if a fragment
+matches none or several.
+
+Every page is checked at build time for one H1, no em dashes, a title of 60
+characters or less, a meta description of 155 or less, and a link to both the
+live homepage and the live contact page. Structured data: `Service` on all
+eight, `FAQPage` on the three with FAQs.
+
+Shared changes made for them: the quote form gained four options its
+dropdown was missing (engine tuning, body kits, lighting, restoration); the
+FAQ cluster sizes itself to its question count and its counter now reads
+"10 of 10" (it read "010 of 010"); service H1s over 50 characters get a
+smaller size and wider measure (they took 5-6 lines on a phone); the menu
+and footer service links point at the pages.
+
+### Flags from the live service pages
+
+| Page | Flag |
+|---|---|
+| Engine Tuning | An intro sentence is cut off mid-way on the live page ("...to finish your build,"). Left out. |
+| Body Kits | The "Seamless Installation and Paint Matching" section appears twice live. Used once. |
+| Paint & Graphics | "Commercial and Fleet Wraps" repeats a stray "Common accent areas include:" line. Left out. |
+| Lighting | "Upload photos of your truck or SUV..." describes an upload the mockup form lacks. Left out. |
+| Restoration | FAQ answers left out: "244,000 square feet" and "64 custom car builds" (About says 500+). The opening section repeats the About story nearly word for word. |
+| Tint & Detailing | "What Is Automotive Window Tinting?" appears twice live. Used once. The tint-law paragraph was checked against La. R.S. 32:361.1 and holds for trucks and SUVs (front sides at least 25%, windows behind the driver exempt); the live copy says "more than 25 percent", the statute "at least". |
+| All | Seven client photos show people (a mechanic, a painter, a tint installer, a polisher, drivers, a gloved hand) and are not used, per the no-people rule. |
 
 ## Known robustness fixes worth keeping
 

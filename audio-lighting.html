@@ -200,6 +200,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .hero-center .hero-in{padding-top:clamp(96px,12vh,132px);
   padding-bottom:clamp(34px,5vh,58px)}
 .hero-center h1{max-width:19ch;margin-inline:auto}
+/* Service pages keep the client's live H1 word for word (SEO), and some run
+   past 80 characters. At the standard size those took 5-6 lines on a phone,
+   about 250px of headline, and pushed the buttons below the fold. Headlines
+   over 50 characters drop a size and get a wider measure. */
+.hero-center h1.h1-long{font-size:clamp(28px,4.4vw,54px);max-width:30ch}
 .hero-center .hero-lede{margin-inline:auto;max-width:58ch}
 .hero-center .btn-row,.hero-center .stars{justify-content:center}
 .hero-crumb{display:flex;align-items:center;justify-content:center;gap:8px;
@@ -573,6 +578,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .rev-post h3 a:focus-visible{outline:none}
 .rev-post h3 a:focus-visible::after{outline:2px solid var(--amber);outline-offset:-3px}
 .rev-post .rp-read{margin-left:auto;color:var(--paper);transition:color .3s var(--ease)}
+/* Service pages put the live page's bullet lists inside the cards. */
+.rev-post .q-why{margin:0}
+.rev-post .q-why li{font-size:14.5px;line-height:1.55;margin-bottom:9px;color:var(--body-d)}
+.rev-post .q-why li:last-child{margin-bottom:0}
+.rev-post .q-why b{color:var(--paper);font-weight:600}
 .rev-post:hover .rp-read{color:var(--amber)}
 
 /* ---------- blog post: the model every post follows ----------
@@ -771,6 +781,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .cluster{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
 @media(max-width:1080px){.cluster{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:560px){.cluster{grid-template-columns:repeat(4,1fr);gap:7px}}
+/* Service pages set --n (questions) and --n-md (half, rounded up) on the
+   cluster, so 9 or 10 questions sit in one row on desktop and two even rows
+   below 1080px, instead of leaving an orphan. */
+.cluster[style*="--n"]{grid-template-columns:repeat(var(--n),1fr)}
+@media(max-width:1080px){.cluster[style*="--n"]{grid-template-columns:repeat(var(--n-md),1fr)}}
 .tell{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
   padding:14px 8px 12px;cursor:pointer;font-family:var(--sans);
   background:linear-gradient(180deg,#1C2026,#14181D);
@@ -931,7 +946,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <nav><ul class="nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="services.html#build">Body Kits &amp; Modifications</a></li><li><a href="services.html#build">Custom Paint &amp; Graphics</a></li><li><a href="services.html#build">Engine Tuning &amp; Performance</a></li><li><a href="services.html#build">Interior Upholstery</a></li><li><a href="services.html#build">Lighting Upgrades</a></li><li><a href="services.html#build">Restoration &amp; Rebuilds</a></li><li><a href="services.html#build">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="services-areas.html#areas">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -954,7 +969,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   <div class="wrap hero-in">
     <p class="hero-crumb rv"><a href="index.html">Home</a><i>&#8250;</i><a href="services.html">Services</a><i>&#8250;</i><span>Audio &amp; Lighting</span></p>
     <p class="stars rv"><b>&#9733;&#9733;&#9733;&#9733;&#9733;</b> Rated by hundreds of happy customers</p>
-    <h1 class="rv">Professional Car <span class="kw">Audio and Lighting</span> Services in New Orleans</h1>
+    <h1 class="rv h1-long">Professional Car <span class="kw">Audio and Lighting</span> Services in New Orleans</h1>
     <p class="hero-lede rv">Looking to upgrade your vehicle&#39;s audio system or add some custom lighting? <a href="https://www.bigeasycustomcars.com/" target="_blank" rel="noopener">Big Easy Custom Cars</a> specializes in high-quality car audio and lighting services tailored to your vehicle&#39;s needs.</p>
     <div class="btn-row rv">
       <a class="btn btn-p" href="#quote-form">Free Estimate</a>
@@ -1000,18 +1015,16 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   </div>
 </section>
 
-<!-- ============ WHAT WE INSTALL ============
+<!-- ============ WHAT WE DO ============
      The homepage services bay board (client rule: a "What We Build" style
      section must use the homepage design). Row names and descriptions are the
-     live page's own bullets. The small tag after each name is the live H3 group
-     it sits under. Photos: the client's own from the live page where one fits,
-     otherwise the mockup's Unsplash stock; some repeat, never next to each other. -->
+     live page's own. The small tag after each name is the live H3 group it sits under. Photos: the client's own where one fits, otherwise the mockup's stock; repeats are never adjacent. -->
 <section id="build">
   <div class="wrap">
     <div class="lead rv">
       <p class="eyeb">What We Install</p>
       <h2>Audio Upgrades, Custom Lighting and <span class="kw">Integration</span></h2>
-      <p>Ten services in three groups, straight from our service list. Pick one to see it.</p>
+      <p>Eleven services in three groups, straight from our service list. Pick one to see it.</p>
     </div>
     <div class="bay">
       <div class="bay-list" id="bayList">
@@ -1030,38 +1043,43 @@ section{padding:clamp(28px,2.4vw,44px) 0}
           <span class="bay-name">Modern Integration <em class="bay-grp">Audio</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="3" data-desc="Custom lighting integration options, like Bluetooth-controlled LEDs and ambient lighting, make your car more stylish and functional. These systems can be controlled through apps and are perfect for integrating modern gadgets." data-new="0">
+        <button class="bay-row" type="button" data-i="3" data-desc="Digital Signal Processors (DSPs) are used to precisely calibrate sound quality, ensuring optimal audio performance suited to your vehicle&#39;s unique acoustics. DSPs enable fine-tuning of audio parameters like bass, treble, and equalization to deliver a personalized listening experience." data-new="0">
           <span class="bay-no">04</span>
+          <span class="bay-name">DSP Processors <em class="bay-grp">Audio</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="4" data-desc="Custom lighting integration options, like Bluetooth-controlled LEDs and ambient lighting, make your car more stylish and functional. These systems can be controlled through apps and are perfect for integrating modern gadgets." data-new="0">
+          <span class="bay-no">05</span>
           <span class="bay-name">Up-to-Date Integration <em class="bay-grp">Lighting</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="4" data-desc="Our custom lighting options, including LED strip lights, under-glow kits, and premium fog lamps, improve both the aesthetics and functionality of your car. We use high-quality, durable LEDs designed to withstand the elements." data-new="0">
-          <span class="bay-no">05</span>
+        <button class="bay-row" type="button" data-i="5" data-desc="Our custom lighting options, including LED strip lights, under-glow kits, and premium fog lamps, improve both the aesthetics and functionality of your car. We use high-quality, durable LEDs designed to withstand the elements." data-new="0">
+          <span class="bay-no">06</span>
           <span class="bay-name">Illumination <em class="bay-grp">Lighting</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="5" data-desc="We offer a range of LED options, including ambient lighting for the interior and distinctive under-glow lighting for the exterior. These lighting systems can be configured to match your preferred color scheme and are energy-efficient." data-new="0">
-          <span class="bay-no">06</span>
+        <button class="bay-row" type="button" data-i="6" data-desc="We offer a range of LED options, including ambient lighting for the interior and distinctive under-glow lighting for the exterior. These lighting systems can be configured to match your preferred color scheme and are energy-efficient." data-new="0">
+          <span class="bay-no">07</span>
           <span class="bay-name">Glowing Patterns <em class="bay-grp">Lighting</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="6" data-desc="We also provide lighting solutions for marine vehicles and commercial purposes. These products are built to resist corrosion from water and extreme weather conditions while providing bright, reliable illumination." data-new="0">
-          <span class="bay-no">07</span>
+        <button class="bay-row" type="button" data-i="7" data-desc="We also provide lighting solutions for marine vehicles and commercial purposes. These products are built to resist corrosion from water and extreme weather conditions while providing bright, reliable illumination." data-new="0">
+          <span class="bay-no">08</span>
           <span class="bay-name">Marine and Commercial Solutions <em class="bay-grp">Lighting</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="7" data-desc="We install safety features like lane departure warnings, collision-mitigation systems, and backup cameras that help improve driving safety and reduce accident risk. These systems integrate seamlessly with your car&#39;s existing electronics." data-new="0">
-          <span class="bay-no">08</span>
+        <button class="bay-row" type="button" data-i="8" data-desc="We install safety features like lane departure warnings, collision-mitigation systems, and backup cameras that help improve driving safety and reduce accident risk. These systems integrate seamlessly with your car&#39;s existing electronics." data-new="0">
+          <span class="bay-no">09</span>
           <span class="bay-name">Safety Enhancements <em class="bay-grp">Integration</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="8" data-desc="We install multimedia entertainment setups including LCD screens, DVD players, and audio/video input options for a complete in-car entertainment experience. This adds comfort and enjoyment for long trips or for passengers who want entertainment while on the road." data-new="0">
-          <span class="bay-no">09</span>
+        <button class="bay-row" type="button" data-i="9" data-desc="We install multimedia entertainment setups including LCD screens, DVD players, and audio/video input options for a complete in-car entertainment experience. This adds comfort and enjoyment for long trips or for passengers who want entertainment while on the road." data-new="0">
+          <span class="bay-no">10</span>
           <span class="bay-name">Entertainment Systems <em class="bay-grp">Integration</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
-        <button class="bay-row" type="button" data-i="9" data-desc="With hands-free calling, voice controls, and music streaming capabilities, you can stay connected and drive safely. We integrate both Android Auto and Apple CarPlay systems for complete compatibility with your smartphone." data-new="0">
-          <span class="bay-no">10</span>
+        <button class="bay-row" type="button" data-i="10" data-desc="With hands-free calling, voice controls, and music streaming capabilities, you can stay connected and drive safely. We integrate both Android Auto and Apple CarPlay systems for complete compatibility with your smartphone." data-new="0">
+          <span class="bay-no">11</span>
           <span class="bay-name">Smartphone Integration <em class="bay-grp">Integration</em></span>
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
@@ -1072,6 +1090,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
           <img class="bay-img on" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/loudspeaker-close-up-under-colorful-neon-light-mu-2025-03-08-04-49-23-utc.jpg" alt="Close-up of a car speaker cone lit by pink and blue neon" loading="lazy">
           <img class="bay-img" src="assets/svc/svc-audio.jpg" alt="Speaker grille set into a car door panel" loading="lazy">
           <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/media-and-navigation-control-buttons-of-a-modern-c-2025-01-10-16-30-22-utc.jpg" alt="Rotary media and navigation controller on a carbon-trimmed center console" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/loudspeaker-close-up-under-colorful-neon-light-mu-2025-03-08-04-49-23-utc.jpg" alt="Close-up of a car speaker cone lit by pink and blue neon" loading="lazy">
           <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2026/03/audio-lighting-2-scaled.jpg" alt="Car interior at night lit by purple and blue ambient lighting" loading="lazy">
           <img class="bay-img" src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy">
           <img class="bay-img" src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy">
@@ -1116,8 +1135,6 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   </div>
 </section>
 
-<!-- ============ SPECIALIZED AUTOS ============
-     The blog card shell without its photo. Copy is the live page's own. -->
 <section id="specialized">
   <div class="wrap">
     <div class="lead rv">
@@ -1160,9 +1177,8 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <h2>The Consultation and <span class="kw">Installation Process</span></h2>
       <p>At Big Easy Custom Cars, we prioritize transparency and professionalism throughout the entire process, from consultation to post-installation support.</p>
     </div>
-    <!-- Five stages on the homepage rev counter. The live page has three steps;
-         stages 02 and 04 are split out of their own copy, with authored
-         headings (marked). -->
+    <!-- Five stages on the homepage rev counter, from this page's own
+         process steps. Any authored stage heading is marked. -->
     <div class="tc-grid">
       <div class="tc-dial rv">
         <svg class="tc-svg" viewBox="0 0 400 250" aria-hidden="true" focusable="false">
@@ -1241,9 +1257,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   </div>
 </section>
 
+
+
 <!-- ============ REVIEWS ============
-     Live testimonials from this service page's own slider, verbatim.
-     The first is the one about this service. -->
+     Live testimonials from this page's own slider, verbatim. Any that
+     are about this service come first. -->
 <section id="reviews">
   <div class="wrap">
     <div class="lead rv">
@@ -1525,9 +1543,13 @@ section{padding:clamp(28px,2.4vw,44px) 0}
         <option>Lift kit and suspension</option>
         <option>Wheels and tires</option>
         <option>Off-road build</option>
+        <option>Engine tuning or performance</option>
         <option>Paint or graphics</option>
+        <option>Body kit or modifications</option>
         <option selected>Interior or audio</option>
+        <option>Lighting upgrade</option>
         <option>Window tint or detailing</option>
+        <option>Restoration or rebuild</option>
         <option>Something else</option>
       </select>
       <button class="btn btn-p" type="submit">Get My Free Estimate</button>
@@ -1573,12 +1595,12 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="services.html#build">Engine Tuning</a></li>
-          <li><a href="services.html#build">Custom Paint</a></li>
-          <li><a href="services.html#build">Body Kits</a></li>
-          <li><a href="services.html#build">Interior Upholstery</a></li>
-          <li><a href="services.html#build">Window Tinting</a></li>
-          <li><a href="services.html#build">Restoration</a></li>
+          <li><a href="engine-tuning-performance.html">Engine Tuning</a></li>
+          <li><a href="custom-paint-graphics.html">Custom Paint</a></li>
+          <li><a href="body-kits-modifications.html">Body Kits</a></li>
+          <li><a href="interior-upholstery.html">Interior Upholstery</a></li>
+          <li><a href="window-tinting-detailing.html">Window Tinting</a></li>
+          <li><a href="restoration-rebuilds.html">Restoration</a></li>
         </ul>
       </div>
       <div>
@@ -1994,6 +2016,7 @@ if(tells.length){
       roA=document.getElementById('roA'),
       roCode=document.getElementById('roCode'),
       roBusy=false;
+  function two(n){return (n<10?'0':'')+n;}   /* 10 read as "010" before */
   function roGo(i){
     if(roBusy)return;
     tells.forEach(function(t,n){
@@ -2003,7 +2026,7 @@ if(tells.length){
     var t=tells[i];
     if(reduce){
       roQ.textContent=t.dataset.q;roA.textContent=t.dataset.a;
-      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
       return;
     }
     roBusy=true;
@@ -2011,7 +2034,7 @@ if(tells.length){
     setTimeout(function(){
       roQ.textContent=t.dataset.q;
       roA.textContent=t.dataset.a;
-      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
       ro.classList.remove('swap');
       setTimeout(function(){roBusy=false;},300);
     },290);

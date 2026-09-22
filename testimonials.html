@@ -200,6 +200,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .hero-center .hero-in{padding-top:clamp(96px,12vh,132px);
   padding-bottom:clamp(34px,5vh,58px)}
 .hero-center h1{max-width:19ch;margin-inline:auto}
+/* Service pages keep the client's live H1 word for word (SEO), and some run
+   past 80 characters. At the standard size those took 5-6 lines on a phone,
+   about 250px of headline, and pushed the buttons below the fold. Headlines
+   over 50 characters drop a size and get a wider measure. */
+.hero-center h1.h1-long{font-size:clamp(28px,4.4vw,54px);max-width:30ch}
 .hero-center .hero-lede{margin-inline:auto;max-width:58ch}
 .hero-center .btn-row,.hero-center .stars{justify-content:center}
 .hero-crumb{display:flex;align-items:center;justify-content:center;gap:8px;
@@ -573,6 +578,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .rev-post h3 a:focus-visible{outline:none}
 .rev-post h3 a:focus-visible::after{outline:2px solid var(--amber);outline-offset:-3px}
 .rev-post .rp-read{margin-left:auto;color:var(--paper);transition:color .3s var(--ease)}
+/* Service pages put the live page's bullet lists inside the cards. */
+.rev-post .q-why{margin:0}
+.rev-post .q-why li{font-size:14.5px;line-height:1.55;margin-bottom:9px;color:var(--body-d)}
+.rev-post .q-why li:last-child{margin-bottom:0}
+.rev-post .q-why b{color:var(--paper);font-weight:600}
 .rev-post:hover .rp-read{color:var(--amber)}
 
 /* ---------- blog post: the model every post follows ----------
@@ -771,6 +781,11 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .cluster{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
 @media(max-width:1080px){.cluster{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:560px){.cluster{grid-template-columns:repeat(4,1fr);gap:7px}}
+/* Service pages set --n (questions) and --n-md (half, rounded up) on the
+   cluster, so 9 or 10 questions sit in one row on desktop and two even rows
+   below 1080px, instead of leaving an orphan. */
+.cluster[style*="--n"]{grid-template-columns:repeat(var(--n),1fr)}
+@media(max-width:1080px){.cluster[style*="--n"]{grid-template-columns:repeat(var(--n-md),1fr)}}
 .tell{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
   padding:14px 8px 12px;cursor:pointer;font-family:var(--sans);
   background:linear-gradient(180deg,#1C2026,#14181D);
@@ -928,7 +943,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <nav><ul class="nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="services.html#build">Body Kits &amp; Modifications</a></li><li><a href="services.html#build">Custom Paint &amp; Graphics</a></li><li><a href="services.html#build">Engine Tuning &amp; Performance</a></li><li><a href="services.html#build">Interior Upholstery</a></li><li><a href="services.html#build">Lighting Upgrades</a></li><li><a href="services.html#build">Restoration &amp; Rebuilds</a></li><li><a href="services.html#build">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="services-areas.html#areas">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html" class="active">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -1138,9 +1153,13 @@ section{padding:clamp(28px,2.4vw,44px) 0}
         <option>Lift kit and suspension</option>
         <option>Wheels and tires</option>
         <option>Off-road build</option>
+        <option>Engine tuning or performance</option>
         <option>Paint or graphics</option>
+        <option>Body kit or modifications</option>
         <option>Interior or audio</option>
+        <option>Lighting upgrade</option>
         <option>Window tint or detailing</option>
+        <option>Restoration or rebuild</option>
         <option>Something else</option>
       </select>
       <button class="btn btn-p" type="submit">Get My Free Estimate</button>
@@ -1186,12 +1205,12 @@ section{padding:clamp(28px,2.4vw,44px) 0}
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="services.html#build">Engine Tuning</a></li>
-          <li><a href="services.html#build">Custom Paint</a></li>
-          <li><a href="services.html#build">Body Kits</a></li>
-          <li><a href="services.html#build">Interior Upholstery</a></li>
-          <li><a href="services.html#build">Window Tinting</a></li>
-          <li><a href="services.html#build">Restoration</a></li>
+          <li><a href="engine-tuning-performance.html">Engine Tuning</a></li>
+          <li><a href="custom-paint-graphics.html">Custom Paint</a></li>
+          <li><a href="body-kits-modifications.html">Body Kits</a></li>
+          <li><a href="interior-upholstery.html">Interior Upholstery</a></li>
+          <li><a href="window-tinting-detailing.html">Window Tinting</a></li>
+          <li><a href="restoration-rebuilds.html">Restoration</a></li>
         </ul>
       </div>
       <div>
@@ -1607,6 +1626,7 @@ if(tells.length){
       roA=document.getElementById('roA'),
       roCode=document.getElementById('roCode'),
       roBusy=false;
+  function two(n){return (n<10?'0':'')+n;}   /* 10 read as "010" before */
   function roGo(i){
     if(roBusy)return;
     tells.forEach(function(t,n){
@@ -1616,7 +1636,7 @@ if(tells.length){
     var t=tells[i];
     if(reduce){
       roQ.textContent=t.dataset.q;roA.textContent=t.dataset.a;
-      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
       return;
     }
     roBusy=true;
@@ -1624,7 +1644,7 @@ if(tells.length){
     setTimeout(function(){
       roQ.textContent=t.dataset.q;
       roA.textContent=t.dataset.a;
-      roCode.textContent='Question 0'+(i+1)+' of 0'+tells.length;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
       ro.classList.remove('swap');
       setTimeout(function(){roBusy=false;},300);
     },290);
