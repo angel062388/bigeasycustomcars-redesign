@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Sixteen static pages. No build step, no dependencies. Open `index.html` or serve
+Twenty static pages. No build step, no dependencies. Open `index.html` or serve
 the folder.
 
 | File | What it is |
@@ -22,7 +22,8 @@ the folder.
 | `blog.html` | Blog (proposed posts, see below) |
 | `post-how-much-does-it-cost-to-lift-a-truck.html` | The model blog post every future post follows |
 | `audio-lighting.html` | Audio & Lighting: the model for all eight service pages |
-| `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven service pages, same template |
+| `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven live services, same template |
+| `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -319,9 +320,10 @@ Flags for the client:
 - **Structured data:** `Service` JSON-LD with nine service areas. Add the
   street address once the client supplies one.
 
-## All eight service pages: how they are built
+## The service pages: how they are built
 
-`scratch/build-service.py` builds all eight. **No client copy is typed.**
+`scratch/build-service.py` builds all twelve: the eight live services and the
+four new ones. **No client copy is typed** for the eight live services.
 `scratch/live_parse.py` reads a snapshot of each live service page
 (`scratch/live/<slug>.html`, gitignored, taken with curl) and hands over its
 headings, paragraphs, list items (in page order), FAQ, testimonials and
@@ -337,8 +339,34 @@ matches none or several.
 
 Every page is checked at build time for one H1, no em dashes, a title of 60
 characters or less, a meta description of 155 or less, and a link to both the
-live homepage and the live contact page. Structured data: `Service` on all
-eight, `FAQPage` on the three with FAQs.
+live homepage and the live contact page. Structured data: `Service` and
+`FAQPage` on all twelve.
+
+**Every service page has an FAQ** (client rule, 2026-09-22). Three carry the
+live page's own FAQ verbatim (Engine Tuning, Paint & Graphics, Restoration).
+The other nine are **written**: six questions each, every answer restating
+what that page's live copy (or, for the new pages, the client's site
+elsewhere) already says. The only outside facts are the FTC rule on
+aftermarket parts and warranties, the Louisiana 2025 tint change, and the lift
+facts sourced for the blog post; each FAQ's HTML comment names its sources.
+No prices, times or promises beyond the client's own. **Client must approve.**
+The build refuses to write a service page without an FAQ, and checks all
+written copy against the banned-word list.
+
+**Other Services rows are links** (client request): the eight live services
+link to their pages on the live site (new tab); the four new services link to
+their new mockup pages. The page's own service is never listed.
+
+**The four new service pages** (Lift Kits & Suspension, Wheels & Tires,
+Off-Road Builds, Blackout Packages) have no live page to parse, so their copy
+is written from what the client says elsewhere on their site: the brands
+(FOX, BDS, Fuel Off-Road, Toyo Tires, Rough Country), the platforms (Ford,
+Chevy, GMC, Jeep, RAM), "trail rigs with max clearance and armor", "blackout
+packages and color-match builds", smoked lenses, steel bumpers, power steps.
+Each runs 1,050 to 1,190 words, of which 606 to 831 are new. The build checks
+the target phrase appears in the title, the opening, an H2 and the closing.
+They are in the Services menu, which now lists twelve services against the
+live site's eight (client request).
 
 Shared changes made for them: the quote form gained four options its
 dropdown was missing (engine tuning, body kits, lighting, restoration); the
@@ -356,10 +384,17 @@ and footer service links point at the pages.
 | Paint & Graphics | "Commercial and Fleet Wraps" repeats a stray "Common accent areas include:" line. Left out. |
 | Lighting | "Upload photos of your truck or SUV..." describes an upload the mockup form lacks. Left out. |
 | Restoration | FAQ answers left out: "244,000 square feet" and "64 custom car builds" (About says 500+). The opening section repeats the About story nearly word for word. |
-| Tint & Detailing | "What Is Automotive Window Tinting?" appears twice live. Used once. The tint-law paragraph was checked against La. R.S. 32:361.1 and holds for trucks and SUVs (front sides at least 25%, windows behind the driver exempt); the live copy says "more than 25 percent", the statute "at least". |
+| Tint & Detailing | "What Is Automotive Window Tinting?" appears twice live. Used once. **Tint law, corrected 2026-09-22:** Act 143 of 2025 (HB 119) lowered the front side window limit from 40% to 25%, effective Aug 1, 2025 (FastDemocracy, BillTrack50). An earlier note here said the paragraph "holds for trucks and SUVs"; that check used the 2023 statute text, which predates the change. Whether trucks and SUVs still keep the exemption for windows behind the driver (the live copy's "any darkness") is **unconfirmed**: the enacted text could not be reached (legis.la.gov refused connections). The written FAQ states only the front-side rule. |
+| Blackout Packages | Smoked lenses are a client-listed service; whether tinted head and tail lights are legal in Louisiana was not checked. |
 | All | Seven client photos show people (a mechanic, a painter, a tint installer, a polisher, drivers, a gloved hand) and are not used, per the no-people rule. |
 
 ## Known robustness fixes worth keeping
+
+- **The phone menu works.** The burger button had no handler, so on screens
+  up to 980px the menu could not be opened on any page. It now opens a solid
+  panel under the header (desktop dropdown style, sub-menus in two columns,
+  scrolls when tall) and closes on a link, the X, Escape, or widening past
+  980px. Tested at 390px: all 26 links reachable.
 
 - The bay-board script runs **once per `.bay`**, looking everything up inside
   its own board. It used page-wide lookups, which would have made the service

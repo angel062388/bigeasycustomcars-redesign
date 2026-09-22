@@ -157,6 +157,23 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 @media(max-width:980px){
   .nav,.head .btn{display:none}
   .burger{display:block}
+  /* The burger opens the same menu as a panel under the header, in the
+     desktop dropdown's style. Sub-menus sit open in two columns, and the
+     panel scrolls if it is taller than the screen. */
+  .head.nav-open .nav{display:flex;flex-direction:column;align-items:stretch;gap:0;
+    position:absolute;left:12px;right:12px;top:100%;margin-top:6px;
+    max-height:calc(100svh - 96px);overflow-y:auto;overscroll-behavior:contain;
+    background:var(--ink);border:1px solid var(--line-d);border-radius:16px;
+    padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:90}
+  .head.nav-open .nav>li>a{display:block;padding:11px 12px;border-bottom:0;border-radius:10px}
+  .head.nav-open .nav>li>a.active{background:rgba(228,120,63,.12)}
+  .head.nav-open .nav .sub{position:static;opacity:1;visibility:visible;transform:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:0 6px;min-width:0;background:none;
+    border:0;box-shadow:none;padding:0 0 8px 10px;backdrop-filter:none}
+  .head.nav-open .nav .sub a{white-space:normal;font-size:13.5px;padding:7px 8px}
+  .head.nav-open .burger i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .head.nav-open .burger i:nth-child(2){opacity:0}
+  .head.nav-open .burger i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 }
 
 /* ---------- hero: THE VIDEO SLOT ---------- */
@@ -384,6 +401,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   background:var(--amber-ink);transform:scaleY(0);transform-origin:center;
   transition:transform .4s var(--ease)}
 .bay-row:hover{padding-left:12px;color:var(--ink)}
+a.bay-row{text-decoration:none}
 .bay-row.on{padding-left:14px}
 .bay-row.on::before{transform:scaleY(1)}
 .bay-no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
@@ -943,7 +961,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <nav><ul class="nav">
       <li><a href="#top" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="blackout-packages.html">Blackout Packages</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lift-kits-suspension.html">Lift Kits &amp; Suspension</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="off-road-builds.html">Off-Road Builds</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="wheels-tires.html">Wheels &amp; Tires</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="services-areas.html#areas">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -1118,7 +1136,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
             <span class="bay-name">Lighting Upgrades</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
           </button>
-          <button class="bay-row" type="button" data-i="2" data-desc="Colour-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
+          <button class="bay-row" type="button" data-i="2" data-desc="Color-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
             <span class="bay-no">03</span>
             <span class="bay-name">Custom Paint &amp; Graphics</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
@@ -1158,12 +1176,12 @@ section{padding:clamp(28px,2.4vw,44px) 0}
             <span class="bay-name">Wheels &amp; Tires</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
           </button>
-          <button class="bay-row is-new" type="button" data-i="10" data-desc="Trail rigs with max clearance, armour and the recovery gear to back it up." data-new="1">
+          <button class="bay-row is-new" type="button" data-i="10" data-desc="Trail rigs with max clearance and armor, built for where you actually drive." data-new="1">
             <span class="bay-no">11</span>
             <span class="bay-name">Off-Road Builds</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
           </button>
-          <button class="bay-row is-new" type="button" data-i="11" data-desc="Blacked-out badging, smoked lenses and colour-match trim as one package." data-new="1">
+          <button class="bay-row is-new" type="button" data-i="11" data-desc="Blacked-out trim, smoked lenses and color-matched details, done as one package." data-new="1">
             <span class="bay-no">12</span>
             <span class="bay-name">Blackout Packages</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
@@ -1182,7 +1200,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
             <img class="bay-img" src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy">
             <img class="bay-img" src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy">
             <img class="bay-img" src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy">
-            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tyres and a light bar" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tires and a light bar" loading="lazy">
             <img class="bay-img" src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy">
           <span class="bay-door" id="bayDoor" aria-hidden="true"></span>
         </div>
@@ -1503,6 +1521,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
         <option>Lift kit and suspension</option>
         <option>Wheels and tires</option>
         <option>Off-road build</option>
+        <option>Blackout package</option>
         <option>Engine tuning or performance</option>
         <option>Paint or graphics</option>
         <option>Body kit or modifications</option>
@@ -1600,6 +1619,26 @@ if(fabQ){
 var head=document.getElementById('head');
 function onScroll(){head.classList.toggle('shrink',window.scrollY>60);}
 onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+/* phones and tablets: the burger opens and closes the menu. It had no
+   handler before, so below 980px the menu could not be opened at all. */
+var burger=document.querySelector('.burger');
+if(burger&&head){
+  var setMenu=function(open){
+    head.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  };
+  setMenu(false);
+  burger.addEventListener('click',function(){setMenu(!head.classList.contains('nav-open'));});
+  [].slice.call(head.querySelectorAll('.nav a')).forEach(function(a){
+    a.addEventListener('click',function(){setMenu(false);});
+  });
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&head.classList.contains('nav-open')){setMenu(false);burger.focus();}
+  });
+  addEventListener('resize',function(){if(innerWidth>980)setMenu(false);},{passive:true});
+}
 
 /* reveal on scroll, skipped entirely when reduced motion is requested */
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;

@@ -157,6 +157,23 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 @media(max-width:980px){
   .nav,.head .btn{display:none}
   .burger{display:block}
+  /* The burger opens the same menu as a panel under the header, in the
+     desktop dropdown's style. Sub-menus sit open in two columns, and the
+     panel scrolls if it is taller than the screen. */
+  .head.nav-open .nav{display:flex;flex-direction:column;align-items:stretch;gap:0;
+    position:absolute;left:12px;right:12px;top:100%;margin-top:6px;
+    max-height:calc(100svh - 96px);overflow-y:auto;overscroll-behavior:contain;
+    background:var(--ink);border:1px solid var(--line-d);border-radius:16px;
+    padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:90}
+  .head.nav-open .nav>li>a{display:block;padding:11px 12px;border-bottom:0;border-radius:10px}
+  .head.nav-open .nav>li>a.active{background:rgba(228,120,63,.12)}
+  .head.nav-open .nav .sub{position:static;opacity:1;visibility:visible;transform:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:0 6px;min-width:0;background:none;
+    border:0;box-shadow:none;padding:0 0 8px 10px;backdrop-filter:none}
+  .head.nav-open .nav .sub a{white-space:normal;font-size:13.5px;padding:7px 8px}
+  .head.nav-open .burger i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .head.nav-open .burger i:nth-child(2){opacity:0}
+  .head.nav-open .burger i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 }
 
 /* ---------- hero: THE VIDEO SLOT ---------- */
@@ -384,6 +401,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
   background:var(--amber-ink);transform:scaleY(0);transform-origin:center;
   transition:transform .4s var(--ease)}
 .bay-row:hover{padding-left:12px;color:var(--ink)}
+a.bay-row{text-decoration:none}
 .bay-row.on{padding-left:14px}
 .bay-row.on::before{transform:scaleY(1)}
 .bay-no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
@@ -927,6 +945,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 <!-- Structured data. Add the street address once the client supplies it;
      the live site publishes only "New Orleans". -->
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Custom Car Body Kits and Modifications Services in New Orleans", "serviceType": "Car body kits and modifications", "url": "https://www.bigeasycustomcars.com/services/body-kits-modifications/", "provider": {"@type": "AutoRepair", "name": "Big Easy Custom Cars", "url": "https://www.bigeasycustomcars.com/", "telephone": "+1-504-384-8006", "address": {"@type": "PostalAddress", "addressLocality": "New Orleans", "addressRegion": "LA", "addressCountry": "US"}}, "areaServed": [{"@type": "City", "name": "New Orleans, LA"}, {"@type": "City", "name": "Metairie, LA"}, {"@type": "City", "name": "Kenner, LA"}, {"@type": "City", "name": "St. Rose, LA"}, {"@type": "City", "name": "Slidell, LA"}, {"@type": "City", "name": "Covington, LA"}, {"@type": "City", "name": "Mandeville, LA"}, {"@type": "City", "name": "Madisonville, LA"}, {"@type": "City", "name": "Abita Springs, LA"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What body kit parts do you install?", "acceptedAnswer": {"@type": "Answer", "text": "Front and rear bumpers, side skirts and rocker panels, spoilers and wings, widebody kits, and lip kits and splitters. We also shape fender flares, add hood vents and scoops, and smooth panels."}}, {"@type": "Question", "name": "What are body kits made of?", "acceptedAnswer": {"@type": "Answer", "text": "We work with polyurethane for flexibility and daily driving, fiberglass for custom shaping and lighter builds, and carbon fiber for premium performance and weight reduction. We pick the material for how and where you drive."}}, {"@type": "Question", "name": "Will the body kit match my paint?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every kit is test fitted, prepped and aligned, then finished with factory-matched paint or a custom finish, so it looks like it came on the car."}}, {"@type": "Question", "name": "Can a body kit improve performance?", "acceptedAnswer": {"@type": "Answer", "text": "It can. Designed and installed correctly, a kit can improve airflow, cut drag and add stability at higher speeds. We match body mods to your tuning and suspension for a balanced build."}}, {"@type": "Question", "name": "Why not install a body kit myself?", "acceptedAnswer": {"@type": "Answer", "text": "DIY installs often end in poor alignment, cracking or warping, paint problems and long-term damage. Professional fitting spots fitment problems before they show up on the car."}}, {"@type": "Question", "name": "Will my car stay street-legal?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our body modifications are designed so your car stays functional and street-legal while it stands out."}}]}</script>
 </head>
 <body>
 
@@ -946,7 +965,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     <nav><ul class="nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="blackout-packages.html">Blackout Packages</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lift-kits-suspension.html">Lift Kits &amp; Suspension</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="off-road-builds.html">Off-Road Builds</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="wheels-tires.html">Wheels &amp; Tires</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
       <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="services-areas.html#areas">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -1308,8 +1327,9 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 
 <!-- ============ OTHER SERVICES ============
      The homepage services board, sliced at build time, minus this page's
-     own service. Rows flagged NEW are proposals: those services have no
-     page on the live site (see PAGE-INVENTORY.md). -->
+     own service. Each row links to that service's page on the LIVE site
+     (client request). The four NEW rows have no live page, so they link
+     to their new mockup pages. -->
 <section id="more-services">
   <div class="wrap">
     <div class="lead rv">
@@ -1319,61 +1339,61 @@ section{padding:clamp(28px,2.4vw,44px) 0}
     </div>
     <div class="bay">
       <div class="bay-list" id="moreList">
-          <button class="bay-row on" type="button" data-i="0" data-desc="Power, throttle response and drivability, tuned and tested before the keys go back." data-new="0">
+          <a class="bay-row on" href="https://www.bigeasycustomcars.com/services/engine-tuning-performance/" target="_blank" rel="noopener" data-i="0" data-desc="Power, throttle response and drivability, tuned and tested before the keys go back." data-new="0">
             <span class="bay-no">01</span>
             <span class="bay-name">Engine Tuning &amp; Performance</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="1" data-desc="Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/lighting-upgrades/" target="_blank" rel="noopener" data-i="1" data-desc="Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly." data-new="0">
             <span class="bay-no">02</span>
             <span class="bay-name">Lighting Upgrades</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="2" data-desc="Colour-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/custom-paint-graphics/" target="_blank" rel="noopener" data-i="2" data-desc="Color-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
             <span class="bay-no">03</span>
             <span class="bay-name">Custom Paint &amp; Graphics</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="3" data-desc="Seats, trim and full interior rebuilds in the material and stitch you pick." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/interior-upholstery/" target="_blank" rel="noopener" data-i="3" data-desc="Seats, trim and full interior rebuilds in the material and stitch you pick." data-new="0">
             <span class="bay-no">04</span>
             <span class="bay-name">Interior Upholstery</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="4" data-desc="Tint that lasts and a finish-level detail, inside and out." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/window-tinting-detailing/" target="_blank" rel="noopener" data-i="4" data-desc="Tint that lasts and a finish-level detail, inside and out." data-new="0">
             <span class="bay-no">05</span>
             <span class="bay-name">Window Tinting &amp; Detailing</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="5" data-desc="Sound systems built around the cabin, wired and tested, not just bolted in." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/audio-lighting/" target="_blank" rel="noopener" data-i="5" data-desc="Sound systems built around the cabin, wired and tested, not just bolted in." data-new="0">
             <span class="bay-no">06</span>
             <span class="bay-name">Audio &amp; Lighting</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row" type="button" data-i="6" data-desc="Full rebuilds from the frame up, planned stage by stage with you." data-new="0">
+          </a>
+          <a class="bay-row" href="https://www.bigeasycustomcars.com/services/restoration-rebuilds/" target="_blank" rel="noopener" data-i="6" data-desc="Full rebuilds from the frame up, planned stage by stage with you." data-new="0">
             <span class="bay-no">07</span>
             <span class="bay-name">Restoration &amp; Rebuilds</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row is-new" type="button" data-i="7" data-desc="FOX, BDS and Rough Country kits, set up for ride height and ride quality together." data-new="1">
+          </a>
+          <a class="bay-row is-new" href="lift-kits-suspension.html" data-i="7" data-desc="FOX, BDS and Rough Country kits, set up for ride height and ride quality together." data-new="1">
             <span class="bay-no">08</span>
             <span class="bay-name">Lift Kits &amp; Suspension</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row is-new" type="button" data-i="8" data-desc="Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want." data-new="1">
+          </a>
+          <a class="bay-row is-new" href="wheels-tires.html" data-i="8" data-desc="Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want." data-new="1">
             <span class="bay-no">09</span>
             <span class="bay-name">Wheels &amp; Tires</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row is-new" type="button" data-i="9" data-desc="Trail rigs with max clearance, armour and the recovery gear to back it up." data-new="1">
+          </a>
+          <a class="bay-row is-new" href="off-road-builds.html" data-i="9" data-desc="Trail rigs with max clearance and armor, built for where you actually drive." data-new="1">
             <span class="bay-no">10</span>
             <span class="bay-name">Off-Road Builds</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
-          <button class="bay-row is-new" type="button" data-i="10" data-desc="Blacked-out badging, smoked lenses and colour-match trim as one package." data-new="1">
+          </a>
+          <a class="bay-row is-new" href="blackout-packages.html" data-i="10" data-desc="Blacked-out trim, smoked lenses and color-matched details, done as one package." data-new="1">
             <span class="bay-no">11</span>
             <span class="bay-name">Blackout Packages</span>
             <span class="bay-tick" aria-hidden="true">&#8594;</span>
-          </button>
+          </a>
       </div>
 
       <div class="bay-panel">
@@ -1387,7 +1407,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
             <img class="bay-img" src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy">
             <img class="bay-img" src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy">
             <img class="bay-img" src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy">
-            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tyres and a light bar" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tires and a light bar" loading="lazy">
             <img class="bay-img" src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy">
           <span class="bay-door" id="moreDoor" aria-hidden="true"></span>
         </div>
@@ -1402,6 +1422,53 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 </section>
 
 
+
+<!-- ============ FAQ ============
+     AUTHORED for the mockup: the live page has no FAQ. Each answer restates
+     what the client already says on this page or elsewhere on their site.
+     No prices, times or promises beyond that. CLIENT MUST APPROVE. -->
+<section class="fq on-dark" id="faqs">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">Questions</p>
+      <h2>Frequently Asked Questions About <span class="kw">Body Kits and Modifications</span></h2>
+      <p>Can&#39;t see your question here? <a href="https://www.bigeasycustomcars.com/contact/" target="_blank" rel="noopener">Contact us today</a> and ask the shop directly.</p>
+    </div>
+    <div class="dash">
+      <div class="cluster" style="--n:6;--n-md:3" role="group" aria-label="Choose a question">
+        <button class="tell on" type="button" data-i="0" data-q="What body kit parts do you install?" data-a="Front and rear bumpers, side skirts and rocker panels, spoilers and wings, widebody kits, and lip kits and splitters. We also shape fender flares, add hood vents and scoops, and smooth panels." aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>
+          <b>Parts</b>
+        </button>
+        <button class="tell" type="button" data-i="1" data-q="What are body kits made of?" data-a="We work with polyurethane for flexibility and daily driving, fiberglass for custom shaping and lighter builds, and carbon fiber for premium performance and weight reduction. We pick the material for how and where you drive." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg>
+          <b>Materials</b>
+        </button>
+        <button class="tell" type="button" data-i="2" data-q="Will the body kit match my paint?" data-a="Yes. Every kit is test fitted, prepped and aligned, then finished with factory-matched paint or a custom finish, so it looks like it came on the car." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4.5l5 5-7.5 7.5-5-5z"/><path d="M7 12l-2.5 2.5c-1 1-1 3 0 4s3 1 4 0L11 16"/></svg>
+          <b>Paint</b>
+        </button>
+        <button class="tell" type="button" data-i="3" data-q="Can a body kit improve performance?" data-a="It can. Designed and installed correctly, a kit can improve airflow, cut drag and add stability at higher speeds. We match body mods to your tuning and suspension for a balanced build." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16a8 8 0 1 1 15 0"/><path d="M12 16l4-5"/><path d="M8 18.5h8"/></svg>
+          <b>Aero</b>
+        </button>
+        <button class="tell" type="button" data-i="4" data-q="Why not install a body kit myself?" data-a="DIY installs often end in poor alignment, cracking or warping, paint problems and long-term damage. Professional fitting spots fitment problems before they show up on the car." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 4.2a5 5 0 0 0-6 6.4L4 16.1V20h3.9l5.5-5.5a5 5 0 0 0 6.4-6l-3 3-2.6-.4-.4-2.6z"/></svg>
+          <b>DIY</b>
+        </button>
+        <button class="tell" type="button" data-i="5" data-q="Will my car stay street-legal?" data-a="Yes. Our body modifications are designed so your car stays functional and street-legal while it stands out." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h5M9.5 15.5h5"/></svg>
+          <b>Legal</b>
+        </button>
+      </div>
+      <div class="readout" id="readout">
+        <p class="readout-code"><i></i><span id="roCode">Question 01 of 06</span></p>
+        <h3 id="roQ">What body kit parts do you install?</h3>
+        <p id="roA">Front and rear bumpers, side skirts and rocker panels, spoilers and wings, widebody kits, and lip kits and splitters. We also shape fender flares, add hood vents and scoops, and smooth panels.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ QUOTE BAND ============
      Carries id="quote-form": the target of every estimate button on the page.
@@ -1440,6 +1507,7 @@ section{padding:clamp(28px,2.4vw,44px) 0}
         <option>Lift kit and suspension</option>
         <option>Wheels and tires</option>
         <option>Off-road build</option>
+        <option>Blackout package</option>
         <option>Engine tuning or performance</option>
         <option>Paint or graphics</option>
         <option selected>Body kit or modifications</option>
@@ -1537,6 +1605,26 @@ if(fabQ){
 var head=document.getElementById('head');
 function onScroll(){head.classList.toggle('shrink',window.scrollY>60);}
 onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+/* phones and tablets: the burger opens and closes the menu. It had no
+   handler before, so below 980px the menu could not be opened at all. */
+var burger=document.querySelector('.burger');
+if(burger&&head){
+  var setMenu=function(open){
+    head.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  };
+  setMenu(false);
+  burger.addEventListener('click',function(){setMenu(!head.classList.contains('nav-open'));});
+  [].slice.call(head.querySelectorAll('.nav a')).forEach(function(a){
+    a.addEventListener('click',function(){setMenu(false);});
+  });
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&head.classList.contains('nav-open')){setMenu(false);burger.focus();}
+  });
+  addEventListener('resize',function(){if(innerWidth>980)setMenu(false);},{passive:true});
+}
 
 /* reveal on scroll, skipped entirely when reduced motion is requested */
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
