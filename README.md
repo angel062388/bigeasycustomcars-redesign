@@ -399,7 +399,11 @@ and footer service links point at the pages.
 `abita-springs.html` (live: `/services-areas/abita-springs/`), built by
 `scratch/build-area.py`, which reuses the service-page components. Copy comes
 from a snapshot of the live page (`scratch/live-areas/abita-springs.html`)
-through `live_parse.py`, verbatim. Order follows the client's brief:
+through `live_parse.py`, verbatim. Order follows the client's brief (map,
+services, reviews, All About, footer), plus three parts that are not in the
+brief: the trust strip and quote band every page carries, and an overview
+that keeps the live intro copy and the live contact link. **Client to
+confirm the overview**; it can move below the map or go.
 
 1. **Hero:** the live H1, the first live sentence as the lede (carries the
    live homepage link). Breadcrumb: Home, Services Areas, Abita Springs.
@@ -438,11 +442,12 @@ Abita Springs item now opens this page on every page.
 
 | Item | Flag |
 |---|---|
-| Notable Residents | The live copy names one person (John Preble, in its paragraph, kept). The list adds Wikipedia's four "Notable people" (Dick Hart, David Lohr, Bunny Matthews, Michael G. Strain). **Client must approve**; one is a serving state official. |
+| Notable Residents | The live copy names one person (John Preble, in its paragraph, kept). The list adds two people whose own Wikipedia articles tie them to the town: Mike Strain ("Strain is from Abita Springs"; Agriculture Commissioner since 2008) and Bunny Matthews (lived there from the late 1980s; died 2021). Left out, though Wikipedia's town page lists them: Dick Hart (died 2013 in Covington, no Abita residence stated) and David Lohr (lives in New Orleans). The first build listed all four as residents; the second reviewer caught it. **Client must approve**; Strain is a serving state official. |
+| Local claim | The live heading "Your Local Custom Car Shop in Abita Springs" (kept) reads as if the shop is in Abita Springs; it is in New Orleans. Client's call. |
 | Things To Do | Sources disagree on the Trailhead Museum building: a replica of the 1856 Asher Dry Goods store (live copy, kept) or the relocated bachelor quarters of the Longbranch Hotel. |
 | Nearby Suburbs | Left out: it says Madisonville is southeast of Abita Springs; it is southwest. The map covers the neighboring towns. |
 | Photo | Abita Springs Pavilion by GreaterPonce665, Wikimedia Commons, **CC BY-SA 4.0**. Hotlinked for the mockup; self-host it at launch and keep the credit line (author, license, source, "cropped"). No people in it, checked at full size. |
-| Left out | "Why Abita Springs Drivers Choose..." (generic list), the per-service bullet lists and closing paragraphs (they belong on the location+service pages), the "Our Services" and "Other Areas" link lists (the board and map replace them). |
+| Left out | "Why Abita Springs Drivers Choose..." (generic list), the per-service bullet lists and closing paragraphs (they belong on the location+service pages), the "Our Services" and "Other Areas" link lists (the board and map replace them), and the second paragraph of "Serving Abita Springs and Surrounding Areas" ("We understand the importance of reliability, durability, and visual impact..."). The reviews heading drops the live "!". |
 | Other seven towns | Same template: a snapshot in `scratch/live-areas/`, the town's name, its sections. The map code only handles a town at the END of a road, as Abita Springs is. The rest need their own road edit: St. Rose starts the main route, Slidell and Madisonville end a branch, and Covington, Mandeville, Metairie and Kenner sit mid-route, where the road has to be re-joined around the gap. |
 
 ## Known robustness fixes worth keeping
