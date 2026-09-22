@@ -1470,52 +1470,54 @@ setTimeout(function(){
 },3000);
 
 /* services: the bay board. Picking a job shuts the roll-up door, swaps the
-   photograph and the spec behind it, then lifts the door again. */
-/* scoped to #bayList: the blog post reuses .bay-row for its table of
-   contents, and without the scope this script would bind to those rows
-   and throw on hover, because a post has no bay door or image panel. */
-var bayRows=[].slice.call(document.querySelectorAll('#bayList .bay-row'));
-if(bayRows.length){
-  var bayImgs=[].slice.call(document.querySelectorAll('.bay-img')),
-      bayDoor=document.getElementById('bayDoor'),
-      bayTitle=document.getElementById('bayTitle'),
-      bayDesc=document.getElementById('bayDesc'),
-      bayMeta=document.getElementById('bayMeta'),
-      bayAt=0,bayBusy=false;
+   photograph and the spec behind it, then lifts the door again.
+   One instance per .bay, with every part looked up INSIDE its own board, so a
+   page can carry more than one: service pages show their own services, then
+   the rest of the shop's. (Page-wide lookups made two boards share photos and
+   titles.) The blog post's table of contents reuses .bay-row outside any
+   .bay, so this script never binds to it. */
+[].slice.call(document.querySelectorAll('.bay')).forEach(function(bay){
+  var rows=[].slice.call(bay.querySelectorAll('.bay-list .bay-row')),
+      imgs=[].slice.call(bay.querySelectorAll('.bay-img')),
+      door=bay.querySelector('.bay-door'),
+      meta=bay.querySelector('.bay-meta'),
+      title=meta&&meta.querySelector('h3'),
+      desc=meta&&meta.querySelector(':scope > p'),
+      at=0,busy=false;
+  if(!rows.length||!door||!title||!desc)return;
 
-  function bayApply(i){
-    bayImgs.forEach(function(im,n){im.classList.toggle('on',n===i);});
-    var row=bayRows[i];
-    bayTitle.innerHTML=row.querySelector('.bay-name').innerHTML;
-    bayDesc.textContent=row.dataset.desc;
+  function apply(i){
+    imgs.forEach(function(im,n){im.classList.toggle('on',n===i);});
+    title.innerHTML=rows[i].querySelector('.bay-name').innerHTML;
+    desc.textContent=rows[i].dataset.desc;
   }
 
-  function bayGo(i){
-    if(i===bayAt||bayBusy)return;
-    bayAt=i;
-    bayRows.forEach(function(r,n){
+  function go(i){
+    if(i===at||busy)return;
+    at=i;
+    rows.forEach(function(r,n){
       r.classList.toggle('on',n===i);
       r.setAttribute('aria-current',n===i?'true':'false');
     });
-    if(reduce){bayApply(i);return;}
-    bayBusy=true;
-    bayDoor.classList.add('shut');      /* door comes down */
-    bayMeta.classList.add('swap');
+    if(reduce){apply(i);return;}
+    busy=true;
+    door.classList.add('shut');      /* door comes down */
+    meta.classList.add('swap');
     setTimeout(function(){
-      bayApply(i);                      /* swap behind the closed door */
-      bayDoor.classList.remove('shut'); /* and lift it again */
-      bayMeta.classList.remove('swap');
-      setTimeout(function(){bayBusy=false;},520);
+      apply(i);                      /* swap behind the closed door */
+      door.classList.remove('shut'); /* and lift it again */
+      meta.classList.remove('swap');
+      setTimeout(function(){busy=false;},520);
     },420);
   }
 
-  bayRows.forEach(function(r){
-    r.addEventListener('click',function(){bayGo(+r.dataset.i);});
-    r.addEventListener('mouseenter',function(){bayGo(+r.dataset.i);});
-    r.addEventListener('focus',function(){bayGo(+r.dataset.i);});
+  rows.forEach(function(r){
+    r.addEventListener('click',function(){go(+r.dataset.i);});
+    r.addEventListener('mouseenter',function(){go(+r.dataset.i);});
+    r.addEventListener('focus',function(){go(+r.dataset.i);});
   });
-  bayRows[0].setAttribute('aria-current','true');
-}
+  rows[0].setAttribute('aria-current','true');
+});
 
 /* builds collection carousel */
 var bcSlides=[].slice.call(document.querySelectorAll('.bc-slide'));

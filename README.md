@@ -289,8 +289,10 @@ seven pages are a matter of adding their content.
 
 Every section is a homepage component: video hero, trust strip, the About
 page's text-and-photo split (twice), the services bay board (10 rows), the
-blog card shell, the process gauge, the Louisiana plates, the coverage map and
-the quote band (its form preselects "Interior or audio").
+blog card shell, the process gauge, the Louisiana plates, the coverage map,
+**Our Other Services** (the homepage services board itself, sliced at build
+time minus this page's own row: 11 of 12) and the quote band (its form
+preselects "Interior or audio").
 
 **Copy is the client's own, word for word**, reorganised into those
 components. The live H1 is kept. Two process-stage headings are authored
@@ -317,6 +319,16 @@ Flags for the client:
   street address once the client supplies one.
 
 ## Known robustness fixes worth keeping
+
+- The bay-board script runs **once per `.bay`**, looking everything up inside
+  its own board. It used page-wide lookups, which would have made the service
+  page's two boards share photos and titles. Every board on every page was
+  click-swept after the change: homepage 12, About 6, Services 12, Audio &
+  Lighting 10 + 11.
+- **Every page carries a link to the live homepage and the live contact page
+  in its body** (client rule). `build-service.py` refuses to write a page
+  missing either. The homepage mockup had neither until 2026-09-22; they now
+  sit in its hero and FAQ heading, which no inner page copies.
 
 - The bay-board script is scoped to `#bayList .bay-row`. Unscoped, it bound
   to the blog post's table-of-contents rows and would throw on hover.
