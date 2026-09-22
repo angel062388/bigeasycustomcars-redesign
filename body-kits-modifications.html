@@ -384,10 +384,10 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 /* ---------- services: the bay board ----------
    Not a card grid. A numbered job board on the left, a workshop bay on the
    right. Picking a job rolls the bay door up over the photograph, the way a
-   shop door opens, and the spec underneath changes with it. The panel is
-   sticky so the bay stays in view while you read down the list. */
+   shop door opens, and the spec underneath changes with it. The two
+   columns always finish together (see .bay-panel). */
 .bay{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(20px,3vw,44px);
-  align-items:start;margin-top:clamp(28px,4vw,46px)}
+  align-items:stretch;margin-top:clamp(28px,4vw,46px)}
 @media(max-width:900px){.bay{grid-template-columns:1fr;gap:18px}}
 
 .bay-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
@@ -437,10 +437,28 @@ a.bay-row{text-decoration:none}
 .bay.bay-short .bay-list{justify-content:stretch}
 .bay.bay-short .bay-row{flex:1 1 auto;min-height:62px}
 
+/* Compact bay, for service pages with only four or five jobs. Stretching four
+   rows to a 680px panel made each row 150px tall, so here the spec moves under
+   the list and the photograph fills the other column instead. */
+.bay.bay-compact .bay-col{display:flex;flex-direction:column}
+.bay.bay-compact .bay-col>.bay-list{flex:0 0 auto}
+.bay.bay-compact .bay-col>.bay-meta{padding:24px 2px 0}
+.bay.bay-compact .bay-stage{aspect-ratio:auto;min-height:340px}
+@media(max-width:900px){
+  .bay.bay-compact .bay-col{display:contents}
+  .bay.bay-compact .bay-list{order:1}
+  .bay.bay-compact .bay-panel{order:2}
+  .bay.bay-compact .bay-meta{order:3;padding-top:2px}
+  .bay.bay-compact .bay-stage{aspect-ratio:4/3;min-height:0}
+}
+
 /* the bay itself */
-.bay-panel{position:sticky;top:96px}
+/* both columns end together: the panel is a column whose photograph grows
+   to fill any extra height, and the list rows share any extra height */
+.bay-panel{display:flex;flex-direction:column}
+.bay-list>.bay-row{flex:1 1 auto}
 .bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
-  aspect-ratio:4/3;background:var(--ink-3)}
+  aspect-ratio:4/3;background:var(--ink-3);flex:1 0 auto}
 .bay-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;clip-path:inset(100% 0 0 0);transform:scale(1.06);
   transition:opacity .55s var(--ease),clip-path .65s var(--ease),transform .9s var(--ease)}
@@ -1910,6 +1928,23 @@ setTimeout(function(){
       desc=meta&&meta.querySelector(':scope > p'),
       at=0,busy=false;
   if(!rows.length||!door||!title||!desc)return;
+
+  /* Reserve the tallest title and description, so switching jobs never
+     changes the panel height. Measured without this: list rows shifted up
+     to 23px under the cursor on an 11-row board as descriptions changed. */
+  function reserve(){
+    title.style.minHeight=desc.style.minHeight='';
+    var t0=title.innerHTML,d0=desc.textContent,mt=0,md=0;
+    rows.forEach(function(r){
+      title.innerHTML=r.querySelector('.bay-name').innerHTML;
+      desc.textContent=r.dataset.desc;
+      mt=Math.max(mt,title.offsetHeight);md=Math.max(md,desc.offsetHeight);
+    });
+    title.innerHTML=t0;desc.textContent=d0;
+    title.style.minHeight=mt+'px';desc.style.minHeight=md+'px';
+  }
+  reserve();
+  addEventListener('resize',reserve,{passive:true});
 
   function apply(i){
     imgs.forEach(function(im,n){im.classList.toggle('on',n===i);});

@@ -390,6 +390,16 @@ and footer service links point at the pages.
 
 ## Known robustness fixes worth keeping
 
+- **Service boards never leave a hole.** A 5-row board sat beside a panel
+  twice its height: a 416px gap under the list (Window Tint, client report,
+  2026-09-22), and every 4-5 row board had it. Boards with seven rows or fewer
+  now use `.bay-compact` (the spec moves under the list, the photograph fills
+  the other column); longer boards stretch both columns to finish together.
+  Each board also reserves its tallest title and description on load, so
+  switching jobs never changes the panel height (rows used to shift up to
+  23px under the cursor). Measured after: 0px gap on every board at 1856px
+  and 1280px, 0-1px row movement, phones keep list, photo, spec order.
+
 - **The phone menu works.** The burger button had no handler, so on screens
   up to 980px the menu could not be opened on any page. It now opens a solid
   panel under the header (desktop dropdown style, sub-menus in two columns,

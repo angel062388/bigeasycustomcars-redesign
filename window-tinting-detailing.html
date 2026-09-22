@@ -384,10 +384,10 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 /* ---------- services: the bay board ----------
    Not a card grid. A numbered job board on the left, a workshop bay on the
    right. Picking a job rolls the bay door up over the photograph, the way a
-   shop door opens, and the spec underneath changes with it. The panel is
-   sticky so the bay stays in view while you read down the list. */
+   shop door opens, and the spec underneath changes with it. The two
+   columns always finish together (see .bay-panel). */
 .bay{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(20px,3vw,44px);
-  align-items:start;margin-top:clamp(28px,4vw,46px)}
+  align-items:stretch;margin-top:clamp(28px,4vw,46px)}
 @media(max-width:900px){.bay{grid-template-columns:1fr;gap:18px}}
 
 .bay-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
@@ -437,10 +437,28 @@ a.bay-row{text-decoration:none}
 .bay.bay-short .bay-list{justify-content:stretch}
 .bay.bay-short .bay-row{flex:1 1 auto;min-height:62px}
 
+/* Compact bay, for service pages with only four or five jobs. Stretching four
+   rows to a 680px panel made each row 150px tall, so here the spec moves under
+   the list and the photograph fills the other column instead. */
+.bay.bay-compact .bay-col{display:flex;flex-direction:column}
+.bay.bay-compact .bay-col>.bay-list{flex:0 0 auto}
+.bay.bay-compact .bay-col>.bay-meta{padding:24px 2px 0}
+.bay.bay-compact .bay-stage{aspect-ratio:auto;min-height:340px}
+@media(max-width:900px){
+  .bay.bay-compact .bay-col{display:contents}
+  .bay.bay-compact .bay-list{order:1}
+  .bay.bay-compact .bay-panel{order:2}
+  .bay.bay-compact .bay-meta{order:3;padding-top:2px}
+  .bay.bay-compact .bay-stage{aspect-ratio:4/3;min-height:0}
+}
+
 /* the bay itself */
-.bay-panel{position:sticky;top:96px}
+/* both columns end together: the panel is a column whose photograph grows
+   to fill any extra height, and the list rows share any extra height */
+.bay-panel{display:flex;flex-direction:column}
+.bay-list>.bay-row{flex:1 1 auto}
 .bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
-  aspect-ratio:4/3;background:var(--ink-3)}
+  aspect-ratio:4/3;background:var(--ink-3);flex:1 0 auto}
 .bay-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:0;clip-path:inset(100% 0 0 0);transform:scale(1.06);
   transition:opacity .55s var(--ease),clip-path .65s var(--ease),transform .9s var(--ease)}
@@ -1037,7 +1055,9 @@ a.bay-row{text-decoration:none}
 <!-- ============ WHAT WE DO ============
      The homepage services bay board (client rule: a "What We Build" style
      section must use the homepage design). Row names and descriptions are the
-     live page's own. -->
+     live page's own.
+     Compact layout (5 rows): the spec sits under the list and the photo
+     fills the other column, so the two finish together. -->
 <section id="build">
   <div class="wrap">
     <div class="lead rv">
@@ -1045,7 +1065,8 @@ a.bay-row{text-decoration:none}
       <h2>Benefits of <span class="kw">Window Tinting</span> for Trucks and SUVs</h2>
       <p>Window tint does more than change the way your vehicle looks. It provides real protection for your interior, your comfort, and your privacy every time you drive.</p>
     </div>
-    <div class="bay">
+    <div class="bay bay-compact">
+      <div class="bay-col">
       <div class="bay-list" id="bayList">
         <button class="bay-row on" type="button" data-i="0" data-desc="New Orleans summers are brutal. Interior temperatures in parked vehicles can exceed 150 degrees on a typical July afternoon. Window tint blocks a significant portion of solar heat before it enters your cabin, keeping your interior cooler and reducing the strain on your air conditioning system." data-new="0">
           <span class="bay-no">01</span>
@@ -1073,6 +1094,12 @@ a.bay-row{text-decoration:none}
           <span class="bay-tick" aria-hidden="true">&#8594;</span>
         </button>
       </div>
+        <div class="bay-meta" id="bayMeta">
+          <h3 id="bayTitle">Heat Reduction</h3>
+          <p id="bayDesc">New Orleans summers are brutal. Interior temperatures in parked vehicles can exceed 150 degrees on a typical July afternoon. Window tint blocks a significant portion of solar heat before it enters your cabin, keeping your interior cooler and reducing the strain on your air conditioning system.</p>
+          <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Free Estimate</a></div>
+        </div>
+      </div>
 
       <div class="bay-panel">
         <div class="bay-stage">
@@ -1082,11 +1109,6 @@ a.bay-row{text-decoration:none}
           <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2026/01/dark-green-off-road-car-in-the-mountains-2026-01-08-07-11-40-utc.jpg" alt="Round headlight and grille of a black off-road vehicle" loading="lazy">
           <img class="bay-img" src="assets/builds/build-graphics.jpg" alt="Grey coupe with red and black racing stripes" loading="lazy">
           <span class="bay-door" id="bayDoor" aria-hidden="true"></span>
-        </div>
-        <div class="bay-meta" id="bayMeta">
-          <h3 id="bayTitle">Heat Reduction</h3>
-          <p id="bayDesc">New Orleans summers are brutal. Interior temperatures in parked vehicles can exceed 150 degrees on a typical July afternoon. Window tint blocks a significant portion of solar heat before it enters your cabin, keeping your interior cooler and reducing the strain on your air conditioning system.</p>
-          <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Free Estimate</a></div>
         </div>
       </div>
     </div>
@@ -1917,6 +1939,23 @@ setTimeout(function(){
       desc=meta&&meta.querySelector(':scope > p'),
       at=0,busy=false;
   if(!rows.length||!door||!title||!desc)return;
+
+  /* Reserve the tallest title and description, so switching jobs never
+     changes the panel height. Measured without this: list rows shifted up
+     to 23px under the cursor on an 11-row board as descriptions changed. */
+  function reserve(){
+    title.style.minHeight=desc.style.minHeight='';
+    var t0=title.innerHTML,d0=desc.textContent,mt=0,md=0;
+    rows.forEach(function(r){
+      title.innerHTML=r.querySelector('.bay-name').innerHTML;
+      desc.textContent=r.dataset.desc;
+      mt=Math.max(mt,title.offsetHeight);md=Math.max(md,desc.offsetHeight);
+    });
+    title.innerHTML=t0;desc.textContent=d0;
+    title.style.minHeight=mt+'px';desc.style.minHeight=md+'px';
+  }
+  reserve();
+  addEventListener('resize',reserve,{passive:true});
 
   function apply(i){
     imgs.forEach(function(im,n){im.classList.toggle('on',n===i);});
