@@ -8,8 +8,8 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Twenty-one static pages. No build step, no dependencies. Open `index.html` or
-serve the folder.
+Twenty-eight static pages. No build step, no dependencies. Open `index.html`
+or serve the folder.
 
 | File | What it is |
 |---|---|
@@ -24,7 +24,7 @@ serve the folder.
 | `audio-lighting.html` | Audio & Lighting: the model for all eight service pages |
 | `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven live services, same template |
 | `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
-| `abita-springs.html` | **City page: Abita Springs** (live: `/services-areas/abita-springs/`), the model for the other seven service-area pages |
+| `abita-springs.html`, `covington.html`, `madisonville.html`, `mandeville.html`, `slidell.html`, `metairie.html`, `kenner.html`, `st-rose.html` | **The eight city pages** (live: `/services-areas/<town>/`). Abita Springs is the model |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -394,69 +394,107 @@ and footer service links point at the pages.
 | Blackout Packages | Smoked lenses are a client-listed service; whether tinted head and tail lights are legal in Louisiana was not checked. |
 | All | Seven client photos show people (a mechanic, a painter, a tint installer, a polisher, drivers, a gloved hand) and are not used, per the no-people rule. |
 
-## The city page: Abita Springs (model for all eight)
+## The city pages: all eight service areas
 
-`abita-springs.html` (live: `/services-areas/abita-springs/`), built by
-`scratch/build-area.py`, which reuses the service-page components. Copy comes
-from a snapshot of the live page (`scratch/live-areas/abita-springs.html`)
-through `live_parse.py`, verbatim. Order follows the client's brief (map,
-services, reviews, All About, footer), plus three parts that are not in the
-brief: the trust strip and quote band every page carries, and an overview
-that keeps the live intro copy and the live contact link. **Client to
-confirm the overview**; it can move below the map or go.
+`abita-springs.html`, `covington.html`, `madisonville.html`,
+`mandeville.html`, `slidell.html`, `metairie.html`, `kenner.html`,
+`st-rose.html` (the live site's own slugs, under `/services-areas/`), all
+built by `scratch/build-area.py`, which reuses the service-page components.
+Copy comes from snapshots of the live pages (`scratch/live-areas/<slug>.html`)
+through `live_parse.py`, verbatim. The live city pages were written
+separately and differ a lot (headings, order, one has no Notable Residents,
+two have empty H1s), so each town has a short **plan** saying which live
+section feeds which part. The menu's Services Areas items open these pages
+on every page; the footer's shorter list (six towns) does too.
 
-1. **Hero:** the live H1, the first live sentence as the lede (carries the
-   live homepage link). Breadcrumb: Home, Services Areas, Abita Springs.
-2. **Overview:** the rest of the live intro and "Your Local Custom Car Shop
-   in Abita Springs", closing on "Contact us today..." (the live contact link).
-3. **Where We Work:** the homepage map **without Abita Springs**: its pin,
-   row, marker and the last leg of road are removed, the other seven are
-   renumbered 01-07, and each row and pin opens that town's page on the live
-   site (new tab), so the map's "Tap a city to open its page" is true here.
-   Heading and lede are the live "Serving Abita Springs and Surrounding Areas".
+Order follows the client's brief (map, services, reviews, All About,
+footer), plus three parts that are not in the brief: the trust strip and
+quote band every page carries, and an overview that keeps the live intro
+copy and the live contact link. **Client to confirm the overview**; it can
+move below the map or go.
+
+1. **Hero:** the live H1 (Mandeville and Kenner have an empty H1 live: theirs
+   is written from the page's own title), a live sentence naming Big Easy
+   Custom Cars as the lede (the live homepage link). Breadcrumb: Home,
+   Services Areas, town.
+2. **Overview:** the rest of the live intro and the live "local shop" or
+   "why choose us" section, closing on the live "Contact us today..."
+   sentence (the live contact link; Saint Rose's page has none, so its
+   "free consultation" line carries it).
+3. **Where We Work:** the homepage map **without the page's own town**: its
+   pin, row and marker go, the others are renumbered 01-07, and each row and
+   pin opens that town's page on the live site. Roads: a town at the end of
+   a road (Abita Springs, St. Rose, Slidell, Madisonville) takes that leg
+   with it; where roads meet or run on (Covington, Mandeville, Metairie,
+   Kenner) they stay. Heading and lede: the town's live "serving" section.
 4. **Services:** the homepage board, all twelve rows, each "<Service> in
-   Abita Springs". Five descriptions are the live page's own (paint, body
-   kits, tuning, upholstery, audio); the rest are the homepage board's.
-   Rows link where the live Abita page links them today: each service's
-   general page (the four NEW services: their mockup pages).
+   <Town>". Descriptions: the town's live copy for the 5 to 8 services it
+   covers (opening sentences, never retyped), the homepage board's for the
+   rest. Rows link to each service's general page, as the live city pages
+   do (the four NEW services: their mockup pages).
    **TO DO (client request):** when the location+service pages exist, link
-   each row to its own page. `ROW_LINKS` in `build-area.py` takes the file
-   names; nothing else changes.
-5. **Reviews:** the live Abita page shows none (a heading and a "View All
-   Reviews" button only), so the plates carry three of the client's own
-   testimonials from Northshore towns: Denise M. (Abita Springs), Monique R.
-   (Covington), Ashley M. (Mandeville). Button to `testimonials.html`.
-6. **All About Abita Springs, LA:** the live block, verbatim, under the
-   client's four headings. The About paragraphs and Interesting Facts sit
-   beside the photo (the About page's split); Things To Do fills the left
-   column below, Notable Residents and Public Transportation the right, so
-   the two columns end within about 40px of each other.
-7. **Quote band:** the live "Start Your Custom Car Project in Abita Springs
-   Today". Then the footer.
+   each row to its own page: `ROW_LINKS[<town>]` in `build-area.py`.
+5. **Reviews:** the live city pages show none, so the plates carry three of
+   the client's own testimonials from the nearest towns, the town's own
+   first where there is one. Button to `testimonials.html`.
+6. **All About <Town>, LA:** the live block under the client's four
+   headings. About and Interesting Facts sit beside the photo (the About
+   page's split); Things To Do, Notable Residents and Public Transportation
+   flow through two balanced columns underneath (measured at 1280px: the
+   columns end 2 to 105px apart, at most one list item; no heading splits
+   from its list).
+7. **Quote band:** the town's live closing section. Then the footer, which
+   on these pages carries the photo credit.
 
-Title 59 characters, meta 139 (the live meta is 158). Structured data:
-`Service` with `areaServed` Abita Springs. The menu's Services Areas >
-Abita Springs item now opens this page on every page.
+**Notable Residents are checked** against each person's own Wikipedia
+article (2026-09-22), because this is where the first review found errors.
 
-### Flags from the Abita Springs page
+### Errors on the LIVE city pages (tell the client; the live site shows them today)
 
-| Item | Flag |
+| Page | Error | Here |
+|---|---|---|
+| Mandeville | Notable Residents calls **Moreese Bickham** "a professional football player". He was not: Wikipedia says he was a Mandeville resident sentenced to death in 1958 for killing two sheriff's deputies. | Dropped |
+| Kenner | Notable Residents says **Donna Brazile** was "Born in Kenner in 1959". Wikipedia: born in New Orleans; her article never mentions Kenner. | Dropped |
+| Abita Springs | "Nearby Suburbs" puts Madisonville southeast of Abita Springs; it is southwest. (Madisonville's own page puts Mandeville northwest of it; it is east.) | Nearby lists left out on every page |
+| Mandeville, Kenner | The H1 is empty. | Written from each page's own title |
+| Kenner | "Tinting, Detailing and Paint Protection" opens with a stray sentence about the build process. | Board uses its second paragraph |
+
+### Other flags
+
+| Page | Flag |
 |---|---|
-| Notable Residents | The live copy names one person (John Preble, in its paragraph, kept). The list adds two people whose own Wikipedia articles tie them to the town: Mike Strain ("Strain is from Abita Springs"; Agriculture Commissioner since 2008) and Bunny Matthews (lived there from the late 1980s; died 2021). Left out, though Wikipedia's town page lists them: Dick Hart (died 2013 in Covington, no Abita residence stated) and David Lohr (lives in New Orleans). The first build listed all four as residents; the second reviewer caught it. **Client must approve**; Strain is a serving state official. |
-| Local claim | The live heading "Your Local Custom Car Shop in Abita Springs" (kept) reads as if the shop is in Abita Springs; it is in New Orleans. Client's call. |
-| Things To Do | Sources disagree on the Trailhead Museum building: a replica of the 1856 Asher Dry Goods store (live copy, kept) or the relocated bachelor quarters of the Longbranch Hotel. |
-| Nearby Suburbs | Left out: it says Madisonville is southeast of Abita Springs; it is southwest. The map covers the neighboring towns. |
-| Photo | Abita Springs Pavilion by GreaterPonce665, Wikimedia Commons, **CC BY-SA 4.0**. Hotlinked for the mockup; self-host it at launch and keep the credit line (author, license, source, "cropped"). No people in it, checked at full size. |
-| Left out | "Why Abita Springs Drivers Choose..." (generic list), the per-service bullet lists and closing paragraphs (they belong on the location+service pages), the "Our Services" and "Other Areas" link lists (the board and map replace them), and the second paragraph of "Serving Abita Springs and Surrounding Areas" ("We understand the importance of reliability, durability, and visual impact..."). The reviews heading drops the live "!". |
-| Other seven towns | Same template: a snapshot in `scratch/live-areas/`, the town's name, its sections. The map code only handles a town at the END of a road, as Abita Springs is. The rest need their own road edit: St. Rose starts the main route, Slidell and Madisonville end a branch, and Covington, Mandeville, Metairie and Kenner sit mid-route, where the road has to be re-joined around the gap. |
+| Abita Springs | Notable Residents adds Mike Strain (serving state official) and Bunny Matthews (d. 2021); Dick Hart and David Lohr, on Wikipedia's town list, left out (no Abita residence in their articles). Trailhead Museum building: sources disagree (live copy kept). |
+| Madisonville | No Notable Residents live: added Leah Chase, Cag Cagnolatti, Irv Stein, all born there per their own articles (Senator John Kennedy, on the town list, left out: his article never mentions Madisonville). "Pony Express Terminus" could not be confirmed; "largest marina in Louisiana" (Wikipedia: "in the region"). Live copy kept. Live title and cut-off meta description replaced. |
+| Metairie | Live title reads "Custom Truck & SUV Builds Metairie": "in" added. Rhett Lewis's current NFL Network shows could not be confirmed. |
+| Covington | Left out: an intro line that describes the page itself ("This Covington service-area page is crafted for..."). |
+| Saint Rose | Live title 68 characters: written one used. The page says "Saint Rose" throughout, so the rows do; menu and map keep "St. Rose". Left out: a tagline and a button label the parser reads as text. |
+| All | Written copy needs client approval: 3 titles, 2 meta descriptions, 2 H1s, the Madisonville and Abita Springs additions, labels. Overview, board and "All About" copy is live. |
+
+### Photos (one per town, no people, credit in the footer, never under the photo)
+
+Each shows a place the town's own copy names. Wikimedia Commons, license
+and author checked, viewed at full size for people. Hotlinked for the
+mockup; **self-host at launch and keep the credits**.
+
+| Town | Photo | Author | License |
+|---|---|---|---|
+| Abita Springs | Pavilion and park arch | GreaterPonce665 | CC BY-SA 4.0 |
+| Covington | Christ Episcopal Church | SouthernDiamond | CC BY-SA 4.0 |
+| Madisonville | Town Hall Museum | Arelby3M | CC BY-SA 4.0 |
+| Mandeville | Trailhead tower | Infrogmation of New Orleans | CC BY 3.0 |
+| Slidell | Camp Salmen live oak | St. Tammany Parish Government | CC BY 2.0 |
+| Metairie | Lafreniere Park lake | Jesse James | CC BY 2.0 |
+| Kenner | Laketown lighthouse | Infrogmation of New Orleans | CC BY 3.0 |
+| Saint Rose | Hale Boggs Memorial Bridge | Jonathan Sorrel | CC BY 2.0 |
 
 ## Known robustness fixes worth keeping
 
 - **Photo captions stay on their photo on phones.** `.story-figure` turned
   `position:static` under 900px, so an overlaid caption escaped to the page
   (the Abita credit line landed 7,400px up, over another section). It is now
-  `relative`. The Abita credit also moved under the photo: overlaid, it ran
-  three lines across the busiest part of the picture on a phone.
+  `relative`. Photo credits have since left the photos altogether (client:
+  no caption on the image): they sit in the footer's small print
+  (`.foot-credit`) on the pages that need one.
 
 
 - **Service boards never leave a hole.** A 5-row board sat beside a panel

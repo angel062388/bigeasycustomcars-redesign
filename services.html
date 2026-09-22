@@ -267,34 +267,30 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .on-dark .story a:hover{border-bottom-color:var(--amber)}
 
 /* ---------- city page: "All About" block ----------
-   The about story split again (4:5 photo on desktop, 16:10 on phones, credit
-   line underneath), then
-   the town's lists in two columns of plain text. The photo keeps the About
-   page's tall frame: shown whole at 4:3 it stood 365px beside 813px of
-   text. No cards below: the lists run to very different lengths, and
-   equal-height cards would leave empty boxes, the "big space" the client
-   flagged on the service boards. The right column carries two lists to
-   balance the left (measured 886px against 848px at 1280px). */
-/* the photo credit (required by its CC BY-SA license) sits UNDER the photo:
-   overlaid, it ran three lines across the busiest part of the picture on
-   phones and could not be read */
-.story-figure.area-shot{aspect-ratio:auto;background:none;border:0;border-radius:0;overflow:visible}
-.area-shot img{height:auto;aspect-ratio:4/5;object-position:58% 50%;
-  border-radius:var(--r);border:1px solid var(--line-d);background:var(--ink-3)}
-.story-figure.area-shot figcaption{position:static;background:none;padding:10px 2px 0;
-  font-size:12px;line-height:1.5;letter-spacing:.03em;color:var(--steel)}
-@media(max-width:900px){.area-shot img{aspect-ratio:16/10}}
-.area-shot figcaption a{color:inherit;text-decoration:underline;text-underline-offset:2px}
-.area-facts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,3vw,38px) clamp(26px,4vw,54px);
-  align-items:start;margin-top:clamp(30px,4vw,48px);padding-top:clamp(26px,3.4vw,40px);
+   The about story split again, photo in the About page's own frame (4:5 on
+   desktop, 16:10 on phones), then the town's lists in two columns of plain
+   text. Shown whole at 4:3 the photo stood 365px beside 813px of text, so
+   it keeps the tall frame. NO caption under the photo (client, 2026-09-22):
+   a photo credit its license requires goes in the footer's small print
+   (.foot-credit). No cards below: the lists run to very different lengths,
+   and equal-height cards would leave empty boxes, the "big space" the
+   client flagged on the service boards. */
+.area-shot img{object-position:58% 50%}
+/* The three lists flow through two BALANCED columns, newspaper style: a list
+   may carry on at the top of the second column, headings stay with their
+   first item, no item splits. Fixed columns could not balance every town
+   (Covington's best split left 259px of empty column). */
+.area-facts{column-count:2;column-gap:clamp(26px,4vw,54px);
+  margin-top:clamp(30px,4vw,48px);padding-top:clamp(26px,3.4vw,40px);
   border-top:1px solid var(--line-d)}
 .area-fact+.area-fact{margin-top:clamp(26px,3vw,38px)}
-.area-fact h3{margin-bottom:12px}
+.area-fact h3{margin-bottom:12px;break-after:avoid}
 .area-fact p{font-size:15.5px;line-height:1.66;margin-bottom:12px}
+.area-fact p,.area-fact li{break-inside:avoid}
 .area-fact p:last-child{margin-bottom:0}
 .area-fact .q-why{margin-top:14px}
 .area-fact .q-why li:last-child{margin-bottom:0}
-@media(max-width:900px){.area-facts{grid-template-columns:1fr}}
+@media(max-width:900px){.area-facts{column-count:1}}
 
 /* ---------- trust strip ----------
    Three figures that count up when the strip scrolls into view, then two
@@ -959,6 +955,11 @@ a.bay-row{text-decoration:none}
 
 .foot-bot{margin-top:clamp(36px,5vw,56px);border-top:1px solid rgba(255,255,255,.1);
   padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px}
+/* photo credits a license requires, on the pages that use such a photo:
+   small print on a line of its own, never a caption on the photo */
+.foot-credit{flex:1 1 100%;font-size:12px}
+.foot-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.foot-credit a:hover{color:var(--amber)}
 
 /* ---------- floating CTA bar ----------
    Same pattern as turnkeypooldesigners.com: a pill that slides up once the
@@ -1013,7 +1014,7 @@ a.bay-row{text-decoration:none}
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="has-sub"><a href="services.html" class="active">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="blackout-packages.html">Blackout Packages</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lift-kits-suspension.html">Lift Kits &amp; Suspension</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="off-road-builds.html">Off-Road Builds</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="wheels-tires.html">Wheels &amp; Tires</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
-      <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="abita-springs.html">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
+      <li class="has-sub"><a href="services-areas.html">Services Areas</a><ul class="sub"><li><a href="abita-springs.html">Abita Springs</a></li><li><a href="covington.html">Covington</a></li><li><a href="kenner.html">Kenner</a></li><li><a href="madisonville.html">Madisonville</a></li><li><a href="mandeville.html">Mandeville</a></li><li><a href="metairie.html">Metairie</a></li><li><a href="slidell.html">Slidell</a></li><li><a href="st-rose.html">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul></nav>
@@ -1382,12 +1383,12 @@ a.bay-row{text-decoration:none}
       <div>
         <h4>Service Areas</h4>
         <ul>
-          <li><a href="services-areas.html#areas">Metairie</a></li>
-          <li><a href="services-areas.html#areas">Kenner</a></li>
-          <li><a href="services-areas.html#areas">Slidell</a></li>
-          <li><a href="services-areas.html#areas">Covington</a></li>
-          <li><a href="services-areas.html#areas">Mandeville</a></li>
-          <li><a href="services-areas.html#areas">St. Rose</a></li>
+          <li><a href="metairie.html">Metairie</a></li>
+          <li><a href="kenner.html">Kenner</a></li>
+          <li><a href="slidell.html">Slidell</a></li>
+          <li><a href="covington.html">Covington</a></li>
+          <li><a href="mandeville.html">Mandeville</a></li>
+          <li><a href="st-rose.html">St. Rose</a></li>
         </ul>
       </div>
     </div>

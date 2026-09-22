@@ -267,34 +267,30 @@ section{padding:clamp(28px,2.4vw,44px) 0}
 .on-dark .story a:hover{border-bottom-color:var(--amber)}
 
 /* ---------- city page: "All About" block ----------
-   The about story split again (4:5 photo on desktop, 16:10 on phones, credit
-   line underneath), then
-   the town's lists in two columns of plain text. The photo keeps the About
-   page's tall frame: shown whole at 4:3 it stood 365px beside 813px of
-   text. No cards below: the lists run to very different lengths, and
-   equal-height cards would leave empty boxes, the "big space" the client
-   flagged on the service boards. The right column carries two lists to
-   balance the left (measured 886px against 848px at 1280px). */
-/* the photo credit (required by its CC BY-SA license) sits UNDER the photo:
-   overlaid, it ran three lines across the busiest part of the picture on
-   phones and could not be read */
-.story-figure.area-shot{aspect-ratio:auto;background:none;border:0;border-radius:0;overflow:visible}
-.area-shot img{height:auto;aspect-ratio:4/5;object-position:58% 50%;
-  border-radius:var(--r);border:1px solid var(--line-d);background:var(--ink-3)}
-.story-figure.area-shot figcaption{position:static;background:none;padding:10px 2px 0;
-  font-size:12px;line-height:1.5;letter-spacing:.03em;color:var(--steel)}
-@media(max-width:900px){.area-shot img{aspect-ratio:16/10}}
-.area-shot figcaption a{color:inherit;text-decoration:underline;text-underline-offset:2px}
-.area-facts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,3vw,38px) clamp(26px,4vw,54px);
-  align-items:start;margin-top:clamp(30px,4vw,48px);padding-top:clamp(26px,3.4vw,40px);
+   The about story split again, photo in the About page's own frame (4:5 on
+   desktop, 16:10 on phones), then the town's lists in two columns of plain
+   text. Shown whole at 4:3 the photo stood 365px beside 813px of text, so
+   it keeps the tall frame. NO caption under the photo (client, 2026-09-22):
+   a photo credit its license requires goes in the footer's small print
+   (.foot-credit). No cards below: the lists run to very different lengths,
+   and equal-height cards would leave empty boxes, the "big space" the
+   client flagged on the service boards. */
+.area-shot img{object-position:58% 50%}
+/* The three lists flow through two BALANCED columns, newspaper style: a list
+   may carry on at the top of the second column, headings stay with their
+   first item, no item splits. Fixed columns could not balance every town
+   (Covington's best split left 259px of empty column). */
+.area-facts{column-count:2;column-gap:clamp(26px,4vw,54px);
+  margin-top:clamp(30px,4vw,48px);padding-top:clamp(26px,3.4vw,40px);
   border-top:1px solid var(--line-d)}
 .area-fact+.area-fact{margin-top:clamp(26px,3vw,38px)}
-.area-fact h3{margin-bottom:12px}
+.area-fact h3{margin-bottom:12px;break-after:avoid}
 .area-fact p{font-size:15.5px;line-height:1.66;margin-bottom:12px}
+.area-fact p,.area-fact li{break-inside:avoid}
 .area-fact p:last-child{margin-bottom:0}
 .area-fact .q-why{margin-top:14px}
 .area-fact .q-why li:last-child{margin-bottom:0}
-@media(max-width:900px){.area-facts{grid-template-columns:1fr}}
+@media(max-width:900px){.area-facts{column-count:1}}
 
 /* ---------- trust strip ----------
    Three figures that count up when the strip scrolls into view, then two
@@ -959,6 +955,11 @@ a.bay-row{text-decoration:none}
 
 .foot-bot{margin-top:clamp(36px,5vw,56px);border-top:1px solid rgba(255,255,255,.1);
   padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px}
+/* photo credits a license requires, on the pages that use such a photo:
+   small print on a line of its own, never a caption on the photo */
+.foot-credit{flex:1 1 100%;font-size:12px}
+.foot-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.foot-credit a:hover{color:var(--amber)}
 
 /* ---------- floating CTA bar ----------
    Same pattern as turnkeypooldesigners.com: a pill that slides up once the
@@ -1016,7 +1017,7 @@ a.bay-row{text-decoration:none}
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="blackout-packages.html">Blackout Packages</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lift-kits-suspension.html">Lift Kits &amp; Suspension</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="off-road-builds.html">Off-Road Builds</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="wheels-tires.html">Wheels &amp; Tires</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
-      <li class="has-sub"><a href="services-areas.html" class="active">Services Areas</a><ul class="sub"><li><a href="abita-springs.html">Abita Springs</a></li><li><a href="services-areas.html#areas">Covington</a></li><li><a href="services-areas.html#areas">Kenner</a></li><li><a href="services-areas.html#areas">Madisonville</a></li><li><a href="services-areas.html#areas">Mandeville</a></li><li><a href="services-areas.html#areas">Metairie</a></li><li><a href="services-areas.html#areas">Slidell</a></li><li><a href="services-areas.html#areas">St. Rose</a></li></ul></li>
+      <li class="has-sub"><a href="services-areas.html" class="active">Services Areas</a><ul class="sub"><li><a href="abita-springs.html">Abita Springs</a></li><li><a href="covington.html">Covington</a></li><li><a href="kenner.html">Kenner</a></li><li><a href="madisonville.html">Madisonville</a></li><li><a href="mandeville.html">Mandeville</a></li><li><a href="metairie.html">Metairie</a></li><li><a href="slidell.html">Slidell</a></li><li><a href="st-rose.html">St. Rose</a></li></ul></li>
       <li><a href="testimonials.html">Testimonials</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul></nav>
@@ -1086,10 +1087,9 @@ a.bay-row{text-decoration:none}
 
 <!-- ============ WHERE WE WORK ============
      The homepage coverage map WITHOUT this page's own town (client
-     brief). Heading and lede are the live Abita page's "Serving Abita
-     Springs and Surrounding Areas". Each row and pin opens that town's
-     page on the LIVE site; the pins are skipped by Tab because the rows
-     carry the same links. -->
+     brief). Heading and lede are this town's live copy. Each row and pin
+     opens that town's page on the LIVE site; the pins are skipped by Tab
+     because the rows carry the same links. -->
 <section class="areas on-dark" id="areas">
   <div class="wrap">
     <div class="am-grid">
@@ -1129,9 +1129,10 @@ a.bay-row{text-decoration:none}
               <path class="am-water" d="M -200 1040 L -200 606 Q 500 646 1200 606 L 1200 1040 Z" opacity=".7"></path>
 
               <!-- roads. Main run: St. Rose through Kenner and Metairie, over
-                   the causeway to Mandeville, on to Covington. Abita Springs, this
-                   page's own town, is left off the map (client brief).
-                   Branches east to Slidell and west to Madisonville. -->
+                   the causeway to Mandeville, on to Covington and Abita Springs.
+                   Branches east to Slidell and west to Madisonville.
+                   This page's own town, Abita Springs, is left off the map (client brief);
+                   the road leg that only led to it is cut too. -->
               <path class="am-road" d="M 238 488 L 375 452 L 512 478 L 542 222 L 428 102"></path>
               <path class="am-road" d="M 512 478 L 640 485 L 860 266"></path>
               <path class="am-road" d="M 542 222 L 415 240"></path>
@@ -1197,11 +1198,10 @@ a.bay-row{text-decoration:none}
 
 <!-- ============ SERVICES IN ABITA SPRINGS ============
      The homepage services board, all twelve rows, each named
-     "<Service> in Abita Springs" (client brief). Descriptions: the live
-     Abita page's own for the five services it covers, the homepage
-     board's for the rest. Links: where the live Abita page sends each
-     one today, the service's general page (the four NEW services: their
-     new mockup pages).
+     "<Service> in Abita Springs" (client brief). Descriptions: this town's live
+     copy for the 5 services it covers, the homepage board's for the rest.
+     Links: each service's general page, as the live city pages do (the
+     four NEW services: their new mockup pages).
      TO DO, client request: when the location+service pages exist, link
      each row to its own page (ROW_LINKS in scratch/build-area.py). -->
 <section id="services">
@@ -1304,11 +1304,10 @@ a.bay-row{text-decoration:none}
 
 
 <!-- ============ REVIEWS ============
-     The live Abita page shows no reviews of its own: only the heading
+     The live city pages show no reviews of their own: only the heading
      "What Our Customers Have To Say!" and a View All Reviews button.
      These three are the client's own testimonials (the slider on the live
-     service pages), verbatim, chosen from Northshore towns: Denise M. is
-     from Abita Springs, Monique R. Covington, Ashley M. Mandeville. -->
+     service pages), verbatim, chosen for nearby towns: Denise M., Abita Springs; Monique R., Covington; Ashley M., Mandeville. -->
 <section id="reviews">
   <div class="wrap">
     <div class="lead rv">
@@ -1350,13 +1349,12 @@ a.bay-row{text-decoration:none}
 
 <!-- ============ ALL ABOUT ABITA SPRINGS ============
      Client brief, after turnkeypoolbuilders.com/service-areas/baton-rouge/.
-     Copy is the live Abita page's "All About Abita Springs, LA" block,
-     verbatim, under the client's four headings. Left out: "Nearby Suburbs
-     and Communities" (it places Madisonville southeast of Abita Springs;
-     it is southwest) and the two link lists the map and services board
-     replace. Notable Residents adds two people whose own Wikipedia
-     articles tie them to the town: CLIENT MUST APPROVE.
-     Photo: Wikimedia Commons, CC BY-SA 4.0, credit on the image. -->
+     Copy is this town's live "About" block, verbatim, under the client's
+     four headings. Left out: the live "Nearby" list (the map covers the
+     neighbors) and the link lists the map and services board replace.
+     Notable Residents checked against each person's own Wikipedia article.
+     Photo: Wikimedia Commons. No caption (client); the credit its license
+     requires is in the footer's small print. -->
 <section class="on-dark" id="about-city" style="background:var(--ink)">
   <div class="wrap">
     <div class="lead rv">
@@ -1376,41 +1374,36 @@ a.bay-row{text-decoration:none}
         </ul>
       </div>
       <figure class="story-figure area-shot rv">
-        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Abita_Springs_Pavillion_Park_%28June_2021%29.jpg/1280px-Abita_Springs_Pavillion_Park_%28June_2021%29.jpg" alt="The Abita Springs pavilion behind the park arch, with the Sunday Art and Farmers Market sign" loading="lazy">
-        <figcaption>Abita Springs Pavilion. Photo (cropped): <a href="https://commons.wikimedia.org/wiki/File:Abita_Springs_Pavillion_Park_(June_2021).jpg" target="_blank" rel="noopener">GreaterPonce665</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Abita_Springs_Pavillion_Park_%28June_2021%29.jpg/1280px-Abita_Springs_Pavillion_Park_%28June_2021%29.jpg" alt="The Abita Springs pavilion behind the park arch, with the Sunday Art and Farmers Market sign" loading="lazy" style="object-position:58% 50%">
       </figure>
     </div>
-    <div class="area-facts">
-      <div class="area-col">
-        <div class="area-fact rv">
-          <h3>Things To Do in Abita Springs</h3>
-          <p>Abita Springs offers a variety of activities that appeal to visitors and residents alike, from cultural attractions to outdoor recreation:</p>
-          <ul class="q-why">
-            <li><b>Abita Mystery House:</b> One of Abita Springs&#39; most unique attractions, the Abita Mystery House (also known as the UCM Museum) is a roadside folk art museum filled with whimsical and quirky installations created by artist John Preble. The eclectic displays and interactive exhibits make it a memorable stop for all ages.</li>
-            <li><b>Tammany Trace:</b> The Tammany Trace is a 31-mile paved rail-trail that connects several Northshore communities, including Abita Springs. Popular for walking, biking, rollerblading, and jogging, this scenic route follows an old railroad corridor through forests and past open spaces, providing a peaceful way to experience the region&#39;s natural beauty.</li>
-            <li><b>Abita Springs Trailhead Museum and Park:</b> Located near the park on Main Street, the Trailhead Museum showcases historical artifacts and the story of the town, housed in a replica of the original 1856 Asher Dry Goods store. The adjacent park offers picnic areas, a playground, a splash pad, and access to the Tammany Trace, perfect for families and visitors looking to spend time outdoors.</li>
-            <li><b>Abita Brewing Company &amp; Abita Brew Pub:</b> Abita Brewing Company began in Abita Springs and is one of the South&#39;s best-known craft breweries, though its main brewery facility today is located in Covington just outside Abita Springs; the original location now houses the Abita Brew Pub.</li>
-            <li><b>Art and Farmers Market:</b> Every Sunday, locals and visitors gather at the Abita Springs Art and Farmers Market, where fresh produce, handmade crafts, and local foods are available, often accompanied by live music and community camaraderie.</li>
-            <li><b>Festivals and Events:</b> Abita hosts a number of community events throughout the year, including the Whole Town Garage Sale, the Push Mow Parade, Busker Fest, and live music nights, reflecting the town&#39;s lively community spirit and cultural heritage.</li>
-          </ul>
-        </div>
+    <div class="area-facts rv">
+      <div class="area-fact">
+        <h3>Things To Do in Abita Springs</h3>
+        <p>Abita Springs offers a variety of activities that appeal to visitors and residents alike, from cultural attractions to outdoor recreation:</p>
+        <ul class="q-why">
+          <li><b>Abita Mystery House:</b> One of Abita Springs&#39; most unique attractions, the Abita Mystery House (also known as the UCM Museum) is a roadside folk art museum filled with whimsical and quirky installations created by artist John Preble. The eclectic displays and interactive exhibits make it a memorable stop for all ages.</li>
+          <li><b>Tammany Trace:</b> The Tammany Trace is a 31-mile paved rail-trail that connects several Northshore communities, including Abita Springs. Popular for walking, biking, rollerblading, and jogging, this scenic route follows an old railroad corridor through forests and past open spaces, providing a peaceful way to experience the region&#39;s natural beauty.</li>
+          <li><b>Abita Springs Trailhead Museum and Park:</b> Located near the park on Main Street, the Trailhead Museum showcases historical artifacts and the story of the town, housed in a replica of the original 1856 Asher Dry Goods store. The adjacent park offers picnic areas, a playground, a splash pad, and access to the Tammany Trace, perfect for families and visitors looking to spend time outdoors.</li>
+          <li><b>Abita Brewing Company &amp; Abita Brew Pub:</b> Abita Brewing Company began in Abita Springs and is one of the South&#39;s best-known craft breweries, though its main brewery facility today is located in Covington just outside Abita Springs; the original location now houses the Abita Brew Pub.</li>
+          <li><b>Art and Farmers Market:</b> Every Sunday, locals and visitors gather at the Abita Springs Art and Farmers Market, where fresh produce, handmade crafts, and local foods are available, often accompanied by live music and community camaraderie.</li>
+          <li><b>Festivals and Events:</b> Abita hosts a number of community events throughout the year, including the Whole Town Garage Sale, the Push Mow Parade, Busker Fest, and live music nights, reflecting the town&#39;s lively community spirit and cultural heritage.</li>
+        </ul>
       </div>
-      <div class="area-col">
-        <div class="area-fact rv">
-          <h3>Notable Residents of Abita Springs</h3>
-          <p>While Abita Springs is a small community without a long list of widely publicized notable residents, the town&#39;s cultural influence is reflected through its local artists, musicians, and entrepreneurs who contribute to the thriving creative scene. The creator of the Abita Mystery House, John Preble, is a well-known local figure whose work continues to draw national attention to the town&#39;s artistic character.</p>
-          <ul class="q-why">
-            <li><b>Michael G. Strain:</b> Veterinarian and Louisiana&#39;s Commissioner of Agriculture and Forestry since 2008.</li>
-            <li><b>Bunny Matthews (1951&#8211;2021):</b> Cartoonist and writer, who lived in Abita Springs from the late 1980s.</li>
-          </ul>
-        </div>
-        <div class="area-fact rv">
-          <h3>Public Transportation in Abita Springs</h3>
-          <p>Public transportation options within Abita Springs are limited, as the town is primarily served by personal vehicles and regional transit services rather than fixed-route urban systems. However:</p>
-          <p><b>STAR Transit:</b> The STAR Transit system provides on-demand transportation services throughout St. Tammany Parish (which includes Abita Springs), offering rides within the parish for those who request them in advance. This service helps residents access employment, shopping, social activities, and medical appointments, but is not a traditional fixed-schedule bus network.</p>
-          <p><b>Regional Access:</b> Nearby Interstate 12 (approximately 5 miles south of Abita Springs) provides highway access to neighboring cities and communities. The Lake Pontchartrain Causeway connects the Northshore to New Orleans and the south shore of the lake.</p>
-          <p>Because Abita Springs is a small town, most residents and visitors rely on personal vehicles for daily transportation and travel to surrounding areas.</p>
-        </div>
+      <div class="area-fact">
+        <h3>Notable Residents of Abita Springs</h3>
+        <p>While Abita Springs is a small community without a long list of widely publicized notable residents, the town&#39;s cultural influence is reflected through its local artists, musicians, and entrepreneurs who contribute to the thriving creative scene. The creator of the Abita Mystery House, John Preble, is a well-known local figure whose work continues to draw national attention to the town&#39;s artistic character.</p>
+        <ul class="q-why">
+          <li><b>Michael G. Strain:</b> Veterinarian and Louisiana&#39;s Commissioner of Agriculture and Forestry since 2008.</li>
+          <li><b>Bunny Matthews (1951&#8211;2021):</b> Cartoonist and writer, who lived in Abita Springs from the late 1980s.</li>
+        </ul>
+      </div>
+      <div class="area-fact">
+        <h3>Public Transportation in Abita Springs</h3>
+        <p>Public transportation options within Abita Springs are limited, as the town is primarily served by personal vehicles and regional transit services rather than fixed-route urban systems. However:</p>
+        <p><b>STAR Transit:</b> The STAR Transit system provides on-demand transportation services throughout St. Tammany Parish (which includes Abita Springs), offering rides within the parish for those who request them in advance. This service helps residents access employment, shopping, social activities, and medical appointments, but is not a traditional fixed-schedule bus network.</p>
+        <p><b>Regional Access:</b> Nearby Interstate 12 (approximately 5 miles south of Abita Springs) provides highway access to neighboring cities and communities. The Lake Pontchartrain Causeway connects the Northshore to New Orleans and the south shore of the lake.</p>
+        <p>Because Abita Springs is a small town, most residents and visitors rely on personal vehicles for daily transportation and travel to surrounding areas.</p>
       </div>
     </div>
   </div>
@@ -1517,18 +1510,19 @@ a.bay-row{text-decoration:none}
       <div>
         <h4>Service Areas</h4>
         <ul>
-          <li><a href="services-areas.html#areas">Metairie</a></li>
-          <li><a href="services-areas.html#areas">Kenner</a></li>
-          <li><a href="services-areas.html#areas">Slidell</a></li>
-          <li><a href="services-areas.html#areas">Covington</a></li>
-          <li><a href="services-areas.html#areas">Mandeville</a></li>
-          <li><a href="services-areas.html#areas">St. Rose</a></li>
+          <li><a href="metairie.html">Metairie</a></li>
+          <li><a href="kenner.html">Kenner</a></li>
+          <li><a href="slidell.html">Slidell</a></li>
+          <li><a href="covington.html">Covington</a></li>
+          <li><a href="mandeville.html">Mandeville</a></li>
+          <li><a href="st-rose.html">St. Rose</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bot">
       <span>&#169; 2026 Big Easy Custom Cars. Mockup, not a live page.</span>
       <span>Terms and Conditions &#183; Privacy Policy</span>
+      <span class="foot-credit">Pavilion photo: <a href="https://commons.wikimedia.org/wiki/File:Abita_Springs_Pavillion_Park_(June_2021).jpg" target="_blank" rel="noopener">GreaterPonce665</a> via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, cropped.</span>
     </div>
   </div>
 </footer>
