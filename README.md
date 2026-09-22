@@ -8,8 +8,8 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Twenty static pages. No build step, no dependencies. Open `index.html` or serve
-the folder.
+Twenty-one static pages. No build step, no dependencies. Open `index.html` or
+serve the folder.
 
 | File | What it is |
 |---|---|
@@ -24,16 +24,17 @@ the folder.
 | `audio-lighting.html` | Audio & Lighting: the model for all eight service pages |
 | `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven live services, same template |
 | `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
+| `abita-springs.html` | **City page: Abita Springs** (live: `/services-areas/abita-springs/`), the model for the other seven service-area pages |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
 | `assets/logo.png` | The client's own logo, unchanged |
 
-### The eight inner pages are generated, not hand-written
+### Every inner page is generated, not hand-written
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all eight scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all nine scripts:**
 
 ```
 python scratch/build-about.py
@@ -44,14 +45,19 @@ python scratch/build-contact.py
 python scratch/build-blog.py
 python scratch/build-post.py
 python scratch/build-service.py
+python scratch/build-area.py
 ```
 
 Blog titles, dates, images and excerpts live in `scratch/blog_data.py`, shared
 by the listing and the post, so the two cannot drift.
 
 Every inner page carries a written `<title>`, a written meta description and
-exactly one H1. The live site has an H1 on the homepage only and a meta
-description on no page at all.
+exactly one H1. On the live site, `/services/` and `/services-areas/` have
+neither an H1 nor a meta description, and Audio & Lighting's meta description
+is auto-generated and cut off. (Corrected 2026-09-22: this line used to say
+only the homepage had an H1. All eight live service pages have one, and so
+does the Abita Springs page, which also has a written meta description of
+158 characters.)
 
 ## Design system
 
@@ -388,7 +394,65 @@ and footer service links point at the pages.
 | Blackout Packages | Smoked lenses are a client-listed service; whether tinted head and tail lights are legal in Louisiana was not checked. |
 | All | Seven client photos show people (a mechanic, a painter, a tint installer, a polisher, drivers, a gloved hand) and are not used, per the no-people rule. |
 
+## The city page: Abita Springs (model for all eight)
+
+`abita-springs.html` (live: `/services-areas/abita-springs/`), built by
+`scratch/build-area.py`, which reuses the service-page components. Copy comes
+from a snapshot of the live page (`scratch/live-areas/abita-springs.html`)
+through `live_parse.py`, verbatim. Order follows the client's brief:
+
+1. **Hero:** the live H1, the first live sentence as the lede (carries the
+   live homepage link). Breadcrumb: Home, Services Areas, Abita Springs.
+2. **Overview:** the rest of the live intro and "Your Local Custom Car Shop
+   in Abita Springs", closing on "Contact us today..." (the live contact link).
+3. **Where We Work:** the homepage map **without Abita Springs**: its pin,
+   row, marker and the last leg of road are removed, the other seven are
+   renumbered 01-07, and each row and pin opens that town's page on the live
+   site (new tab), so the map's "Tap a city to open its page" is true here.
+   Heading and lede are the live "Serving Abita Springs and Surrounding Areas".
+4. **Services:** the homepage board, all twelve rows, each "<Service> in
+   Abita Springs". Five descriptions are the live page's own (paint, body
+   kits, tuning, upholstery, audio); the rest are the homepage board's.
+   Rows link where the live Abita page links them today: each service's
+   general page (the four NEW services: their mockup pages).
+   **TO DO (client request):** when the location+service pages exist, link
+   each row to its own page. `ROW_LINKS` in `build-area.py` takes the file
+   names; nothing else changes.
+5. **Reviews:** the live Abita page shows none (a heading and a "View All
+   Reviews" button only), so the plates carry three of the client's own
+   testimonials from Northshore towns: Denise M. (Abita Springs), Monique R.
+   (Covington), Ashley M. (Mandeville). Button to `testimonials.html`.
+6. **All About Abita Springs, LA:** the live block, verbatim, under the
+   client's four headings. The About paragraphs and Interesting Facts sit
+   beside the photo (the About page's split); Things To Do fills the left
+   column below, Notable Residents and Public Transportation the right, so
+   the two columns end within about 40px of each other.
+7. **Quote band:** the live "Start Your Custom Car Project in Abita Springs
+   Today". Then the footer.
+
+Title 59 characters, meta 139 (the live meta is 158). Structured data:
+`Service` with `areaServed` Abita Springs. The menu's Services Areas >
+Abita Springs item now opens this page on every page.
+
+### Flags from the Abita Springs page
+
+| Item | Flag |
+|---|---|
+| Notable Residents | The live copy names one person (John Preble, in its paragraph, kept). The list adds Wikipedia's four "Notable people" (Dick Hart, David Lohr, Bunny Matthews, Michael G. Strain). **Client must approve**; one is a serving state official. |
+| Things To Do | Sources disagree on the Trailhead Museum building: a replica of the 1856 Asher Dry Goods store (live copy, kept) or the relocated bachelor quarters of the Longbranch Hotel. |
+| Nearby Suburbs | Left out: it says Madisonville is southeast of Abita Springs; it is southwest. The map covers the neighboring towns. |
+| Photo | Abita Springs Pavilion by GreaterPonce665, Wikimedia Commons, **CC BY-SA 4.0**. Hotlinked for the mockup; self-host it at launch and keep the credit line (author, license, source, "cropped"). No people in it, checked at full size. |
+| Left out | "Why Abita Springs Drivers Choose..." (generic list), the per-service bullet lists and closing paragraphs (they belong on the location+service pages), the "Our Services" and "Other Areas" link lists (the board and map replace them). |
+| Other seven towns | Same template: a snapshot in `scratch/live-areas/`, the town's name, its sections. The map code only handles a town at the END of a road, as Abita Springs is. The rest need their own road edit: St. Rose starts the main route, Slidell and Madisonville end a branch, and Covington, Mandeville, Metairie and Kenner sit mid-route, where the road has to be re-joined around the gap. |
+
 ## Known robustness fixes worth keeping
+
+- **Photo captions stay on their photo on phones.** `.story-figure` turned
+  `position:static` under 900px, so an overlaid caption escaped to the page
+  (the Abita credit line landed 7,400px up, over another section). It is now
+  `relative`. The Abita credit also moved under the photo: overlaid, it ran
+  three lines across the busiest part of the picture on a phone.
+
 
 - **Service boards never leave a hole.** A 5-row board sat beside a panel
   twice its height: a 416px gap under the list (Window Tint, client report,
