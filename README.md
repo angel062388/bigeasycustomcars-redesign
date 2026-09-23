@@ -8,8 +8,8 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-124 static pages. No build step, no dependencies. Open `index.html` or serve
-the folder.
+130 static pages. No build step, no dependencies. Open `index.html` or serve
+the folder. Every page the live site has now has a redesigned counterpart.
 
 | File | What it is |
 |---|---|
@@ -26,6 +26,12 @@ the folder.
 | `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
 | `abita-springs.html`, `covington.html`, `madisonville.html`, `mandeville.html`, `slidell.html`, `metairie.html`, `kenner.html`, `st-rose.html` | **The eight city pages** (live: `/services-areas/<town>/`). Abita Springs is the model |
 | `<town>-<service>.html` (96 of them) | **Every service in every town** (live: `/services-areas/<town>/<service>/`), on the turnkeypoolbuilders.com pattern |
+| `faq.html` | The live FAQ: all 14 questions and answers, in the homepage dashboard |
+| `privacy-policy.html` | The live policy, carried over. **It is unedited WordPress boilerplate, flagged below** |
+| `terms-and-conditions.html` | The live page is empty. Built from the shop's own published policies. **Not a legal agreement, flagged below** |
+| `sitemap.html` | The live page is empty. Now a real HTML sitemap: all 130 pages |
+| `team.html` | The live page is empty and its five member pages are lorem ipsum. Built about the shop's four disciplines instead, no invented people |
+| `thank-you.html` | Form confirmation, live copy, plus three places to go next. `noindex` |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -35,7 +41,7 @@ the folder.
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all ten scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all eleven scripts:**
 
 ```
 python scratch/build-about.py
@@ -46,8 +52,9 @@ python scratch/build-contact.py
 python scratch/build-blog.py
 python scratch/build-post.py
 python scratch/build-service.py
-python scratch/build-area.py
 python scratch/build-loc-service.py
+python scratch/build-area.py
+python scratch/build-misc.py
 ```
 
 Blog titles, dates, images and excerpts live in `scratch/blog_data.py`, shared
@@ -587,6 +594,41 @@ from its town page automatically.
 | Scale | All 96 are built. Each has its own opening, and the checks refuse duplicates, but about 1,000 of the 1,520 words on a page are shared with its town page and its sister pages. That is how turnkeypoolbuilders.com does it; it is also what Google's spam policies mean by doorway pages when the unique part is thin. **The written 250 words per page are what keeps them apart: they need a client read before launch.** |
 | Photos | A location+service page carries the town's photo and the service's own photos. No new images. |
 | Services without a live FAQ | Nine of the twelve services have FAQs written for the mockup rather than live ones; a location+service page for those reuses that written FAQ, so it needs approving once per service, not once per page. |
+
+## The last six pages: FAQ, legal, sitemap, team, thank you
+
+Built by `scratch/build-misc.py` from snapshots in `scratch/live-misc/`
+(taken 2026-09-23, all HTTP 200). These were the only live URLs left without
+a redesign. Four of the six live pages turned out to be **empty or
+boilerplate**, which is the finding worth passing to the client.
+
+| Live page | What is actually on it today | What the mockup does |
+|---|---|---|
+| `/faq/` | 14 real questions and answers | All 14, word for word, in the homepage FAQ dashboard, plus `FAQPage` schema |
+| `/privacy-policy/` | The **unedited WordPress template**. Every section still starts "Suggested text:" | Same words, minus that prefix, in the site's own layout |
+| `/terms-and-conditions/` | **Empty.** An H1 and the estimate form, no terms at all | Written from the shop's own published policies, every line traceable to `/faq/` |
+| `/sitemap/` | **Empty.** An H1 and the estimate form | A real HTML sitemap: all 130 pages, one link each |
+| `/team/` | **Empty**, and the five `/team/john-smithson*/` pages under it are the theme's lorem ipsum demo people | About the four disciplines under the roof, in the client's own About copy. No invented staff, no faces |
+| `/thank-you/` | 5 short paragraphs | Same paragraphs, plus three places to go next and `noindex` |
+
+### Flags
+
+| Item | Flag |
+|---|---|
+| Privacy policy | The live policy is WordPress boilerplate: it covers blog comments, Gravatar, user logins and editing articles, none of which this site does, and says **nothing** about the GoHighLevel form that collects a name, phone number and email, or about analytics and ad pixels. It was carried over so the client sees their own page redesigned. **It needs replacing with a policy written for this site.** |
+| Terms and conditions | The live page has no terms on it. Ours restates only what the shop already publishes: free estimate, your say over parts, timeline up front, told first if something changes, manufacturer warranties plus the shop's workmanship, visits by appointment. **Deposits, payment, cancellation, storage, insurance and liability are not covered, because the client has never published anything about them. A lawyer has to write those.** |
+| Team | Five live `/team/john-smithson*/` pages are demo content (one meta description reads "Founder Lorem Ipsum is therefore always free from repetition"). We did not rebuild them. **Either send real names, roles and photos, or 301 them to `/team/` and delete them.** |
+| FAQ answer 11 | The live answer stops without a full stop: "...walk you through options, timelines, and costs". One full stop added, nothing else changed. |
+| FAQ em dashes | Three live answers use em dashes. House rule says no em dashes, so they became commas. Meaning unchanged. |
+| Thank you page | Set to `noindex, follow`: a form confirmation has no business in search results. The dev team should keep that tag. |
+
+### Wired in
+
+- The footer's legal line was plain text ("Terms and Conditions &middot; Privacy
+  Policy"). It is now three working links, with Sitemap added.
+- Footer Quick Links gained **FAQs** and **The Shop Floor**.
+- The FAQ dashboard takes 14 questions: seven lights across on desktop, four on
+  tablet and phone, in `--n` / `--n-md`. The readout JS was not touched.
 
 ## Known robustness fixes worth keeping
 
