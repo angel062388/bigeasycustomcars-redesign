@@ -8,7 +8,7 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Twenty-eight static pages. No build step, no dependencies. Open `index.html`
+Twenty-nine static pages. No build step, no dependencies. Open `index.html`
 or serve the folder.
 
 | File | What it is |
@@ -25,6 +25,7 @@ or serve the folder.
 | `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven live services, same template |
 | `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
 | `abita-springs.html`, `covington.html`, `madisonville.html`, `mandeville.html`, `slidell.html`, `metairie.html`, `kenner.html`, `st-rose.html` | **The eight city pages** (live: `/services-areas/<town>/`). Abita Springs is the model |
+| `abita-springs-engine-tuning-performance.html` | **The model location+service page** (live: `/services-areas/<town>/<service>/`), on the turnkeypoolbuilders.com pattern |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -34,7 +35,7 @@ or serve the folder.
 
 Each one is produced by a script in `scratch/` (not committed) that slices the
 header, trust strip, quote band and footer straight out of `index.html`, so the
-pages cannot drift apart. **Edit `index.html`, then re-run all nine scripts:**
+pages cannot drift apart. **Edit `index.html`, then re-run all ten scripts:**
 
 ```
 python scratch/build-about.py
@@ -46,6 +47,7 @@ python scratch/build-blog.py
 python scratch/build-post.py
 python scratch/build-service.py
 python scratch/build-area.py
+python scratch/build-loc-service.py
 ```
 
 Blog titles, dates, images and excerpts live in `scratch/blog_data.py`, shared
@@ -510,6 +512,62 @@ mockup; **self-host at launch and keep the credits**.
 | Metairie | Lafreniere Park lake | Jesse James | CC BY 2.0 |
 | Kenner | Laketown lighthouse | Infrogmation of New Orleans | CC BY 3.0 |
 | Saint Rose | Hale Boggs Memorial Bridge | Jonathan Sorrel | CC BY 2.0 |
+
+## Location + service pages (the TurnKey pattern)
+
+`<town>-<service>.html`, built by `scratch/build-loc-service.py`. At launch
+these are `/services-areas/<town>/<service>/`, the pattern the client asked
+us to copy from their other site, turnkeypoolbuilders.com.
+
+**What that site does** (read 2026-09-23, structure only, no copy taken):
+
+- `/service-areas/<city>/<service>/`: 104 such pages under 13 city pages.
+- About 1,600 words each. Three sections are written for that service in
+  that town and open on a local fact ("Metairie sits about three feet above
+  sea level, and that single number shapes every custom pool built here").
+- Everything after that is the same block the city page carries: All About
+  <City>, the city's other services (each "<Service> in <City>", the current
+  one left out), service areas, process, reviews, call to action.
+- Every page links up to its city page and across to the city's other
+  service pages. One H1, self canonical, no structured data.
+
+**Ours**, in our own components. Model:
+`abita-springs-engine-tuning-performance.html`
+
+| Part | Where the words come from |
+|---|---|
+| Hero, crumb Home > Services Areas > Abita Springs > Engine Tuning | Written lede (carries the live homepage link) |
+| Overview split | **Written**: three paragraphs on tuning for this town, from the town's own live facts (I-12 five miles south, the Causeway) and the service page's own claims (Ford, Chevy, GMC, Jeep, RAM; towing; trucks and SUVs only). Closes on the live "stop by Big Easy Custom Cars today" (live contact link) |
+| What We Tune in Abita Springs | The live service page's own four tuning rows, verbatim |
+| All About Abita Springs | The town page's block, unchanged |
+| Our Other Services in Abita Springs | The homepage board minus Engine Tuning, 11 rows, each "<Service> in Abita Springs" |
+| Where We Work | The coverage map, without Abita Springs |
+| Reviews | Denise M. (Abita Springs), Darren S. (engine tuning), Monique R. (Covington) |
+| FAQ | Four of the live service page's nine questions, verbatim |
+| Quote band, footer | The service page's live closing copy; the town photo credit |
+
+1,799 words, of which **169 are written**. Title 57, meta 126. `Service`
+and `FAQPage` schema (TurnKey publishes none).
+
+**Linking, both ways:** the town page's Engine Tuning row now opens this
+page (`LOC_PAGES` in `build-area.py`, which fills `ROW_LINKS`), and this
+page links up to the town page and across to the other eleven services.
+Rows point at a service's general page until that town's page for it
+exists, which is what the live town pages do today.
+
+**To add a page:** write its plan in `build-loc-service.py` (lede, three
+paragraphs, headings, meta, which FAQ questions), add the pair to
+`LOC_PAGES` in `build-area.py`, run `build-loc-service.py` then
+`build-area.py`.
+
+### Flags
+
+| Item | Flag |
+|---|---|
+| Written copy | Lede, three paragraphs, headings and meta are written for the mockup from the client's own claims and the town's live facts. **Client must approve.** |
+| Repeated blocks | The All About block and the other-services board repeat the town page's, as TurnKey does on every service page of a city. About 1,000 of the 1,799 words are shared with other pages. |
+| Scale | Eight towns x twelve services = 96 pages. Each one needs its own local angle in those three paragraphs, or the set reads as doorway pages: near-identical pages differing only by town name, which Google's spam policies name directly. The model's angle (highway and towing miles for a Northshore town) will not carry to all 96 by itself. |
+| Services without a live FAQ | Nine of the twelve services have FAQs written for the mockup rather than live ones; a location+service page for those reuses that written FAQ, so it needs approving once per service, not once per page. |
 
 ## Known robustness fixes worth keeping
 
