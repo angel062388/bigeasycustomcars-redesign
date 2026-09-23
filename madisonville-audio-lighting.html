@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Car Audio in Madisonville | Big Easy Custom Cars</title>
+<meta name="description" content="Speakers, amplifiers, subwoofers and cabin lighting for trucks and SUVs in Madisonville, LA. Big Easy Custom Cars: (504) 384-8006.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
+<style>
+/* =========================================================================
+   BIG EASY CUSTOM CARS &#8211; homepage mockup
+   Design system carried from the Big Easy Bathrooms and TurnKey Pool builds:
+   editorial serif + clean sans, .kw keyword highlight, .eyeb eyebrows,
+   generous radius on all imagery, .rv reveal gated on .js with a full
+   reduced-motion switch-off, btn-p / btn-s / btn-l / btn-o button set only.
+   Palette retuned from pool navy to automotive ink + Big Easy orange.
+   Outfit is already self-hosted on the live site, so it carries over.
+   ========================================================================= */
+:root{
+  --ink:#0B0C0E;        /* body ground */
+  --ink-2:#14161A;      /* raised panels */
+  --ink-3:#1C1F24;      /* cards on dark */
+  --paper:#F7F5F2;      /* light ground */
+  --paper-2:#EFECE7;
+  --line:#E4E0DA;
+  --line-d:rgba(255,255,255,.13);
+  --body:#55514C;       /* body copy on light */
+  --body-d:#B6B1AA;     /* body copy on dark */
+  /* Orange, retuned 2026-09-20: the live site's #FF5C1A glowed on dark and
+     was tiring to read against. These are the same hue, desaturated and
+     darkened, with a separate deeper value for orange text on LIGHT grounds
+     so it clears WCAG AA instead of shimmering. */
+  --amber:#E4783F;      /* accent on DARK grounds */
+  --amber-2:#C25F2B;    /* hover, and deeper fills */
+  --amber-ink:#A64E23;  /* orange TEXT on LIGHT grounds, AA-safe */
+  --amber-tint:#FBF0E9;
+  --steel:#8A8F98;
+  --white:#fff;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Outfit",-apple-system,"Segoe UI",Arial,sans-serif;
+  --r:20px;
+  --wrap:1220px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;
+  /* The header is sticky, so without this every in-page jump (all the
+     Free Estimate buttons, the footer links, the dropdown items) lands
+     the section top UNDER the header and hides its heading.
+     The value is the UNSHRUNK header (74px logo + 32px padding + 1px
+     border = 107px), not the shrunk one. The header is in flow, so when it
+     shrinks after the jump it pulls everything below it up by 30px.
+     Measured: at 78px the eyebrow ended 2px under the header. At 108px it
+     clears it by 32px whether or not the header has shrunk. */
+  scroll-padding-top:108px}
+@media(max-width:700px){html{scroll-padding-top:88px}}  /* 54px logo + 32 + 1 */
+body{background:var(--paper);color:var(--body);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);font-weight:600;line-height:1.1}
+h1{font-size:clamp(38px,6.2vw,72px);letter-spacing:-.02em}
+h2{font-size:clamp(29px,3.9vw,46px);letter-spacing:-.015em}
+h3{font-size:clamp(20px,2.2vw,25px)}
+a{color:inherit}
+/* Orange text switches value by ground so it never glows and never goes
+   under WCAG AA: the deep tone on light, the lighter tone on dark. */
+.kw{color:var(--amber-ink);font-style:italic}
+.on-dark h1,.on-dark h2,.on-dark h3{color:var(--paper)}
+.on-dark{color:var(--body-d)}
+.on-dark .kw,.hero .kw{color:var(--amber)}
+.eyeb{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--amber-ink);margin-bottom:14px}
+.on-dark .eyeb,.hero .eyeb{color:var(--amber)}
+.lead{max-width:56ch}
+.lead p:not(.eyeb){margin-top:14px;font-size:clamp(15.5px,1.6vw,17.5px)}
+/* Section rhythm. Two stacked sections each carrying 104px left about
+   208px of dead space between a CTA and the next heading, which read as
+   a gap rather than a break. */
+section{padding:clamp(28px,2.4vw,44px) 0}
+
+/* ---------- buttons: only these four exist ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;padding:15px 28px;border-radius:999px;
+  border:2px solid transparent;cursor:pointer;transition:all .3s var(--ease)}
+.btn-p{background:var(--amber);color:#1A0600;border-color:var(--amber)}
+.btn-p:hover{background:var(--amber-2);border-color:var(--amber-2);color:#fff;transform:translateY(-2px)}
+.btn-s{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-s:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn-l{background:#fff;color:var(--ink);border-color:#fff}
+.btn-l:hover{background:var(--amber);border-color:var(--amber);color:#1A0600;transform:translateY(-2px)}
+.btn-o{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-o:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+/* ---------- reveal (gated on .js, killed by reduced motion) ---------- */
+.rv{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1!important;transform:none!important;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- ribbon + header ---------- */
+/* Ribbon was a full-width band of bright orange, which is the single most
+   tiring element on a page this dark. It is now a quiet dark strip with the
+   orange used only on the rating, the way Velocity Restorations does it. */
+.ribbon{background:#06070A;color:var(--body-d);font-size:12.5px;font-weight:500;
+  letter-spacing:.03em;padding:10px 16px;display:flex;justify-content:center;
+  align-items:center;gap:22px;flex-wrap:wrap;border-bottom:1px solid var(--line-d)}
+.ribbon b{color:var(--amber)}
+.ribbon .rt{color:var(--amber);letter-spacing:1.5px}
+.ribbon a{text-decoration:none;color:var(--paper);border-bottom:1px solid rgba(255,255,255,.28)}
+.ribbon a:hover{border-bottom-color:var(--amber);color:var(--amber)}
+.ribbon .sep{opacity:.28}
+@media(max-width:860px){.ribbon .hide-sm{display:none}}
+.head{position:sticky;top:0;z-index:60;background:rgba(11,12,14,.9);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line-d);
+  transition:padding .35s var(--ease)}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:16px 0;transition:padding .35s var(--ease)}
+.head.shrink .head-in{padding:9px 0}
+/* Brand mark: the client's own logo file, used as-is. Do not substitute a
+   typographic wordmark. The badge already contains the name, so no text
+   is set beside it. */
+.brand{display:block;text-decoration:none;flex:0 0 auto}
+.brand img{height:74px;width:auto;transition:height .35s var(--ease)}
+.head.shrink .brand img{height:58px}
+@media(max-width:700px){.brand img{height:54px}.head.shrink .brand img{height:46px}}
+.nav{display:flex;gap:26px;list-style:none;align-items:center}
+.nav a{text-decoration:none;color:var(--body-d);font-size:16px;font-weight:500;
+  padding:6px 0;border-bottom:2px solid transparent;transition:.25s}
+.nav a:hover,.nav a.active{color:var(--paper);border-bottom-color:var(--amber)}
+/* Menu mirrors the live site: Home, About, Services, Services Areas,
+   Testimonials, Contact, with the same two dropdowns. "Services Areas"
+   is the client's own spelling, carried over deliberately. */
+.nav>li{position:relative}
+.nav .has-sub>a::after{content:"▾";margin-left:6px;font-size:9px;opacity:.65}
+.nav .sub{position:absolute;left:-10px;top:100%;min-width:246px;list-style:none;
+  background:rgba(11,12,14,.97);border:1px solid var(--line-d);border-radius:14px;
+  padding:8px;display:block;opacity:0;visibility:hidden;transform:translateY(8px);
+  box-shadow:0 18px 44px rgba(0,0,0,.5);backdrop-filter:blur(12px);z-index:80;
+  transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.nav .has-sub:hover .sub,.nav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.nav .sub li{margin:0}
+.nav .sub a{display:block;padding:9px 12px;border-radius:9px;border-bottom:0;
+  font-size:14.5px;font-weight:400;color:var(--body-d);white-space:nowrap}
+.nav .sub a:hover{background:rgba(255,255,255,.07);color:var(--paper);border-bottom:0}
+/* Third level: each town opens its own twelve location+service pages. It
+   flies out beside the town, and to the left where the window is too narrow
+   for it to sit on the right. */
+.nav .sub-areas .has-sub2{position:relative}
+.nav .sub-areas .has-sub2>a::after{content:"\203A";float:right;opacity:.55;padding-left:10px}
+.nav .sub2{position:absolute;left:100%;top:-9px;min-width:212px;list-style:none;
+  background:rgba(11,12,14,.98);border:1px solid var(--line-d);border-radius:14px;
+  padding:8px;opacity:0;visibility:hidden;transform:translateX(6px);
+  box-shadow:0 18px 44px rgba(0,0,0,.5);backdrop-filter:blur(12px);z-index:90;
+  transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s}
+.nav .has-sub2:hover>.sub2,.nav .has-sub2:focus-within>.sub2{opacity:1;visibility:visible;transform:none}
+@media(max-width:1180px){.nav .sub2{left:auto;right:100%;transform:translateX(-6px)}}
+.sub-toggle{display:none}
+.head .btn{padding:12px 22px}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger i{display:block;width:22px;height:2px;background:var(--paper);margin:5px 0;transition:.3s}
+@media(max-width:980px){
+  .nav,.head .btn{display:none}
+  .burger{display:block}
+  /* The burger opens the same menu as a panel under the header, in the
+     desktop dropdown's style. Sub-menus sit open in two columns, and the
+     panel scrolls if it is taller than the screen. */
+  .head.nav-open .nav{display:flex;flex-direction:column;align-items:stretch;gap:0;
+    position:absolute;left:12px;right:12px;top:100%;margin-top:6px;
+    max-height:calc(100svh - 96px);overflow-y:auto;overscroll-behavior:contain;
+    background:var(--ink);border:1px solid var(--line-d);border-radius:16px;
+    padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55);z-index:90}
+  .head.nav-open .nav>li>a{display:block;padding:11px 12px;border-bottom:0;border-radius:10px}
+  .head.nav-open .nav>li>a.active{background:rgba(228,120,63,.12)}
+  .head.nav-open .nav .sub{position:static;opacity:1;visibility:visible;transform:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:0 6px;min-width:0;background:none;
+    border:0;box-shadow:none;padding:0 0 8px 10px;backdrop-filter:none}
+  .head.nav-open .nav .sub a{white-space:normal;font-size:13.5px;padding:7px 8px}
+  /* towns run full width so each one can carry its own caret, and a town's
+     services stay closed until the caret is tapped: 96 links in an open menu
+     would be unusable on a phone */
+  .head.nav-open .nav .sub-areas{grid-template-columns:1fr}
+  .head.nav-open .nav .sub-areas .has-sub2{display:flex;flex-wrap:wrap;align-items:center}
+  .head.nav-open .nav .sub-areas .has-sub2>a{flex:1 1 auto}
+  .head.nav-open .nav .sub-areas .has-sub2>a::after{content:none}
+  .head.nav-open .sub-toggle{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;
+    background:none;border:1px solid var(--line-d);border-radius:9px;color:var(--body-d);cursor:pointer}
+  .head.nav-open .sub-toggle::before{content:"+";font-size:15px;line-height:1}
+  .head.nav-open .has-sub2.open .sub-toggle::before{content:"\2212"}
+  .head.nav-open .nav .sub2{position:static;opacity:1;visibility:visible;transform:none;display:none;
+    flex:1 1 100%;background:none;border:0;box-shadow:none;backdrop-filter:none;padding:2px 0 8px 12px;
+    list-style:none;min-width:0}
+  .head.nav-open .nav .has-sub2.open>.sub2{display:grid;grid-template-columns:1fr 1fr;gap:0 6px}
+  .head.nav-open .burger i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .head.nav-open .burger i:nth-child(2){opacity:0}
+  .head.nav-open .burger i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+
+/* ---------- hero: THE VIDEO SLOT ---------- */
+.hero{position:relative;min-height:clamp(560px,86svh,860px);display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover}
+/* Placeholder stand-in until the client's hero video lands. Deliberately NOT a
+   stock photograph of someone else's truck: that would imply a build the shop
+   did not do. Swap the whole .ph block for the <video> when the file arrives. */
+.ph{position:absolute;inset:0;background:linear-gradient(158deg,#191D22 0%,#0C0E11 54%,#07080A 100%)}
+.ph::before{content:"";position:absolute;inset:-12%;
+  background:radial-gradient(48% 38% at 24% 44%,rgba(228,120,63,.17),transparent 62%),
+             radial-gradient(44% 50% at 78% 64%,rgba(70,130,215,.2),transparent 66%);
+  animation:drift 21s var(--ease) infinite alternate}
+.ph::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-50%;width:40%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.07) 46%,rgba(255,255,255,.12) 52%,transparent);
+  transform:skewX(-14deg);animation:sweep 9s var(--ease) infinite}
+@keyframes drift{from{transform:scale(1.03)}to{transform:scale(1.1) translate3d(-2%,-1.4%,0)}}
+@keyframes sweep{0%{left:-50%}58%,100%{left:125%}}
+@media (prefers-reduced-motion:reduce){.ph::before,.ph::after{animation:none}}
+.hero-scrim{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,6,7,.94) 0%,rgba(5,6,7,.74) 26%,rgba(5,6,7,.2) 60%,rgba(5,6,7,.52) 100%),
+             radial-gradient(70% 86% at 14% 92%,rgba(0,0,0,.7),transparent 66%)}
+.hero-in{position:relative;z-index:4;width:100%;padding-bottom:clamp(40px,6.5vh,78px);padding-top:120px}
+.hero h1{color:var(--paper);max-width:15ch}
+.hero-lede{color:#DFDAD3;max-width:46ch;margin-top:20px;font-size:clamp(15.5px,1.7vw,18px)}
+.stars{display:flex;align-items:center;gap:10px;font-size:13.5px;color:#DFDAD3;margin-bottom:16px}
+.stars b{color:var(--amber);letter-spacing:2px;font-size:15px}
+.slot-note{position:absolute;top:104px;right:clamp(16px,4vw,32px);z-index:5;
+  background:rgba(11,12,14,.86);border:1px dashed rgba(228,120,63,.65);border-radius:10px;
+  padding:11px 14px;max-width:250px;font-size:11px;line-height:1.55;color:#CFC9C2}
+.slot-note b{display:block;color:var(--amber);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;margin-bottom:6px}
+@media(max-width:900px){.slot-note{display:none}}
+
+/* ---------- centred hero (inner pages) ----------
+   Same video stage as the homepage, but the copy is centred and the section
+   is shorter, so an inner page does not open with a full-height hero. */
+.hero-center{align-items:center;text-align:center;
+  min-height:clamp(420px,62svh,600px)}
+.hero-center .hero-in{padding-top:clamp(96px,12vh,132px);
+  padding-bottom:clamp(34px,5vh,58px)}
+.hero-center h1{max-width:19ch;margin-inline:auto}
+/* Service pages keep the client's live H1 word for word (SEO), and some run
+   past 80 characters. At the standard size those took 5-6 lines on a phone,
+   about 250px of headline, and pushed the buttons below the fold. Headlines
+   over 50 characters drop a size and get a wider measure. */
+.hero-center h1.h1-long{font-size:clamp(28px,4.4vw,54px);max-width:30ch}
+.hero-center .hero-lede{margin-inline:auto;max-width:58ch}
+.hero-center .btn-row,.hero-center .stars{justify-content:center}
+.hero-crumb{display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);margin-bottom:16px}
+.hero-crumb a{color:var(--steel);text-decoration:none;transition:color .25s var(--ease)}
+.hero-crumb a:hover{color:var(--amber)}
+.hero-crumb i{font-style:normal;opacity:.5}
+
+/* STANDING RULE (client, 2026-09-21): every section on every inner page must
+   use a component that already exists on the homepage. The homepage is the
+   basis for all section design. Do not invent new patterns per page. */
+
+/* ---------- about story ----------
+   Text left, one photograph right. The centred column left dead space down
+   both sides; this fills the width and gives the copy something to sit
+   against. The figure is sticky so it stays beside the text while you read. */
+.story-split{display:grid;grid-template-columns:1.12fr .88fr;
+  gap:clamp(26px,4vw,54px);align-items:start;margin-top:clamp(22px,3vw,34px)}
+@media(max-width:900px){.story-split{grid-template-columns:1fr;gap:26px}}
+.story-split .story{max-width:none;margin:0}
+.story-figure{position:sticky;top:104px;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--line-d);background:var(--ink-3);aspect-ratio:4/5}
+.story-figure img{width:100%;height:100%;object-fit:cover;display:block}
+.story-figure figcaption{position:absolute;left:0;right:0;bottom:0;
+  padding:26px 20px 16px;font-size:12px;letter-spacing:.06em;color:var(--body-d);
+  background:linear-gradient(to top,rgba(6,7,9,.92),transparent)}
+/* relative, not static, on phones: an overlaid caption needs the figure as
+   its containing block (static let one escape 7,400px up the page, measured
+   at 390px on the Abita Springs page) */
+@media(max-width:900px){.story-figure{position:relative;top:auto;aspect-ratio:16/10}}
+
+/* ---------- about story (shared) ---------- */
+.story{max-width:74ch;margin-inline:auto}
+.story p{font-size:clamp(15.5px,1.65vw,17.5px);line-height:1.72;margin-bottom:18px}
+.story p:last-child{margin-bottom:0}
+.story .kicker{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);
+  font-weight:600;line-height:1.35}
+.story a{color:var(--amber-ink);text-decoration:none;border-bottom:1px solid rgba(166,78,35,.4);
+  transition:.25s var(--ease)}
+.story a:hover{border-bottom-color:var(--amber-ink)}
+.on-dark .story a{color:var(--amber);border-bottom-color:rgba(228,120,63,.45)}
+.on-dark .story a:hover{border-bottom-color:var(--amber)}
+
+/* ---------- city page: "All About" block ----------
+   The about story split again (with .fit below: the photo follows the
+   text's height; 16:10 on phones), then the town's lists in two balanced
+   columns of plain text. NO caption under the photo (client, 2026-09-22):
+   a photo credit its license requires goes in the footer's small print
+   (.foot-credit). No cards below: the lists run to very different lengths,
+   and equal-height cards would leave empty boxes, the "big space" the
+   client flagged on the service boards. */
+.area-shot img{object-position:58% 50%}
+/* .fit (city pages): the photo takes the height of the text beside it, from
+   320px up to 640px, so short copy never leaves a hole under the text
+   (Covington's overview text ended 208px above its 4:5 photo). Long copy
+   keeps a 640px photo that stays in view while you read. */
+.story-split.fit{align-items:stretch}
+.story-split.fit .story-figure{aspect-ratio:auto;align-self:stretch;min-height:320px;max-height:640px}
+.story-split.fit .story-figure img{position:absolute;inset:0}
+@media(max-width:900px){.story-split.fit .story-figure{aspect-ratio:16/10;min-height:0;max-height:none}}
+/* The three lists flow through two BALANCED columns, newspaper style: a list
+   may carry on at the top of the second column, headings stay with their
+   first item, no item splits. Fixed columns could not balance every town
+   (Covington's best split left 259px of empty column). */
+.area-facts{column-count:2;column-gap:clamp(26px,4vw,54px);
+  margin-top:clamp(30px,4vw,48px);padding-top:clamp(26px,3.4vw,40px);
+  border-top:1px solid var(--line-d)}
+.area-fact+.area-fact{margin-top:clamp(26px,3vw,38px)}
+.area-fact h3{margin-bottom:12px;break-after:avoid}
+.area-fact p{font-size:15.5px;line-height:1.66;margin-bottom:12px}
+.area-fact p,.area-fact li{break-inside:avoid}
+.area-fact p:last-child{margin-bottom:0}
+/* a list never starts a new column away from its heading or lead-in line
+   (Madisonville's "include:" line sat alone at the foot of column one).
+   Short lists may split: keeping them whole left too few break points and
+   Kenner's columns ended 259px apart. */
+.area-fact .q-why{margin-top:14px;break-before:avoid}
+.area-fact .q-why li:last-child{margin-bottom:0}
+@media(max-width:900px){.area-facts{column-count:1}}
+
+/* ---------- trust strip ----------
+   Three figures that count up when the strip scrolls into view, then two
+   OFFER tiles. The offers are styled and behave differently from the facts
+   on purpose: they are the only things here a visitor can act on. */
+.trust{background:var(--ink);padding:clamp(14px,1.8vw,22px) 0;
+  border-top:1px solid var(--line-d);position:relative}
+/* The band and the section under it are both dark, so the edge vanished.
+   A hairline that warms to amber in the middle marks it without shouting. */
+.trust::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14) 14%,
+    rgba(228,120,63,.5) 50%,rgba(255,255,255,.14) 86%,transparent)}
+/* This band is meant to run edge to edge. Leaving it inside the 1220px
+   wrap left a dead strip of background either side, which read as the
+   band being cut short. */
+.trust > .wrap{max-width:none;padding:0 clamp(14px,1.8vw,24px)}
+/* Flex, not grid. Grid leaves the odd tile on the last row sitting in one
+   track with a hole beside it; flex lets that row grow to fill. Five tiles
+   never divide evenly, so this matters at most widths. */
+.trust ul{list-style:none;display:flex;flex-wrap:wrap;gap:clamp(8px,.9vw,12px);background:transparent}
+.trust li{flex:1 1 178px;background:var(--ink-2);text-align:center;display:flex;
+  align-items:center;justify-content:center;border:1px solid var(--line-d);
+  border-radius:var(--r);overflow:hidden;position:relative;
+  transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
+.trust li:hover{background:var(--ink-3);border-color:rgba(255,255,255,.22)}
+.tf{display:block;padding:20px 18px;width:100%}
+.tf b{display:block;font-family:var(--serif);font-size:clamp(26px,3vw,34px);color:var(--amber);
+  font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.tf span{display:block;margin-top:6px;font-size:11.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--body-d)}
+/* On a phone the three figures share one row and the two offers take a full
+   row each, so the band stays three rows instead of five stacked cards. */
+@media(max-width:620px){
+  .trust li{flex:1 1 calc(33.333% - 8px)}
+  .trust li.is-offer{flex:1 1 100%}
+  .tf{padding:16px 8px}
+  .tf span{font-size:10px;letter-spacing:.1em}
+}
+/* offer tiles */
+.trust li.is-offer{background:linear-gradient(180deg,rgba(228,120,63,.13),rgba(228,120,63,.04))}
+.trust li.is-offer:hover{background:linear-gradient(180deg,rgba(228,120,63,.24),rgba(228,120,63,.08));
+  border-color:rgba(228,120,63,.55);transform:translateY(-3px)}
+.to{display:block;padding:18px 16px;text-decoration:none;position:relative;overflow:hidden;width:100%}
+.to i{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 8px;border-radius:50%;
+  background:var(--amber);color:#1A0600;font-style:normal;font-size:16px;font-weight:700;
+  transition:transform .35s var(--ease)}
+.to:hover i{transform:scale(1.12) rotate(-6deg)}
+.to i svg{width:14px;height:14px;fill:currentColor;display:block}
+.to b{display:block;font-family:var(--serif);font-size:clamp(17px,1.8vw,20px);color:var(--paper);
+  font-weight:700;line-height:1.1}
+.to em{display:block;font-style:normal;font-size:12px;color:var(--body-d);margin-top:5px;line-height:1.4}
+.to u{display:inline-block;margin-top:9px;text-decoration:none;font-size:10.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);transition:.3s var(--ease)}
+.to:hover u{letter-spacing:.2em}
+
+/* A slow shine crossing every tile, so the whole band reads as live.
+   Staggered so they do not all flash together, and brighter on the two
+   offer tiles since those are the ones a visitor can act on. */
+.trust li::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.09) 48%,transparent 58%);
+  transform:translateX(-100%);animation:toShine 5.5s var(--ease) infinite}
+.trust li.is-offer::after{
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.14) 48%,transparent 58%)}
+.trust li:nth-child(1)::after{animation-delay:0s}
+.trust li:nth-child(2)::after{animation-delay:.45s}
+.trust li:nth-child(3)::after{animation-delay:.9s}
+.trust li:nth-child(4)::after{animation-delay:1.35s}
+.trust li:nth-child(5)::after{animation-delay:1.8s}
+@keyframes toShine{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.trust li::after{animation:none;opacity:0}}
+
+/* ---------- process: the build tacho ----------
+   Five stages laid out as a rev counter sweeping from idle to redline. The
+   needle points at the active stage, the stage list sits alongside, and the
+   copy is the client's own split across five stages instead of three. */
+.proc{background:var(--ink);color:var(--body-d)}
+.tc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,4vw,56px);
+  align-items:center;margin-top:clamp(30px,4vw,50px)}
+@media(max-width:900px){.tc-grid{grid-template-columns:1fr;gap:30px}}
+.tc-dial{position:relative;max-width:520px;width:100%;margin-inline:auto}
+.tc-svg{display:block;width:100%;height:auto;overflow:visible}
+.tc-arc{fill:none;stroke-width:16;stroke-linecap:butt;opacity:.16;transition:opacity .45s var(--ease)}
+.tc-arc.on{opacity:1;filter:drop-shadow(0 0 8px var(--g))}
+.tc-tick{stroke:rgba(255,255,255,.28);stroke-width:2}
+.tc-numl{fill:var(--steel);font:600 15px/1 var(--sans);letter-spacing:.06em;text-anchor:middle}
+.tc-numl.on{fill:var(--paper);filter:drop-shadow(0 0 6px rgba(255,255,255,.5))}
+.tc-needle{transform-origin:200px 200px;transition:transform .85s cubic-bezier(.34,1.3,.5,1)}
+.tc-needle path{fill:var(--nc,#F7D14A);filter:drop-shadow(0 0 8px var(--nc,#F7D14A));transition:fill .4s var(--ease),filter .4s var(--ease)}
+.tc-needle.revving{transition:transform .15s linear}
+.tc-hub{fill:var(--ink-3);stroke:rgba(255,255,255,.22);stroke-width:2}
+.tc-read{text-align:center;margin-top:2px}
+.tc-read b{display:block;font-family:var(--serif);font-size:clamp(30px,4vw,46px);
+  font-weight:700;color:var(--paper);line-height:1}
+.tc-read span{display:block;font-size:10px;font-weight:600;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--steel);margin-top:6px}
+.tc-redline{fill:#E85C33;font:700 11px/1 var(--sans);letter-spacing:.2em;text-anchor:middle}
+/* stage list */
+.tc-list{display:flex;flex-direction:column;gap:8px}
+.tc-step{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;
+  width:100%;text-align:left;cursor:pointer;background:transparent;
+  border:1px solid transparent;border-radius:14px;padding:14px 16px;
+  color:var(--body-d);font-family:var(--sans);transition:.35s var(--ease)}
+.tc-step:hover{background:rgba(255,255,255,.035);border-color:var(--line-d)}
+.tc-step.on{background:var(--ink-3);border-color:rgba(228,120,63,.4)}
+.tc-step b{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
+  background:rgba(255,255,255,.06);color:var(--steel);font-size:12.5px;font-weight:700;
+  transition:.35s var(--ease)}
+.tc-step.on b{background:var(--amber);color:#1A0600}
+.tc-step h3{font-size:17.5px;color:var(--body-d);margin:0;transition:color .35s var(--ease);
+  font-family:var(--serif);font-weight:600;line-height:1.25}
+.tc-step.on h3{color:var(--paper)}
+.tc-step p{margin:0;max-height:0;overflow:hidden;opacity:0;font-size:15px;line-height:1.6;
+  transition:max-height .5s var(--ease),opacity .4s var(--ease),margin .4s var(--ease)}
+.tc-step.on p{max-height:180px;opacity:1;margin-top:9px}
+.tc-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px;padding-left:16px}
+@media (prefers-reduced-motion:reduce){
+  .tc-needle,.tc-arc,.tc-step,.tc-step p{transition:none}
+}
+
+/* ---------- services: the bay board ----------
+   Not a card grid. A numbered job board on the left, a workshop bay on the
+   right. Picking a job rolls the bay door up over the photograph, the way a
+   shop door opens, and the spec underneath changes with it. The two
+   columns always finish together (see .bay-panel). */
+.bay{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(20px,3vw,44px);
+  align-items:stretch;margin-top:clamp(28px,4vw,46px)}
+@media(max-width:900px){.bay{grid-template-columns:1fr;gap:18px}}
+
+.bay-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.bay-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;
+  width:100%;text-align:left;background:none;cursor:pointer;
+  border:0;border-bottom:1px solid var(--line);padding:15px 4px;
+  font-family:var(--sans);color:var(--body);position:relative;
+  transition:padding .35s var(--ease),color .35s var(--ease)}
+/* the amber bar that grows in from the left on the active job */
+.bay-row::before{content:"";position:absolute;left:-4px;top:0;bottom:0;width:3px;
+  background:var(--amber-ink);transform:scaleY(0);transform-origin:center;
+  transition:transform .4s var(--ease)}
+.bay-row:hover{padding-left:12px;color:var(--ink)}
+a.bay-row{text-decoration:none}
+.bay-row.on{padding-left:14px}
+.bay-row.on::before{transform:scaleY(1)}
+.bay-no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--steel);
+  min-width:26px;transition:color .35s var(--ease);font-variant-numeric:tabular-nums}
+.bay-row.on .bay-no,.bay-row:hover .bay-no{color:var(--amber-ink)}
+.bay-name{font-family:var(--serif);font-size:clamp(16px,1.7vw,19px);font-weight:600;
+  color:var(--ink);line-height:1.2}
+.bay-row.on .bay-name{color:var(--amber-ink)}
+.bay-tick{font-size:15px;color:var(--steel);opacity:0;transform:translateX(-6px);
+  transition:.35s var(--ease)}
+.bay-row.on .bay-tick,.bay-row:hover .bay-tick{opacity:1;transform:none;color:var(--amber-ink)}
+/* Group tag after a bay row's name. Service pages use it for the live H3 a row
+   sits under (Audio / Lighting / Integration), which tells apart three rows
+   that are all called some kind of "Integration". The bay script copies the
+   row name into the panel title, tag and all, so the title carries it too. */
+.bay-grp{font-style:normal;font-family:var(--sans);font-size:9.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--steel);margin-left:10px;
+  vertical-align:middle;white-space:nowrap;transition:color .35s var(--ease)}
+.bay-row.on .bay-grp,.bay-row:hover .bay-grp{color:var(--amber-ink)}
+.bay-meta .bay-grp{font-size:10px;margin-left:12px}
+.bay-row.is-new .bay-name::after{content:"NEW";margin-left:9px;font-family:var(--sans);
+  font-size:9px;font-weight:700;letter-spacing:.14em;vertical-align:middle;
+  color:var(--amber-2);border:1px solid var(--amber-2);border-radius:3px;padding:2px 5px}
+
+/* Short bay variant. With only six jobs the list runs about half the height
+   of the panel and leaves a large hole beneath it. Here the rows stretch to
+   meet the panel and the stage is a little shallower, so the two columns
+   finish together. The homepage keeps its twelve rows and its sticky panel
+   untouched. */
+.bay.bay-short{align-items:stretch}
+.bay.bay-short .bay-panel{position:static}
+.bay.bay-short .bay-stage{aspect-ratio:16/11}
+.bay.bay-short .bay-list{justify-content:stretch}
+.bay.bay-short .bay-row{flex:1 1 auto;min-height:62px}
+
+/* Compact bay, for service pages with only four or five jobs. Stretching four
+   rows to a 680px panel made each row 150px tall, so here the spec moves under
+   the list and the photograph fills the other column instead. */
+.bay.bay-compact .bay-col{display:flex;flex-direction:column}
+.bay.bay-compact .bay-col>.bay-list{flex:0 0 auto}
+.bay.bay-compact .bay-col>.bay-meta{padding:24px 2px 0}
+.bay.bay-compact .bay-stage{aspect-ratio:auto;min-height:340px}
+@media(max-width:900px){
+  .bay.bay-compact .bay-col{display:contents}
+  .bay.bay-compact .bay-list{order:1}
+  .bay.bay-compact .bay-panel{order:2}
+  .bay.bay-compact .bay-meta{order:3;padding-top:2px}
+  .bay.bay-compact .bay-stage{aspect-ratio:4/3;min-height:0}
+}
+
+/* the bay itself */
+/* both columns end together: the panel is a column whose photograph grows
+   to fill any extra height, and the list rows share any extra height */
+.bay-panel{display:flex;flex-direction:column}
+.bay-list>.bay-row{flex:1 1 auto}
+.bay-stage{position:relative;border-radius:var(--r);overflow:hidden;
+  aspect-ratio:4/3;background:var(--ink-3);flex:1 0 auto}
+.bay-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;clip-path:inset(100% 0 0 0);transform:scale(1.06);
+  transition:opacity .55s var(--ease),clip-path .65s var(--ease),transform .9s var(--ease)}
+.bay-img.on{opacity:1;clip-path:inset(0 0 0 0);transform:scale(1)}
+/* the roll-up door: slats that lift away as the job changes */
+.bay-door{position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:repeating-linear-gradient(to bottom,
+    rgba(12,14,17,.96) 0 14px, rgba(24,27,32,.96) 14px 16px);
+  transform:translateY(-101%);transition:transform .6s var(--ease)}
+.bay-door.shut{transform:translateY(0)}
+.bay-meta{padding:20px 2px 0}
+.bay-meta h3{font-size:clamp(20px,2.3vw,26px);margin-bottom:9px;
+  transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.bay-meta p{font-size:15.5px;line-height:1.62;max-width:52ch;
+  transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.bay-meta.swap h3,.bay-meta.swap p{opacity:0;transform:translateY(8px)}
+.bay-cta{margin-top:20px}
+@media (prefers-reduced-motion:reduce){
+  .bay-img,.bay-door,.bay-row,.bay-row::before,.bay-meta h3,.bay-meta p{transition:none}
+  .bay-door{display:none}
+}
+
+/* ---------- builds: collection carousel ----------
+   Pattern taken from the Gunther Werks collection: light ground, the active
+   vehicle centred and full colour, its neighbours scaled back, desaturated
+   and half off-frame, then the model name, spec pills, circular arrows and
+   one outlined CTA underneath. */
+.builds{background:var(--ink);overflow:hidden}
+.bc-head{text-align:center;max-width:none;margin-inline:auto}
+.bc-head .lead,.bc-head p{margin-inline:auto}
+.bc-head h2{letter-spacing:.01em}
+.bc-head .bc-lede{max-width:58ch;margin-inline:auto}
+.bc-stage{position:relative;height:clamp(220px,33vw,430px);
+  margin-top:clamp(26px,4vw,46px)}
+.bc-slide{position:absolute;top:0;left:50%;height:100%;
+  width:min(60%,740px);margin-left:calc(min(60%,740px) / -2);
+  border-radius:var(--r);overflow:hidden;background:var(--ink-3);
+  transition:transform .75s var(--ease),opacity .75s var(--ease),filter .75s var(--ease);
+  will-change:transform,opacity}
+.bc-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.bc-slide.is-active{transform:none;opacity:1;filter:none;z-index:3;
+  box-shadow:0 26px 62px rgba(11,12,14,.2)}
+.bc-slide.is-prev{transform:translateX(-84%) scale(.86);opacity:.5;filter:brightness(.62);z-index:2}
+.bc-slide.is-next{transform:translateX(84%) scale(.86);opacity:.5;filter:brightness(.62);z-index:2}
+.bc-slide.is-far{transform:scale(.72);opacity:0;z-index:1;pointer-events:none}
+.bc-meta{text-align:center;margin-top:clamp(22px,3vw,34px)}
+.bc-name{font-family:var(--serif);font-weight:600;color:var(--paper);line-height:1.05;
+  font-size:clamp(26px,3.6vw,42px);letter-spacing:-.01em}
+.bc-pills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:15px}
+.bc-pill{background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:999px;
+  padding:7px 15px;font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--body-d)}
+.bc-nav{display:flex;gap:11px;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
+.bc-arrow{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.06);border:1px solid var(--line-d);cursor:pointer;color:var(--paper);
+  font:400 18px/1 var(--sans);transition:.3s var(--ease)}
+.bc-arrow:hover{background:var(--amber);border-color:var(--amber);color:#1A0600;transform:translateY(-2px)}
+.bc-arrow:focus-visible{outline:2px solid var(--amber-ink);outline-offset:3px}
+.bc-explore{display:flex;justify-content:center;margin-top:clamp(18px,2.4vw,26px)}
+.bc-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+.bc-dots button{width:7px;height:7px;padding:0;border-radius:50%;cursor:pointer;
+  border:0;background:rgba(255,255,255,.22);transition:.3s var(--ease)}
+.bc-dots button[aria-current="true"]{background:var(--amber);width:20px;border-radius:99px}
+@media(max-width:760px){
+  .bc-slide{width:82%;margin-left:-41%}
+  .bc-slide.is-prev{transform:translateX(-96%) scale(.84)}
+  .bc-slide.is-next{transform:translateX(96%) scale(.84)}
+}
+@media (prefers-reduced-motion:reduce){
+  .bc-slide{transition:none}
+}
+
+/* ---------- reviews: the plate wall ----------
+   Each customer gets a Louisiana plate: state name up top, stars where the
+   registration goes, their parish town stamped across it, bolt holes and all.
+   The card under it carries the quote and what we built. Regional, and it
+   could not belong to any other kind of business. */
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
+  gap:20px;margin-top:clamp(24px,3vw,38px)}
+/* Four reviews read better as a balanced 2x2 than as 3 plus an orphan on a
+   second row, so the dedicated testimonials page caps the grid at two
+   columns. Same variant pattern as .bay.bay-short. */
+@media(min-width:900px){.revs.revs-2{grid-template-columns:repeat(2,1fr)}}
+.rev{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),
+             box-shadow .35s var(--ease)}
+.rev:hover{transform:translateY(-5px);border-color:rgba(228,120,63,.4);
+  box-shadow:0 20px 44px rgba(11,12,14,.45)}
+
+/* the plate */
+.plate{position:relative;border-radius:9px;padding:9px 14px 10px;
+  background:linear-gradient(180deg,#FCFAF6 0%,#F1EDE4 60%,#E4DFD4 100%);
+  border:2px solid #CFC7B8;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.75),0 3px 10px rgba(0,0,0,.45);
+  text-align:center;overflow:hidden}
+/* bolt holes */
+.plate::before,.plate::after{content:"";position:absolute;top:7px;width:7px;height:7px;
+  border-radius:50%;background:radial-gradient(circle at 35% 30%,#9A9285,#5E584E);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.5)}
+.plate::before{left:9px}
+.plate::after{right:9px}
+.plate-state{font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.34em;
+  text-transform:uppercase;color:#9A5A22;line-height:1}
+.plate-num{font-family:var(--serif);font-weight:700;color:#1B242E;line-height:1;
+  font-size:clamp(17px,2vw,21px);letter-spacing:.1em;margin-top:5px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  text-shadow:0 1px 0 rgba(255,255,255,.9)}
+.plate-num em{font-style:normal;color:#B4551E;letter-spacing:1px;font-size:.78em}
+.plate-foot{font-family:var(--sans);font-size:7.5px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:#7C7466;margin-top:5px}
+
+.rev-quote{margin:18px 0 0;font-size:15.5px;line-height:1.68;color:var(--body-d);flex:1 1 auto}
+.rev-who{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-d);
+  display:flex;flex-direction:column;gap:3px}
+.rev-who b{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--paper)}
+.rev-who span{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber)}
+@media (prefers-reduced-motion:reduce){.rev{transition:none}}
+
+/* Blog post card. A variant of the review card above, not a new component:
+   the same .rev shell (ink card, 20px radius, amber hover lift), an image
+   frame on the .bay-stage pattern, and a .bc-pill category tag. Headings
+   default to ink, which vanishes on an ink card, so the title colour is set
+   here explicitly. Same variant approach as .revs-2 and .bay-short. */
+.rev.rev-post{padding:0;overflow:hidden}
+.rev-post .rp-img{aspect-ratio:16/10;overflow:hidden;background:var(--ink-2)}
+.rev-post .rp-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease)}
+.rev-post:hover .rp-img img{transform:scale(1.05)}
+.rev-post .rp-body{padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;
+  align-items:flex-start;gap:12px;flex:1 1 auto}
+.rev-post .bc-pill{padding:6px 13px;font-size:10px;color:var(--amber);
+  border-color:rgba(228,120,63,.35);background:rgba(228,120,63,.08)}
+.rev-post h3{color:var(--paper);font-size:clamp(19px,1.9vw,22px);line-height:1.22}
+.rev-post p{font-size:15px;line-height:1.62;color:var(--body-d)}
+/* Publish date: the review card's footer row (.rev-who) reused, a hairline
+   divider with an amber micro-label under it. margin-top:auto pins it to the
+   bottom of the card, so dates line up across the grid whatever the title
+   length. */
+.rev-post .rp-date{margin-top:auto;width:100%;padding-top:14px;
+  border-top:1px solid var(--line-d);display:flex;align-items:center;gap:8px;
+  font-size:10.5px;line-height:1.3;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+.rev-post .rp-date svg{width:14px;height:14px;flex:0 0 auto;fill:none;
+  stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* A card whose post exists: the title link is stretched over the whole card,
+   so the card is one click target and a screen reader still hears the title.
+   The focus ring is drawn on the stretched layer so it traces the card. */
+.rev-post{position:relative}
+.rev-post h3 a{color:inherit;text-decoration:none}
+.rev-post h3 a::after{content:"";position:absolute;inset:0;z-index:1;border-radius:var(--r)}
+.rev-post h3 a:focus-visible{outline:none}
+.rev-post h3 a:focus-visible::after{outline:2px solid var(--amber);outline-offset:-3px}
+.rev-post .rp-read{margin-left:auto;color:var(--paper);transition:color .3s var(--ease)}
+/* Service pages put the live page's bullet lists inside the cards. */
+.rev-post .q-why{margin:0}
+.rev-post .q-why li{font-size:14.5px;line-height:1.55;margin-bottom:9px;color:var(--body-d)}
+.rev-post .q-why li:last-child{margin-bottom:0}
+.rev-post .q-why b{color:var(--paper);font-weight:600}
+.rev-post:hover .rp-read{color:var(--amber)}
+
+/* ---------- blog post: the model every post follows ----------
+   Built from homepage parts: the hero (a still instead of the video), the bay
+   board's numbered rows as the table of contents, the About page's .story
+   prose, .q-why check lists, the review-card shell for the rail call to
+   action and the blog card for related posts. Long-form text needs a few
+   rules the homepage never had (h2/h3 rhythm, a table); they use the same
+   tokens throughout. */
+.hero-post{min-height:clamp(460px,66svh,640px)}
+/* A photograph is far brighter than the night-time hero video, and the
+   standard scrim is weighted to the bottom-left. Post heroes get a heavier,
+   centre-weighted scrim so the headline, and the amber keyword in particular,
+   stays readable over any image (a red truck behind amber text was the case
+   that caught this). */
+.hero-post .hero-scrim{background:
+  radial-gradient(75% 70% at 50% 52%,rgba(5,6,7,.8) 0%,rgba(5,6,7,.6) 70%,rgba(5,6,7,.66) 100%),
+  linear-gradient(to top,rgba(5,6,7,.9) 0%,rgba(5,6,7,0) 45%)}
+.post-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:10px 14px;margin-top:18px;font-size:11.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:#DFDAD3}
+.post-meta .bc-pill{padding:6px 13px;font-size:10px;color:var(--amber);
+  border-color:rgba(228,120,63,.45);background:rgba(228,120,63,.12)}
+.post-meta i{font-style:normal;opacity:.45}
+
+.art-grid{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);
+  gap:clamp(28px,5vw,72px);align-items:start}
+.art-rail{position:sticky;top:124px}
+@media(max-width:960px){.art-grid{grid-template-columns:minmax(0,1fr)}.art-rail{position:static}}
+.art-rail > .eyeb{margin-bottom:12px}
+.toc a.bay-row{text-decoration:none;padding-top:12px;padding-bottom:12px}
+.toc .bay-name{font-size:15.5px}
+.rail-cta.rev{margin-top:24px;padding:22px}
+.rail-cta h3{color:var(--paper);font-size:20px;margin-bottom:8px}
+.rail-cta p{font-size:14.5px;line-height:1.6;color:var(--body-d);margin-bottom:16px}
+.rail-cta .btn{width:100%;justify-content:center;text-align:center;
+  /* the rail is 280px: at the standard 28px side padding the phone number
+     needed 176px and got 175px, so it broke mid-number. 16px gives 201px. */
+  padding-left:16px;padding-right:16px;white-space:nowrap}
+.rail-cta .btn + .btn{margin-top:10px}
+
+.story.art-body{max-width:72ch;margin:0}
+.art-body h2{font-size:clamp(25px,2.8vw,34px);margin:clamp(34px,4vw,48px) 0 14px}
+.art-body h3{font-size:clamp(19px,2vw,22px);margin:26px 0 10px}
+.art-body .q-why{margin:4px 0 22px}
+.art-body .q-why li{font-size:clamp(15.5px,1.65vw,17px);line-height:1.65}
+.art-body .q-why li::before{border-color:var(--amber-ink)}
+.art-body .q-why b,.art-body p b{color:var(--ink);font-weight:600}
+/* quick answer: the offer tile's amber wash with the bay row's amber bar */
+.art-quick{position:relative;margin:6px 0 30px;padding:20px 22px 20px 28px;
+  border-radius:var(--r);border:1px solid rgba(166,78,35,.22);
+  background:linear-gradient(180deg,rgba(228,120,63,.11),rgba(228,120,63,.04))}
+.art-quick::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;
+  border-radius:3px;background:var(--amber-ink)}
+.art-quick .eyeb{margin-bottom:8px}
+.story .art-quick p{margin:0;color:var(--ink);font-size:clamp(15.5px,1.65vw,17px);line-height:1.66}
+/* cost table */
+.art-table-wrap{margin:10px 0 8px;border-radius:var(--r);border:1px solid var(--line);
+  overflow-x:auto;background:rgba(255,255,255,.55)}
+.art-table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+.art-table th{background:var(--ink);color:var(--paper);text-align:left;padding:13px 16px;
+  font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.art-table td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top}
+.art-table td:first-child{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.art-table td:last-child{font-weight:600;color:var(--amber-ink);white-space:nowrap}
+.story p.art-note{font-size:13px;line-height:1.55;color:var(--steel);margin-bottom:24px}
+/* Phones: at 390px the table measured 378px inside a 357px frame and scrolled
+   sideways. Each row stacks instead: lift type and price on one line, what
+   it raises underneath. The header row is hidden visually but kept for
+   screen readers. */
+@media(max-width:560px){
+  .art-table thead{position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .art-table tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 12px;
+    padding:14px 16px;border-top:1px solid var(--line)}
+  .art-table tbody tr:first-child{border-top:0}
+  .art-table td{padding:0;border-top:0}
+  .art-table td:nth-child(2){grid-column:1 / -1;grid-row:2;font-size:14px}
+}
+/* in-article photograph, on the .story-figure pattern */
+.art-figure{margin:30px 0;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-3)}
+.art-figure img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.art-figure figcaption{padding:12px 18px;font-size:13px;line-height:1.5;color:var(--body-d)}
+@media (prefers-reduced-motion:reduce){.rev-post .rp-img img{transition:none}}
+
+/* ---------- areas: coverage map ----------
+   Layout lifted from the Big Easy Bathrooms homepage (head / map card /
+   numbered side list). The CONTENT is rebuilt for a car shop: BEB ran water
+   through a navy pipe with a drop travelling it. Here the routes are roads
+   with amber lane dashes and a pickup driving them, shot at night, which
+   suits the brand better than a cream daytime map. Lake Pontchartrain, the
+   Mississippi and the parishes are real; pin positions are not to scale. */
+.areas{background:var(--ink-2);color:var(--body-d)}
+.am-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,2.6vw,34px);
+  align-items:stretch;margin-top:0}
+.am-head{grid-column:1/-1;margin-top:0}
+.am-lede{max-width:60ch}
+.am-card{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(14px,1.8vw,20px);overflow:hidden;display:flex;flex-direction:column}
+.am-prompt{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;margin-bottom:12px}
+.am-prompt .eyeb{margin:0}
+.am-prompt strong{font-size:12.5px;font-weight:500;color:var(--steel)}
+.am-stage{position:relative;border-radius:14px;overflow:hidden;background:#0A0C0F;
+  flex:1 1 auto;min-height:260px}
+.am-map{display:block;width:100%;height:100%}
+.am-land{fill:url(#bcTile)}
+.am-water{fill:#101A24}
+.am-waves path{fill:none;stroke:#1D2B39;stroke-width:2;animation:bcWave 9s linear infinite}
+@keyframes bcWave{to{transform:translateX(60px)}}
+.am-river{fill:none;stroke:#141F2B;stroke-width:9;stroke-linecap:round}
+.am-wlabel{fill:#5C6672;font:500 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.am-small{font-size:12.5px}
+.am-home{fill:var(--paper);font-size:16px;letter-spacing:.1em}
+/* road: dark asphalt casing with an amber dashed centre line running along it */
+.am-road{fill:none;stroke:#252A31;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+.am-lane{fill:none;stroke:var(--amber);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:14 20;opacity:.55;animation:bcLane 1.6s linear infinite}
+@keyframes bcLane{to{stroke-dashoffset:-34}}
+.am-dot .am-core{fill:var(--amber);stroke:#0A0C0F;stroke-width:3}
+.am-dot .am-ring{fill:none;stroke:var(--amber);stroke-width:2}
+.am-truck{filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+@media (prefers-reduced-motion:reduce){
+  .am-waves path,.am-lane{animation:none}
+  .am-lane{opacity:.45}
+  .am-map animate,.am-map animateMotion{display:none}
+}
+/* Pins sit over the svg in percentage space so they scale with it.
+   They are numbered DOTS by default and only open their label on hover,
+   focus or when their row is active. Eight labels on a map this size will
+   always collide if they are all open at once; hand-tuning coordinates just
+   moves the collision somewhere else. One label at a time cannot collide. */
+.am-pin{position:absolute;left:var(--px);top:var(--py);
+  transform:translate(-50%,-50%);display:flex;align-items:center;gap:0;
+  text-decoration:none;white-space:nowrap;
+  background:rgba(10,12,15,.9);border:1px solid var(--line-d);border-radius:999px;
+  padding:4px;font-size:12px;font-weight:600;color:var(--paper);
+  backdrop-filter:blur(6px);z-index:2;
+  transition:transform .28s var(--ease),background .28s var(--ease),
+             border-color .28s var(--ease),padding .28s var(--ease)}
+.am-pin b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  background:var(--amber);color:#1A0600;font-size:10px;font-weight:700;flex:0 0 auto}
+.am-pin span{max-width:0;opacity:0;overflow:hidden;
+  transition:max-width .3s var(--ease),opacity .25s var(--ease),margin .3s var(--ease)}
+.am-pin:hover,.am-pin:focus-visible,.am-pin.on{
+  z-index:5;background:var(--amber);border-color:var(--amber);color:#1A0600;
+  padding:4px 12px 4px 4px;transform:translate(-50%,-50%) scale(1.04)}
+.am-pin:hover b,.am-pin:focus-visible b,.am-pin.on b{background:#1A0600;color:var(--amber)}
+.am-pin:hover span,.am-pin:focus-visible span,.am-pin.on span{
+  max-width:170px;opacity:1;margin-left:7px}
+@media(max-width:700px){
+  .am-pin{padding:3px}
+  .am-pin b{width:17px;height:17px;font-size:9px}
+  .am-pin:hover,.am-pin.on{padding:3px 10px 3px 3px}
+}
+/* Below about 340px the stage is small enough that even the dots crowd,
+   so they shrink again. Checked at 280, 320, 390 and 1500. */
+@media(max-width:340px){
+  .am-pin{padding:2px}
+  .am-pin b{width:14px;height:14px;font-size:8px}
+}
+.am-note{display:flex;align-items:center;gap:9px;margin-top:13px;font-size:13px;color:var(--steel)}
+.am-note svg{flex:0 0 auto}
+/* side list */
+.am-side{display:flex;flex-direction:column;gap:16px}
+.am-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.am-row{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--body-d);
+  background:var(--ink-3);border:1px solid var(--line-d);border-radius:13px;
+  padding:12px 15px;transition:.28s var(--ease)}
+.am-row b{display:grid;place-items:center;width:27px;height:27px;border-radius:8px;flex:0 0 auto;
+  background:rgba(228,120,63,.14);color:var(--amber);font-size:11.5px;font-weight:700}
+.am-txt{display:flex;flex-direction:column;line-height:1.25;flex:1 1 auto}
+.am-city{font-size:15px;font-weight:600;color:var(--paper)}
+.am-txt small{font-size:11.5px;color:var(--steel);letter-spacing:.06em}
+.am-row i{font-style:normal;opacity:.4;transition:.28s}
+.am-row:hover,.am-row.on{background:var(--amber);border-color:var(--amber);color:#1A0600}
+.am-row:hover .am-city,.am-row.on .am-city{color:#1A0600}
+.am-row:hover small,.am-row.on small{color:rgba(26,6,0,.72)}
+.am-row:hover b,.am-row.on b{background:#1A0600;color:var(--amber)}
+.am-row:hover i{opacity:1;transform:translateX(3px)}
+.am-cta{display:flex;flex-wrap:wrap;gap:10px}
+.am-cta .btn{flex:1 1 auto}
+@media(max-width:940px){
+  .am-grid{grid-template-columns:1fr}
+}
+
+/* ---------- faq: the dashboard ----------
+   A cluster of warning lights over a driver display. Pick a light and it
+   illuminates amber while the readout below prints the answer. Deliberately
+   not another list-and-panel: the lights sit ABOVE the display, the way a
+   real cluster does, so this section does not repeat the bay board or the
+   coverage map. */
+.fq{background:var(--ink-2)}
+.dash{margin-top:clamp(22px,3vw,34px)}
+.cluster{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+@media(max-width:1080px){.cluster{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:560px){.cluster{grid-template-columns:repeat(4,1fr);gap:7px}}
+/* Service pages set --n (questions) and --n-md (half, rounded up) on the
+   cluster, so 9 or 10 questions sit in one row on desktop and two even rows
+   below 1080px, instead of leaving an orphan. */
+.cluster[style*="--n"]{grid-template-columns:repeat(var(--n),1fr)}
+@media(max-width:1080px){.cluster[style*="--n"]{grid-template-columns:repeat(var(--n-md),1fr)}}
+.tell{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:14px 8px 12px;cursor:pointer;font-family:var(--sans);
+  background:linear-gradient(180deg,#1C2026,#14181D);
+  border:1px solid var(--line-d);border-radius:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+  transition:border-color .3s var(--ease),transform .3s var(--ease),
+             background .3s var(--ease)}
+.tell:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22)}
+.tell svg{width:26px;height:26px;stroke:#5C646E;fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s var(--ease)}
+.tell b{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--steel);text-align:center;line-height:1.25;transition:color .35s var(--ease)}
+/* the lamp, lit */
+.tell.on{border-color:rgba(228,120,63,.6);
+  background:linear-gradient(180deg,rgba(228,120,63,.18),rgba(228,120,63,.05))}
+.tell.on svg{stroke:var(--amber);filter:drop-shadow(0 0 7px rgba(228,120,63,.85))}
+.tell.on b{color:var(--amber)}
+.tell.on::after{content:"";position:absolute;top:7px;right:9px;width:6px;height:6px;
+  border-radius:50%;background:var(--amber);box-shadow:0 0 8px var(--amber);
+  animation:tellBlip 1.9s var(--ease) infinite}
+@keyframes tellBlip{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* the driver display */
+.readout{margin-top:14px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#0C1014,#080B0E);
+  border:1px solid var(--line-d);border-radius:var(--r);
+  padding:clamp(22px,3vw,34px) clamp(20px,3vw,36px);
+  box-shadow:inset 0 0 44px rgba(0,0,0,.7)}
+/* faint scanlines, like a cluster screen */
+.readout::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(255,255,255,.022) 3px 4px)}
+.readout-code{display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.readout-code i{width:7px;height:7px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 8px var(--amber);font-style:normal}
+.readout h3{font-family:var(--serif);font-weight:600;color:var(--paper);
+  font-size:clamp(19px,2.4vw,27px);line-height:1.25;margin-bottom:12px;position:relative}
+.readout p{font-size:15.5px;line-height:1.65;color:var(--body-d);max-width:70ch;
+  margin:0;position:relative}
+/* the swap: text dims and lifts, like a cluster redrawing */
+.readout h3,.readout p{transition:opacity .28s var(--ease),transform .28s var(--ease)}
+.readout.swap h3,.readout.swap p{opacity:0;transform:translateY(7px)}
+@media (prefers-reduced-motion:reduce){
+  .tell,.tell svg,.tell b,.readout h3,.readout p{transition:none}
+  .tell.on::after{animation:none}
+}
+
+/* ---------- quote band ---------- */
+.quote{background:var(--ink);color:var(--body-d);position:relative;overflow:hidden}
+/* Real footage behind the closing band. It reuses the hero file, so it is
+   already in cache and costs no extra download. Heavily scrimmed, because
+   this band has to stay readable, not show off. */
+.q-bg{position:absolute;inset:0;z-index:0}
+.q-bg video{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.05)}
+.quote::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(8,9,10,.95) 0%,rgba(8,9,10,.86) 48%,rgba(8,9,10,.7) 100%),
+             radial-gradient(60% 70% at 78% 30%,rgba(228,120,63,.2),transparent 66%)}
+.q-in{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,5vw,64px);align-items:center}
+@media(max-width:900px){.q-in{grid-template-columns:1fr}}
+.q-form{background:var(--ink-3);border:1px solid var(--line-d);border-radius:var(--r);padding:clamp(26px,3.4vw,38px)}
+.q-form label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--steel);margin:0 0 7px}
+.q-form input,.q-form select{width:100%;background:rgba(255,255,255,.05);
+  border:1px solid var(--line-d);border-radius:11px;padding:14px 15px;margin-bottom:17px;
+  color:var(--paper);font-family:var(--sans);font-size:15.5px;transition:.25s}
+.q-form input:focus,.q-form select:focus{outline:0;border-color:var(--amber);
+  background:rgba(255,255,255,.08)}
+.q-form select option{background:var(--ink-3);color:var(--paper)}
+.q-form .btn{width:100%}
+.q-fine{margin-top:14px;font-size:12.5px;color:var(--steel);text-align:center}
+.q-why{list-style:none;margin-top:26px}
+.q-why li{padding-left:28px;position:relative;margin-bottom:13px;font-size:15.5px}
+.q-why li::before{content:"";position:absolute;left:0;top:9px;width:13px;height:7px;
+  border-left:2px solid var(--amber);border-bottom:2px solid var(--amber);transform:rotate(-45deg)}
+
+/* ---------- footer ---------- */
+.foot{background:#06070A;color:var(--steel);padding:clamp(52px,7vw,80px) 0 0;font-size:14.5px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(26px,4vw,48px)}
+@media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+.foot h4{color:var(--paper);font-family:var(--sans);font-size:11.5px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:17px}
+.foot ul{list-style:none}
+.foot li{margin-bottom:10px}
+.foot a{text-decoration:none;transition:.25s}
+.foot a:hover{color:var(--amber)}
+.foot .brand b{color:var(--paper)}
+/* Follow Us. Six brand marks, hairline-divided like the live footer. Inline
+   SVG rather than the icon font the live site loads, so nothing extra is
+   fetched and the marks stay crisp at any size. */
+.foot-social{margin-top:26px}
+.foot-social ul{display:flex;align-items:center;flex-wrap:wrap;list-style:none;gap:0}
+.foot-social li{margin:0}
+.foot-social li+li{border-left:1px solid rgba(255,255,255,.15)}
+.foot-social a{display:flex;align-items:center;justify-content:center;
+  width:44px;height:38px;border-radius:12px;color:var(--paper);opacity:.82;
+  transition:color .25s,opacity .25s,background .25s,transform .25s}
+.foot-social a:hover,.foot-social a:focus-visible{color:var(--amber);opacity:1;
+  background:rgba(228,120,63,.13);transform:translateY(-2px)}
+.foot-social svg{height:18px;width:auto;fill:currentColor;display:block}
+@media(prefers-reduced-motion:reduce){.foot-social a:hover{transform:none}}
+
+.foot-bot{margin-top:clamp(36px,5vw,56px);border-top:1px solid rgba(255,255,255,.1);
+  padding:22px 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px}
+/* photo credits a license requires, on the pages that use such a photo:
+   small print on a line of its own, never a caption on the photo */
+.foot-credit{flex:1 1 100%;font-size:12px}
+.foot-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.foot-credit a:hover{color:var(--amber)}
+
+/* ---------- floating CTA bar ----------
+   Same pattern as turnkeypooldesigners.com: a pill that slides up once the
+   visitor is past the hero, carrying the primary action and the phone number
+   together. Replaces the old mobile-only Call Now button, and now shows at
+   every width rather than only on phones. */
+.fab-quote{position:fixed;right:16px;bottom:16px;z-index:180;
+  display:flex;align-items:center;gap:2px;
+  background:rgba(10,12,15,.92);backdrop-filter:blur(10px);
+  border:1px solid rgba(228,120,63,.45);border-radius:999px;padding:4px;
+  box-shadow:0 14px 36px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .45s var(--ease),transform .5s var(--ease)}
+.fab-quote.on{opacity:1;transform:none;pointer-events:auto}
+.fab-quote .btn{padding:9px 24px;font-size:11px;letter-spacing:.12em;white-space:nowrap}
+.fab-tel{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.06em;
+  color:var(--paper);text-decoration:none;padding:9px 18px;white-space:nowrap;
+  transition:color .25s var(--ease)}
+.fab-tel:hover{color:var(--amber)}
+@media(max-width:560px){
+  .fab-quote{left:12px;right:12px;bottom:12px;justify-content:center}
+  .fab-quote .btn{padding:11px 14px;font-size:11px}
+  .fab-tel{padding:10px 8px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){.fab-quote{transition:none}}
+
+/* ---------- mobile ---------- */
+@media(max-width:700px){
+  body{font-size:16px}
+  .hero-in{padding-top:88px}
+  .btn{width:100%;padding:15px 20px}
+  .btn-row .btn{width:auto;flex:1 1 auto;min-width:0}
+}
+</style>
+<!-- Structured data. Add the street address once the client supplies it;
+     the live site publishes only "New Orleans". -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Audio & Lighting in Madisonville, LA", "serviceType": "Car audio and lighting installation", "url": "https://www.bigeasycustomcars.com/services-areas/madisonville/audio-lighting/", "provider": {"@type": "AutoRepair", "name": "Big Easy Custom Cars", "url": "https://www.bigeasycustomcars.com/", "telephone": "+1-504-384-8006", "address": {"@type": "PostalAddress", "addressLocality": "New Orleans", "addressRegion": "LA", "addressCountry": "US"}}, "areaServed": {"@type": "City", "name": "Madisonville, LA"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can you add Apple CarPlay or Android Auto to my car?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We integrate Apple CarPlay and Android Auto, along with Bluetooth, satellite radio and streaming, so your phone works through your car's system for calls, voice control and music."}}, {"@type": "Question", "name": "What does a DSP do for my sound system?", "acceptedAnswer": {"@type": "Answer", "text": "A digital signal processor calibrates your system to your vehicle's acoustics. It lets us fine-tune bass, treble and equalization, so the sound suits your car and the way you listen."}}, {"@type": "Question", "name": "Do you install underglow and ambient lighting?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We install LED strip lights, under-glow kits, ambient interior lighting and premium fog lamps. Many setups can be set to your color scheme and controlled from an app."}}, {"@type": "Question", "name": "Do you work on boats and fleet vehicles?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We fit corrosion-resistant audio and lighting for marine use, and practical, durable systems for business fleets, including lighting for night operations."}}]}</script>
+</head>
+<body>
+
+<!-- ============ PROOF RIBBON (Velocity Restorations pattern) ============ -->
+<div class="ribbon">
+  <span><span class="rt">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>4.8</b> &#183; 80+ reviews</span>
+  <span class="sep hide-sm">|</span>
+  <span class="hide-sm">Serving New Orleans &amp; the Northshore</span>
+  <span class="sep hide-sm">|</span>
+  <span><a href="tel:+15043848006">(504) 384-8006</a></span>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="head" id="head">
+  <div class="wrap head-in">
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="Big Easy Custom Cars" fetchpriority="high"></a>
+    <nav><ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="has-sub"><a href="services.html">Services</a><ul class="sub"><li><a href="audio-lighting.html">Audio &amp; Lighting</a></li><li><a href="blackout-packages.html">Blackout Packages</a></li><li><a href="body-kits-modifications.html">Body Kits &amp; Modifications</a></li><li><a href="custom-paint-graphics.html">Custom Paint &amp; Graphics</a></li><li><a href="engine-tuning-performance.html">Engine Tuning &amp; Performance</a></li><li><a href="interior-upholstery.html">Interior Upholstery</a></li><li><a href="lift-kits-suspension.html">Lift Kits &amp; Suspension</a></li><li><a href="lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="off-road-builds.html">Off-Road Builds</a></li><li><a href="restoration-rebuilds.html">Restoration &amp; Rebuilds</a></li><li><a href="wheels-tires.html">Wheels &amp; Tires</a></li><li><a href="window-tinting-detailing.html">Window Tinting &amp; Detailing</a></li></ul></li>
+      <li class="has-sub"><a href="services-areas.html" class="active">Services Areas</a><ul class="sub sub-areas"><li class="has-sub2"><a href="abita-springs.html">Abita Springs</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Abita Springs services"></button><ul class="sub2"><li><a href="abita-springs-blackout-packages.html">Blackout Packages</a></li><li><a href="abita-springs-body-kits-modifications.html">Body Kits</a></li><li><a href="abita-springs-audio-lighting.html">Car Audio</a></li><li><a href="abita-springs-custom-paint-graphics.html">Custom Paint</a></li><li><a href="abita-springs-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="abita-springs-interior-upholstery.html">Interior Upholstery</a></li><li><a href="abita-springs-lift-kits-suspension.html">Lift Kits</a></li><li><a href="abita-springs-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="abita-springs-off-road-builds.html">Off-Road Builds</a></li><li><a href="abita-springs-restoration-rebuilds.html">Restoration</a></li><li><a href="abita-springs-wheels-tires.html">Wheels & Tires</a></li><li><a href="abita-springs-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="covington.html">Covington</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Covington services"></button><ul class="sub2"><li><a href="covington-blackout-packages.html">Blackout Packages</a></li><li><a href="covington-body-kits-modifications.html">Body Kits</a></li><li><a href="covington-audio-lighting.html">Car Audio</a></li><li><a href="covington-custom-paint-graphics.html">Custom Paint</a></li><li><a href="covington-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="covington-interior-upholstery.html">Interior Upholstery</a></li><li><a href="covington-lift-kits-suspension.html">Lift Kits</a></li><li><a href="covington-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="covington-off-road-builds.html">Off-Road Builds</a></li><li><a href="covington-restoration-rebuilds.html">Restoration</a></li><li><a href="covington-wheels-tires.html">Wheels & Tires</a></li><li><a href="covington-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="kenner.html">Kenner</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Kenner services"></button><ul class="sub2"><li><a href="kenner-blackout-packages.html">Blackout Packages</a></li><li><a href="kenner-body-kits-modifications.html">Body Kits</a></li><li><a href="kenner-audio-lighting.html">Car Audio</a></li><li><a href="kenner-custom-paint-graphics.html">Custom Paint</a></li><li><a href="kenner-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="kenner-interior-upholstery.html">Interior Upholstery</a></li><li><a href="kenner-lift-kits-suspension.html">Lift Kits</a></li><li><a href="kenner-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="kenner-off-road-builds.html">Off-Road Builds</a></li><li><a href="kenner-restoration-rebuilds.html">Restoration</a></li><li><a href="kenner-wheels-tires.html">Wheels & Tires</a></li><li><a href="kenner-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="madisonville.html">Madisonville</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Madisonville services"></button><ul class="sub2"><li><a href="madisonville-blackout-packages.html">Blackout Packages</a></li><li><a href="madisonville-body-kits-modifications.html">Body Kits</a></li><li><a href="madisonville-audio-lighting.html">Car Audio</a></li><li><a href="madisonville-custom-paint-graphics.html">Custom Paint</a></li><li><a href="madisonville-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="madisonville-interior-upholstery.html">Interior Upholstery</a></li><li><a href="madisonville-lift-kits-suspension.html">Lift Kits</a></li><li><a href="madisonville-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="madisonville-off-road-builds.html">Off-Road Builds</a></li><li><a href="madisonville-restoration-rebuilds.html">Restoration</a></li><li><a href="madisonville-wheels-tires.html">Wheels & Tires</a></li><li><a href="madisonville-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="mandeville.html">Mandeville</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Mandeville services"></button><ul class="sub2"><li><a href="mandeville-blackout-packages.html">Blackout Packages</a></li><li><a href="mandeville-body-kits-modifications.html">Body Kits</a></li><li><a href="mandeville-audio-lighting.html">Car Audio</a></li><li><a href="mandeville-custom-paint-graphics.html">Custom Paint</a></li><li><a href="mandeville-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="mandeville-interior-upholstery.html">Interior Upholstery</a></li><li><a href="mandeville-lift-kits-suspension.html">Lift Kits</a></li><li><a href="mandeville-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="mandeville-off-road-builds.html">Off-Road Builds</a></li><li><a href="mandeville-restoration-rebuilds.html">Restoration</a></li><li><a href="mandeville-wheels-tires.html">Wheels & Tires</a></li><li><a href="mandeville-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="metairie.html">Metairie</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Metairie services"></button><ul class="sub2"><li><a href="metairie-blackout-packages.html">Blackout Packages</a></li><li><a href="metairie-body-kits-modifications.html">Body Kits</a></li><li><a href="metairie-audio-lighting.html">Car Audio</a></li><li><a href="metairie-custom-paint-graphics.html">Custom Paint</a></li><li><a href="metairie-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="metairie-interior-upholstery.html">Interior Upholstery</a></li><li><a href="metairie-lift-kits-suspension.html">Lift Kits</a></li><li><a href="metairie-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="metairie-off-road-builds.html">Off-Road Builds</a></li><li><a href="metairie-restoration-rebuilds.html">Restoration</a></li><li><a href="metairie-wheels-tires.html">Wheels & Tires</a></li><li><a href="metairie-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="slidell.html">Slidell</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show Slidell services"></button><ul class="sub2"><li><a href="slidell-blackout-packages.html">Blackout Packages</a></li><li><a href="slidell-body-kits-modifications.html">Body Kits</a></li><li><a href="slidell-audio-lighting.html">Car Audio</a></li><li><a href="slidell-custom-paint-graphics.html">Custom Paint</a></li><li><a href="slidell-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="slidell-interior-upholstery.html">Interior Upholstery</a></li><li><a href="slidell-lift-kits-suspension.html">Lift Kits</a></li><li><a href="slidell-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="slidell-off-road-builds.html">Off-Road Builds</a></li><li><a href="slidell-restoration-rebuilds.html">Restoration</a></li><li><a href="slidell-wheels-tires.html">Wheels & Tires</a></li><li><a href="slidell-window-tinting-detailing.html">Window Tinting</a></li></ul></li><li class="has-sub2"><a href="st-rose.html">St. Rose</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show St. Rose services"></button><ul class="sub2"><li><a href="st-rose-blackout-packages.html">Blackout Packages</a></li><li><a href="st-rose-body-kits-modifications.html">Body Kits</a></li><li><a href="st-rose-audio-lighting.html">Car Audio</a></li><li><a href="st-rose-custom-paint-graphics.html">Custom Paint</a></li><li><a href="st-rose-engine-tuning-performance.html">Engine Tuning</a></li><li><a href="st-rose-interior-upholstery.html">Interior Upholstery</a></li><li><a href="st-rose-lift-kits-suspension.html">Lift Kits</a></li><li><a href="st-rose-lighting-upgrades.html">Lighting Upgrades</a></li><li><a href="st-rose-off-road-builds.html">Off-Road Builds</a></li><li><a href="st-rose-restoration-rebuilds.html">Restoration</a></li><li><a href="st-rose-wheels-tires.html">Wheels & Tires</a></li><li><a href="st-rose-window-tinting-detailing.html">Window Tinting</a></li></ul></li></ul></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></nav>
+    <a class="btn btn-p" href="#quote-form">Free Estimate</a>
+    <button class="burger" type="button" aria-label="Open menu"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero hero-center">
+  <div class="hero-media">
+    <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="wrap hero-in">
+    <p class="hero-crumb rv"><a href="index.html">Home</a><i>&#8250;</i><a href="services-areas.html">Services Areas</a><i>&#8250;</i><a href="madisonville.html">Madisonville</a><i>&#8250;</i><span>Car Audio</span></p>
+    <p class="stars rv"><b>&#9733;&#9733;&#9733;&#9733;&#9733;</b> Rated by hundreds of happy customers</p>
+    <h1 class="rv">Audio &amp; Lighting in <span class="kw">Madisonville</span>, LA</h1>
+    <p class="hero-lede rv">Car audio and cabin lighting for Madisonville, built and tuned by <a href="https://www.bigeasycustomcars.com/" target="_blank" rel="noopener">Big Easy Custom Cars</a>.</p>
+    <div class="btn-row rv">
+      <a class="btn btn-p" href="#quote-form">Free Estimate</a>
+      <a class="btn btn-o" href="tel:+15043848006">Call Us (504) 384-8006</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============
+     Every label below is something the live site already claims. Nothing
+     new was invented here. The 4.8 rating and 80+ review count are the
+     live site's own figures. -->
+<section class="trust" aria-label="What Big Easy Custom Cars offers">
+  <div class="wrap">
+    <ul>
+      <li><span class="tf"><b class="tcount" data-to="80" data-suffix="+">0</b><span>Customer Reviews</span></span></li>
+      <li><span class="tf"><b class="tcount" data-to="4.8" data-dp="1">0</b><span>Average Rating</span></span></li>
+      <li><span class="tf"><b class="tcount" data-to="8">0</b><span>Parishes Served</span></span></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9733;</i><b>Free Consultation</b><em>Tell us the build. No obligation, no pressure.</em><u>Book yours &#8594;</u></a></li>
+      <li class="is-offer"><a class="to" href="#quote-form"><i>&#9662;</i><b>Financing Available</b><em>Flexible payment plans. Ask what you qualify for.</em><u>See options &#8594;</u></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="on-dark" id="overview" style="background:var(--ink)">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">Overview</p>
+      <h2>Sound Built Around the Cabin in <span class="kw">Madisonville</span></h2>
+    </div>
+    <div class="story-split fit">
+      <div class="story rv">
+        <p>The Causeway is a twenty-four-mile bridge and Madisonville is about an hour from the city by that route. That is a long stretch of listening, so the system is planned around the cabin it plays in.</p>
+        <p>A system is built around the cabin it plays in. Speakers, amplifiers and subwoofers are chosen for the space, wired properly and tuned once they are in, with ambient lighting run on the same care. Madisonville customers hear it before it is signed off.</p>
+        <p>Every car audio job here starts the same way: we look at the vehicle, agree what it needs, and put a price and a timeline in writing before anything is touched. You get updates while it is with us and the final say on every part that goes on. Madisonville customers book by phone or by sending photographs, and the shop is in New Orleans.</p>
+        <p class="kicker">Tell us what the vehicle needs and we will come back with options, a timeline and a price. <a href="https://www.bigeasycustomcars.com/contact/" target="_blank" rel="noopener">Contact Big Easy Custom Cars</a> to book car audio in Madisonville.</p>
+      </div>
+      <figure class="story-figure rv">
+        <img src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/loudspeaker-close-up-under-colorful-neon-light-mu-2025-03-08-04-49-23-utc.jpg" alt="Close-up of a car speaker cone lit by pink and blue neon" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT WE DO ============
+     The audio-lighting page's own section, copy verbatim; only the heading
+     names the town. -->
+<section id="build">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">What We Install</p>
+      <h2>What We Install in <span class="kw">Madisonville</span></h2>
+      <p>Eleven services in three groups, straight from our service list. Pick one to see it.</p>
+    </div>
+    <div class="bay">
+      <div class="bay-list" id="bayList">
+        <button class="bay-row on" type="button" data-i="0" data-desc="Upgrade your vehicle&#39;s audio system for clearer, crisper sound and deeper bass. We use only high-quality components like speakers, amplifiers, and subwoofers, ensuring a significant improvement in audio performance based on your car&#39;s acoustics." data-new="0">
+          <span class="bay-no">01</span>
+          <span class="bay-name">Premium Sound Systems <em class="bay-grp">Audio</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="1" data-desc="Amplifiers help enhance the system&#39;s volume and clarity, while subwoofers produce powerful, deep bass, adding richness and depth to your music. We carefully choose subwoofers to match your audio needs and vehicle space." data-new="0">
+          <span class="bay-no">02</span>
+          <span class="bay-name">Amplifiers and Subwoofers <em class="bay-grp">Audio</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="2" data-desc="Features like Bluetooth, satellite radio, and streaming compatibility ensure your devices work seamlessly with the system. We provide integration for popular platforms like Apple CarPlay and Android Auto, enhancing usability and connection." data-new="0">
+          <span class="bay-no">03</span>
+          <span class="bay-name">Modern Integration <em class="bay-grp">Audio</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="3" data-desc="Digital Signal Processors (DSPs) are used to precisely calibrate sound quality, ensuring optimal audio performance suited to your vehicle&#39;s unique acoustics. DSPs enable fine-tuning of audio parameters like bass, treble, and equalization to deliver a personalized listening experience." data-new="0">
+          <span class="bay-no">04</span>
+          <span class="bay-name">DSP Processors <em class="bay-grp">Audio</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="4" data-desc="Custom lighting integration options, like Bluetooth-controlled LEDs and ambient lighting, make your car more stylish and functional. These systems can be controlled through apps and are perfect for integrating modern gadgets." data-new="0">
+          <span class="bay-no">05</span>
+          <span class="bay-name">Up-to-Date Integration <em class="bay-grp">Lighting</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="5" data-desc="Our custom lighting options, including LED strip lights, under-glow kits, and premium fog lamps, improve both the aesthetics and functionality of your car. We use high-quality, durable LEDs designed to withstand the elements." data-new="0">
+          <span class="bay-no">06</span>
+          <span class="bay-name">Illumination <em class="bay-grp">Lighting</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="6" data-desc="We offer a range of LED options, including ambient lighting for the interior and distinctive under-glow lighting for the exterior. These lighting systems can be configured to match your preferred color scheme and are energy-efficient." data-new="0">
+          <span class="bay-no">07</span>
+          <span class="bay-name">Glowing Patterns <em class="bay-grp">Lighting</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="7" data-desc="We also provide lighting solutions for marine vehicles and commercial purposes. These products are built to resist corrosion from water and extreme weather conditions while providing bright, reliable illumination." data-new="0">
+          <span class="bay-no">08</span>
+          <span class="bay-name">Marine and Commercial Solutions <em class="bay-grp">Lighting</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="8" data-desc="We install safety features like lane departure warnings, collision-mitigation systems, and backup cameras that help improve driving safety and reduce accident risk. These systems integrate seamlessly with your car&#39;s existing electronics." data-new="0">
+          <span class="bay-no">09</span>
+          <span class="bay-name">Safety Enhancements <em class="bay-grp">Integration</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="9" data-desc="We install multimedia entertainment setups including LCD screens, DVD players, and audio/video input options for a complete in-car entertainment experience. This adds comfort and enjoyment for long trips or for passengers who want entertainment while on the road." data-new="0">
+          <span class="bay-no">10</span>
+          <span class="bay-name">Entertainment Systems <em class="bay-grp">Integration</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+        <button class="bay-row" type="button" data-i="10" data-desc="With hands-free calling, voice controls, and music streaming capabilities, you can stay connected and drive safely. We integrate both Android Auto and Apple CarPlay systems for complete compatibility with your smartphone." data-new="0">
+          <span class="bay-no">11</span>
+          <span class="bay-name">Smartphone Integration <em class="bay-grp">Integration</em></span>
+          <span class="bay-tick" aria-hidden="true">&#8594;</span>
+        </button>
+      </div>
+
+      <div class="bay-panel">
+        <div class="bay-stage">
+          <img class="bay-img on" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/loudspeaker-close-up-under-colorful-neon-light-mu-2025-03-08-04-49-23-utc.jpg" alt="Close-up of a car speaker cone lit by pink and blue neon" loading="lazy">
+          <img class="bay-img" src="assets/svc/svc-audio.jpg" alt="Speaker grille set into a car door panel" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/media-and-navigation-control-buttons-of-a-modern-c-2025-01-10-16-30-22-utc.jpg" alt="Rotary media and navigation controller on a carbon-trimmed center console" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/loudspeaker-close-up-under-colorful-neon-light-mu-2025-03-08-04-49-23-utc.jpg" alt="Close-up of a car speaker cone lit by pink and blue neon" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2026/03/audio-lighting-2-scaled.jpg" alt="Car interior at night lit by purple and blue ambient lighting" loading="lazy">
+          <img class="bay-img" src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy">
+          <img class="bay-img" src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy">
+          <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tires and a light bar" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2026/03/audio-lighting-scaled-1920x388.jpg" alt="Instrument cluster and dash screen lit red at night" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2026/03/audio-lighting-2-scaled.jpg" alt="Car interior at night with the dash screen on" loading="lazy">
+          <img class="bay-img" src="https://www.bigeasycustomcars.com/wp-content/uploads/2025/08/media-and-navigation-control-buttons-of-a-modern-c-2025-01-10-16-30-22-utc.jpg" alt="Rotary media and navigation controller on a carbon-trimmed center console" loading="lazy">
+          <span class="bay-door" id="bayDoor" aria-hidden="true"></span>
+        </div>
+        <div class="bay-meta" id="bayMeta">
+          <h3 id="bayTitle">Premium Sound Systems <em class="bay-grp">Audio</em></h3>
+          <p id="bayDesc">Upgrade your vehicle&#39;s audio system for clearer, crisper sound and deeper bass. We use only high-quality components like speakers, amplifiers, and subwoofers, ensuring a significant improvement in audio performance based on your car&#39;s acoustics.</p>
+          <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Free Estimate</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALL ABOUT MADISONVILLE ============
+     Client brief, after turnkeypoolbuilders.com/service-areas/baton-rouge/.
+     Copy is this town's live "About" block, verbatim, under the client's
+     four headings. Left out: the live "Nearby" list (the map covers the
+     neighbors) and the link lists the map and services board replace.
+     Notable Residents checked against each person's own Wikipedia article.
+     Photo: Wikimedia Commons. No caption (client); the credit its license
+     requires is in the footer's small print. -->
+<section class="on-dark" id="about-city" style="background:var(--ink)">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">The Area</p>
+      <h2>All About <span class="kw">Madisonville, LA</span></h2>
+    </div>
+    <div class="story-split fit">
+      <div class="story rv">
+        <p>Madisonville is a historic town in St. Tammany Parish, Louisiana, located on the west bank of the Tchefuncte River at its confluence with Lake Pontchartrain. The town sits approximately 40 miles north of New Orleans.</p>
+        <p>As the oldest permanent settlement in St. Tammany Parish, Madisonville maintains its small-town charm while serving as a destination for maritime heritage and waterfront dining. French settlers arrived in the area in 1773 and called it &#8220;Coquille&#8221; (French for shells). The town was formally established by Jean Baptiste Baham in 1783 and renamed in 1811 to honor President James Madison.</p>
+        <h3 style="margin-top:26px">Interesting Facts About Madisonville</h3>
+        <ul class="q-why">
+          <li><b>Pony Express Terminus:</b> Southern end of the pony express route. Mail traveled by horseback to Post Oak, then by schooner to New Orleans.</li>
+          <li><b>Shipbuilding Heritage:</b> The Jahncke Shipyard built U.S. Navy vessels during World War I, employing over 2,200 workers at its peak.</li>
+        </ul>
+      </div>
+      <figure class="story-figure area-shot rv">
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Madisonville_Town_Hall_Museum.jpg/1280px-Madisonville_Town_Hall_Museum.jpg" alt="The brick Madisonville Town Hall Museum under live oaks" loading="lazy" style="object-position:60% 50%">
+      </figure>
+    </div>
+    <div class="area-facts rv">
+      <div class="area-fact">
+        <h3>Things To Do in Madisonville</h3>
+        <ul class="q-why">
+          <li><b>Lake Pontchartrain Basin Maritime Museum:</b> Regional maritime history exhibits and host of the annual Wooden Boat Festival each fall.</li>
+          <li><b>Tchefuncte River Lighthouse:</b> Built in 1837 and listed on the National Register of Historic Places. Accessible only by boat.</li>
+          <li><b>Marina del Ray:</b> The largest marina in Louisiana, offering boating access to the Tchefuncte River and Lake Pontchartrain.</li>
+          <li><b>Cruisin&#39; On the River Car Show:</b> Annual car show drawing automotive enthusiasts to Madisonville&#39;s riverfront.</li>
+          <li><b>Fontainebleau State Park:</b> Nearby park with hiking trails, cabins, campgrounds, and Lake Pontchartrain shoreline access.</li>
+        </ul>
+      </div>
+      <div class="area-fact">
+        <h3>Notable Residents of Madisonville</h3>
+        <p>Residents born or raised in Madisonville include:</p>
+        <ul class="q-why">
+          <li><b>Leah Chase (1923&#8211;2019):</b> Chef, born and raised in Madisonville.</li>
+          <li><b>Ernie &#8220;Cag&#8221; Cagnolatti (1911&#8211;1983):</b> Trumpeter, born in Madisonville.</li>
+          <li><b>Irv Stein (1911&#8211;1981):</b> Pitcher for the Philadelphia Athletics in 1932, born in Madisonville.</li>
+        </ul>
+      </div>
+      <div class="area-fact">
+        <h3>Public Transportation in Madisonville</h3>
+        <ul class="q-why">
+          <li><b>Personal Vehicles:</b> Most residents rely on personal vehicles. The town is accessible via Highway 22 and Highway 21.</li>
+          <li><b>Lake Pontchartrain Causeway:</b> 24-mile toll bridge connecting to Metairie and New Orleans, approximately one hour away.</li>
+          <li><b>Louis Armstrong New Orleans International Airport:</b> Nearest major airport, located in Kenner, approximately 45 minutes to one hour from Madisonville.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OTHER SERVICES IN MADISONVILLE ============
+     The homepage board minus this page's own service, every row named
+     "<Service> in Madisonville" and pointing at that town's page for the service
+     where one exists. -->
+<section id="more-services">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">More in Madisonville</p>
+      <h2>Our Other <span class="kw">Services in Madisonville</span></h2>
+      <p>Muscle cars, luxury builds, lifted trucks and trail rigs. Paint, upholstery, audio, tint, tuning and full rebuilds, fitted by people who grew up wrenching.</p>
+    </div>
+    <div class="bay">
+      <div class="bay-list" id="moreList">
+          <a class="bay-row on" href="madisonville-engine-tuning-performance.html" data-i="0" data-desc="Power, throttle response and drivability, tuned and tested before the keys go back." data-new="0">
+            <span class="bay-no">01</span>
+            <span class="bay-name">Engine Tuning &amp; Performance in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-lighting-upgrades.html" data-i="1" data-desc="Halos, light bars, smoked lenses and custom wiring, done clean and sealed properly." data-new="0">
+            <span class="bay-no">02</span>
+            <span class="bay-name">Lighting Upgrades in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-custom-paint-graphics.html" data-i="2" data-desc="Color-matched trim, full respray, stripes and graphics with a finish that holds up." data-new="0">
+            <span class="bay-no">03</span>
+            <span class="bay-name">Custom Paint &amp; Graphics in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-interior-upholstery.html" data-i="3" data-desc="Seats, trim and full interior rebuilds in the material and stitch you pick." data-new="0">
+            <span class="bay-no">04</span>
+            <span class="bay-name">Interior Upholstery in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-window-tinting-detailing.html" data-i="4" data-desc="Tint that lasts and a finish-level detail, inside and out." data-new="0">
+            <span class="bay-no">05</span>
+            <span class="bay-name">Window Tinting &amp; Detailing in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-body-kits-modifications.html" data-i="5" data-desc="Steel bumpers, power steps, fender work and full body modifications." data-new="0">
+            <span class="bay-no">06</span>
+            <span class="bay-name">Body Kits &amp; Modifications in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row" href="madisonville-restoration-rebuilds.html" data-i="6" data-desc="Full rebuilds from the frame up, planned stage by stage with you." data-new="0">
+            <span class="bay-no">07</span>
+            <span class="bay-name">Restoration &amp; Rebuilds in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row is-new" href="madisonville-lift-kits-suspension.html" data-i="7" data-desc="FOX, BDS and Rough Country kits, set up for ride height and ride quality together." data-new="1">
+            <span class="bay-no">08</span>
+            <span class="bay-name">Lift Kits &amp; Suspension in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row is-new" href="madisonville-wheels-tires.html" data-i="8" data-desc="Fuel Off-Road wheels and Toyo tires, sized for the offset and stance you want." data-new="1">
+            <span class="bay-no">09</span>
+            <span class="bay-name">Wheels &amp; Tires in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row is-new" href="madisonville-off-road-builds.html" data-i="9" data-desc="Trail rigs with max clearance and armor, built for where you actually drive." data-new="1">
+            <span class="bay-no">10</span>
+            <span class="bay-name">Off-Road Builds in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+          <a class="bay-row is-new" href="madisonville-blackout-packages.html" data-i="10" data-desc="Blacked-out trim, smoked lenses and color-matched details, done as one package." data-new="1">
+            <span class="bay-no">11</span>
+            <span class="bay-name">Blackout Packages in Madisonville</span>
+            <span class="bay-tick" aria-hidden="true">&#8594;</span>
+          </a>
+      </div>
+
+      <div class="bay-panel">
+        <div class="bay-stage">
+            <img class="bay-img on" src="assets/svc/svc-engine.jpg" alt="Modified engine bay with a gold valve cover and braided lines" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-muscle.jpg" alt="Muscle car with amber halo headlights lit" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-graphics.jpg" alt="Grey coupe with red and black racing stripes" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-interior.jpg" alt="Pleated tan leather bench seat in raking light" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-luxury.jpg" alt="Matte black car on a wet street at night" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-bodykit.jpg" alt="Stripped car shell in a workshop during body work" loading="lazy">
+            <img class="bay-img" src="assets/svc/svc-restoration.jpg" alt="Bare metal classic car body on stands in a restoration shop" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-suspension.jpg" alt="Coilover and forged wheel on a lifted truck" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-offroad.jpg" alt="Lifted truck on bronze off-road wheels" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-trail.jpg" alt="Lifted trail truck with off-road tires and a light bar" loading="lazy">
+            <img class="bay-img" src="assets/builds/build-blackout.jpg" alt="Blacked-out lifted pickup truck" loading="lazy">
+          <span class="bay-door" id="moreDoor" aria-hidden="true"></span>
+        </div>
+        <div class="bay-meta" id="moreMeta">
+          <h3 id="moreTitle">Engine Tuning &amp; Performance in Madisonville</h3>
+          <p id="moreDesc">Power, throttle response and drivability, tuned and tested before the keys go back.</p>
+          <div class="bay-cta"><a class="btn btn-p" href="#quote-form">Free Estimate</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE WE WORK ============
+     The homepage coverage map WITHOUT this page's own town (client
+     brief). Heading and lede are this town's live copy. Each row and pin
+     opens that town's page on the LIVE site; the pins are skipped by Tab
+     because the rows carry the same links. -->
+<section class="areas on-dark" id="areas">
+  <div class="wrap">
+    <div class="am-grid">
+      <div class="lead am-head rv">
+        <p class="eyeb">Where We Work</p>
+        <h2>Also Serving Communities <span class="kw">Near Madisonville</span></h2>
+        <p class="am-lede">Big Easy Custom Cars is proud to serve drivers throughout St. Tammany Parish and the Greater New Orleans area. If you live in any of the following communities, we are ready to help with your custom build.</p>
+      </div>
+
+      <div class="am-card rv">
+        <div class="am-prompt"><span class="eyeb">Coverage map</span><strong>Tap a city to open its page</strong></div>
+        <div class="am-stage">
+          <svg class="am-map" viewBox="0 0 1000 640" aria-hidden="true" focusable="false">
+            <defs>
+              <pattern id="bcTile" width="34" height="34" patternUnits="userSpaceOnUse">
+                <rect width="34" height="34" fill="#12151A"></rect>
+                <path d="M0 34V0H34" fill="none" stroke="#181C22" stroke-width="2"></path>
+              </pattern>
+              <clipPath id="bcClip"><rect x="-200" y="-200" width="1400" height="1040"></rect></clipPath>
+              <clipPath id="bcLake"><ellipse cx="560" cy="330" rx="290" ry="88"></ellipse></clipPath>
+            </defs>
+            <g clip-path="url(#bcClip)">
+              <rect class="am-land" x="-200" y="-200" width="1400" height="1040"></rect>
+
+              <!-- Lake Pontchartrain, with wave lines drifting across it -->
+              <ellipse class="am-water" cx="560" cy="330" rx="290" ry="88"></ellipse>
+              <g class="am-waves" clip-path="url(#bcLake)">
+                <path d="M 220 306 q 15 -6 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0"></path>
+                <path d="M 220 331 q 15 -7 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" style="animation-delay:-3s"></path>
+                <path d="M 220 356 q 15 -6 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0 t 30 0" style="animation-delay:-6s"></path>
+              </g>
+              <text class="am-wlabel" x="655" y="336">Lake Pontchartrain</text>
+
+              <!-- the river, south of the city -->
+              <path class="am-river" d="M -10 505 C 150 480 300 565 460 548 C 560 537 600 512 660 528 C 740 550 830 605 1010 565"></path>
+              <text class="am-wlabel am-small" x="250" y="592">Mississippi River</text>
+              <path class="am-water" d="M -200 1040 L -200 606 Q 500 646 1200 606 L 1200 1040 Z" opacity=".7"></path>
+
+              <!-- roads. Main run: St. Rose through Kenner and Metairie, over
+                   the causeway to Mandeville, on to Covington and Abita Springs.
+                   Branches east to Slidell and west to Madisonville.
+                   This page's own town, Madisonville, is left off the map (client brief);
+                   the road leg that only led to it is cut too. -->
+              <path class="am-road" d="M 238 488 L 375 452 L 512 478 L 542 222 L 428 102 L 655 104"></path>
+              <path class="am-road" d="M 512 478 L 640 485 L 860 266"></path>
+              <path id="bcRoute" class="am-lane" d="M 238 488 L 375 452 L 512 478 L 542 222 L 428 102 L 655 104"></path>
+              <path class="am-lane" d="M 512 478 L 640 485 L 860 266" style="animation-delay:-.6s"></path>
+
+              <!-- markers: a pulse ring, then the core -->
+              <g class="am-dot" transform="translate(655 104)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="0s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="0s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(428 102)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin=".35s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(542 222)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.05s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(860 266)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(512 478)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="1.75s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(375 452)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="2.1s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="2.1s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+              <g class="am-dot" transform="translate(238 488)"><circle class="am-ring" r="9"><animate attributeName="r" values="9;30" dur="2.8s" begin="2.45s" repeatCount="indefinite"></animate><animate attributeName="opacity" values=".65;0" dur="2.8s" begin="2.45s" repeatCount="indefinite"></animate></circle><circle class="am-core" r="8"></circle></g>
+
+              <!-- New Orleans, where every build starts -->
+              <g transform="translate(640 485)"><circle r="7" fill="#F7F5F2" stroke="#0A0C0F" stroke-width="3"></circle><text class="am-wlabel am-home" x="16" y="6">New Orleans</text></g>
+
+              <!-- a lifted pickup drives the main route, out and back -->
+              <g class="am-truck">
+                <g transform="scale(1.15)">
+                  <path d="M -21 3 L -21 -3 L -13 -3 L -9 -10 L 1 -10 L 3 -3 L 21 -3 L 21 3 Z" fill="#E4783F" stroke="#0A0C0F" stroke-width="1.4" stroke-linejoin="round"></path>
+                  <path d="M -11.5 -4 L -8.5 -8.5 L 0 -8.5 L 1.4 -4 Z" fill="#0A0C0F" opacity=".55"></path>
+                  <circle cx="-12" cy="4" r="4.4" fill="#15181C" stroke="#3A4048" stroke-width="1.6"></circle>
+                  <circle cx="13" cy="4" r="4.4" fill="#15181C" stroke="#3A4048" stroke-width="1.6"></circle>
+                  <path d="M 21 -1 L 30 -4 L 30 2 Z" fill="#FFD9B0" opacity=".55"></path>
+                </g>
+                <animateMotion dur="22s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="linear" rotate="auto"><mpath href="#bcRoute"></mpath></animateMotion>
+              </g>
+            </g>
+          </svg>
+
+          <a class="am-pin am-r" style="--px:65.5000%;--py:18.7500%" data-x="655" data-y="104" href="https://www.bigeasycustomcars.com/services-areas/abita-springs/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>01</b><span>Abita Springs</span></a>
+          <a class="am-pin" style="--px:42.8000%;--py:17.1875%" data-x="428" data-y="102" href="https://www.bigeasycustomcars.com/services-areas/covington/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>02</b><span>Covington</span></a>
+          <a class="am-pin am-r" style="--px:54.2000%;--py:34.6875%" data-x="542" data-y="222" href="https://www.bigeasycustomcars.com/services-areas/mandeville/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>03</b><span>Mandeville</span></a>
+          <a class="am-pin am-r" style="--px:86.0000%;--py:41.5625%" data-x="860" data-y="266" href="https://www.bigeasycustomcars.com/services-areas/slidell/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>04</b><span>Slidell</span></a>
+          <a class="am-pin am-l" style="--px:51.2000%;--py:0%" data-x="512" data-y="478" href="https://www.bigeasycustomcars.com/services-areas/metairie/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>05</b><span>Metairie</span></a>
+          <a class="am-pin am-b" style="--px:37.5000%;--py:0%" data-x="375" data-y="452" href="https://www.bigeasycustomcars.com/services-areas/kenner/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>06</b><span>Kenner</span></a>
+          <a class="am-pin am-l" style="--px:23.8000%;--py:0%" data-x="238" data-y="488" href="https://www.bigeasycustomcars.com/services-areas/st-rose/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><b>07</b><span>St. Rose</span></a>
+        </div>
+        <p class="am-note"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8" fill="none" stroke="#E4783F" stroke-width="2"></circle><path d="M6 10.5 L9 13.5 L14.5 7" fill="none" stroke="#E4783F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Free consultation in every area we serve.</p>
+      </div>
+
+      <div class="am-side rv">
+        <ol class="am-list" aria-label="Service areas">
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/abita-springs/" target="_blank" rel="noopener"><b>01</b><span class="am-txt"><span class="am-city">Abita Springs</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/covington/" target="_blank" rel="noopener"><b>02</b><span class="am-txt"><span class="am-city">Covington</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/mandeville/" target="_blank" rel="noopener"><b>03</b><span class="am-txt"><span class="am-city">Mandeville</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/slidell/" target="_blank" rel="noopener"><b>04</b><span class="am-txt"><span class="am-city">Slidell</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/metairie/" target="_blank" rel="noopener"><b>05</b><span class="am-txt"><span class="am-city">Metairie</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/kenner/" target="_blank" rel="noopener"><b>06</b><span class="am-txt"><span class="am-city">Kenner</span></span><i aria-hidden="true">&rarr;</i></a></li>
+          <li><a class="am-row" href="https://www.bigeasycustomcars.com/services-areas/st-rose/" target="_blank" rel="noopener"><b>07</b><span class="am-txt"><span class="am-city">St. Rose</span></span><i aria-hidden="true">&rarr;</i></a></li>
+        </ol>
+        <div class="am-cta">
+          <a class="btn btn-p" href="#quote-form">Free Estimate</a>
+          <a class="btn btn-o" href="tel:+15043848006">Call (504) 384-8006</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============
+     The live city pages show no reviews of their own: only the heading
+     "What Our Customers Have To Say!" and a View All Reviews button.
+     These three are the client's own testimonials (the slider on the live
+     service pages), verbatim, chosen for nearby towns: Kevin T., Kenner; Ashley M., Mandeville; Monique R., Covington. -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">Testimonials</p>
+      <h2>What Our Customers <span class="kw">Have To Say</span></h2>
+    </div>
+    <div class="revs">
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>KENNER</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">I added a new audio system and custom lighting, and the setup is exactly what I was hoping for. Clean installation, no messy wires, and the sound quality is a huge upgrade. The lighting gives it that extra touch without being too flashy.</p>
+        <p class="rev-who"><b>Kevin T.</b><span>Audio &#183; Custom Lighting</span></p>
+      </article>
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>MANDEVILLE</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">I decided to add a body kit and a few exterior modifications just to give my car a more aggressive look. The install was solid, and everything lines up perfectly. It looks factory, not thrown together.</p>
+        <p class="rev-who"><b>Ashley M.</b><span>Body Kit &#183; Exterior Mods</span></p>
+      </article>
+      <article class="rev rv">
+        <div class="plate" aria-hidden="true">
+          <div class="plate-state">Louisiana</div>
+          <div class="plate-num"><em>&#9733;&#9733;&#9733;&#9733;&#9733;</em>COVINGTON</div>
+          <div class="plate-foot">Sportsman&#39;s Paradise</div>
+        </div>
+        <p class="rev-quote">I worked with Big Easy Custom Cars on a full interior upholstery upgrade, and they really delivered. The stitching, the material, the fit, everything looks clean and professionally done. It completely changed the feel of the car.</p>
+        <p class="rev-who"><b>Monique R.</b><span>Interior &#183; Upholstery</span></p>
+      </article>
+    </div>
+    <div class="btn-row rv" style="justify-content:center;margin-top:clamp(24px,3vw,36px)"><a class="btn btn-s" href="testimonials.html">View All Reviews</a></div>
+  </div>
+</section>
+
+
+
+<!-- ============ FAQ ============
+     The service page's own FAQ, questions and answers verbatim, cut to
+     its first 4. -->
+<section class="fq on-dark" id="faqs">
+  <div class="wrap">
+    <div class="lead rv">
+      <p class="eyeb">Questions</p>
+      <h2>Frequently Asked Questions About <span class="kw">Car Audio and Lighting</span></h2>
+      <p>Can&#39;t see your question here? <a href="https://www.bigeasycustomcars.com/contact/" target="_blank" rel="noopener">Contact us today</a> and ask the shop directly.</p>
+    </div>
+    <div class="dash">
+      <div class="cluster" style="--n:4;--n-md:2" role="group" aria-label="Choose a question">
+        <button class="tell on" type="button" data-i="0" data-q="Can you add Apple CarPlay or Android Auto to my car?" data-a="Yes. We integrate Apple CarPlay and Android Auto, along with Bluetooth, satellite radio and streaming, so your phone works through your car&#39;s system for calls, voice control and music." aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.2"/><path d="M11 17.5h2"/></svg>
+          <b>CarPlay</b>
+        </button>
+        <button class="tell" type="button" data-i="1" data-q="What does a DSP do for my sound system?" data-a="A digital signal processor calibrates your system to your vehicle&#39;s acoustics. It lets us fine-tune bass, treble and equalization, so the sound suits your car and the way you listen." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v8M6 16v4M12 4v2M12 10v10M18 4v9.5M18 17.5V20"/><circle cx="6" cy="14" r="2"/><circle cx="12" cy="8" r="2"/><circle cx="18" cy="15.5" r="2"/></svg>
+          <b>DSP</b>
+        </button>
+        <button class="tell" type="button" data-i="2" data-q="Do you install underglow and ambient lighting?" data-a="Yes. We install LED strip lights, under-glow kits, ambient interior lighting and premium fog lamps. Many setups can be set to your color scheme and controlled from an app." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.2 16.5a5.8 5.8 0 1 1 5.6 0"/><path d="M10 19h4"/><path d="M10.5 21.5h3"/></svg>
+          <b>Lighting</b>
+        </button>
+        <button class="tell" type="button" data-i="3" data-q="Do you work on boats and fleet vehicles?" data-a="Yes. We fit corrosion-resistant audio and lighting for marine use, and practical, durable systems for business fleets, including lighting for night operations." aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 15.5h17l-2.3 4H5.8z"/><path d="M12 4v11.5"/><path d="M12 5l6 8.5h-6"/></svg>
+          <b>Marine</b>
+        </button>
+                      </div>
+      <div class="readout" id="readout">
+        <p class="readout-code"><i></i><span id="roCode">Question 01 of 04</span></p>
+        <h3 id="roQ">Can you add Apple CarPlay or Android Auto to my car?</h3>
+        <p id="roA">Yes. We integrate Apple CarPlay and Android Auto, along with Bluetooth, satellite radio and streaming, so your phone works through your car&#39;s system for calls, voice control and music.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE BAND ============
+     Carries id="quote-form": the target of every estimate button on the page.
+     Three fields only. The live site's hero form is a GoHighLevel iframe
+     asking for Country and Postal Code, which is friction with no purpose
+     for a New Orleans walk-in customer. See CURRENT-SITE-AUDIT.md. -->
+<section class="quote on-dark" id="quote-form">
+  <div class="q-bg" aria-hidden="true">
+    <video id="quoteVid" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap q-in">
+    <div class="rv">
+      <p class="eyeb">Free Consultation</p>
+      <h2>Start Your Audio Build in <span class="kw">Madisonville</span></h2>
+      <p>At Big Easy Custom Cars, we&#39;re proud to be the top choice for car audio and lighting in New Orleans. Our expert team is dedicated to delivering quality service and craftsmanship to make your vehicle truly shine.</p>
+      <ul class="q-why">
+        <li>Free consultation and no-obligation quote</li>
+        <li>Financing available, ask about payment plans</li>
+        <li>Updates and photos as your build moves</li>
+        <li>Final say on every part that goes on</li>
+      </ul>
+      <div class="btn-row"><a class="btn btn-o" href="tel:+15043848006">Call (504) 384-8006</a></div>
+    </div>
+
+    <form class="q-form rv" onsubmit="return false">
+      <label for="qn">Your name</label>
+      <input id="qn" type="text" placeholder="First and last name" autocomplete="name">
+      <label for="qp">Phone</label>
+      <input id="qp" type="tel" placeholder="(504) 000-0000" autocomplete="tel">
+      <label for="qb">What do you want built?</label>
+      <select id="qb">
+        <option>Custom car build</option>
+        <option>Lifted truck or SUV build</option>
+        <option>Lift kit and suspension</option>
+        <option>Wheels and tires</option>
+        <option>Off-road build</option>
+        <option>Blackout package</option>
+        <option>Engine tuning or performance</option>
+        <option>Paint or graphics</option>
+        <option>Body kit or modifications</option>
+        <option selected>Interior or audio</option>
+        <option>Lighting upgrade</option>
+        <option>Window tint or detailing</option>
+        <option>Restoration or rebuild</option>
+        <option>Something else</option>
+      </select>
+      <button class="btn btn-p" type="submit">Get My Free Estimate</button>
+      <p class="q-fine">Mockup only, this form does not submit.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/ftr-logo.png" alt="Big Easy Custom Cars" loading="lazy" style="height:84px"></a>
+        <p style="margin-top:16px;max-width:34ch">Born in New Orleans. We build cars, trucks and SUVs that stand out and stay strong.</p>
+        <p style="margin-top:16px"><a href="tel:+15043848006"><b style="color:var(--amber);font-size:19px">(504) 384-8006</b></a></p>
+        <div class="foot-social">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="https://www.facebook.com/bigeasycustomcars" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 320 512" role="img" aria-hidden="true" focusable="false"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a></li>
+            <li><a href="https://x.com/becustomcars" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/company/big-easy-custom-cars/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+            <li><a href="https://www.instagram.com/bigeasycustomcars/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 0 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@BigEasyCustomCars" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@bigeasycustomcars" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#builds">Builds</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#process">Process</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="engine-tuning-performance.html">Engine Tuning</a></li>
+          <li><a href="custom-paint-graphics.html">Custom Paint</a></li>
+          <li><a href="body-kits-modifications.html">Body Kits</a></li>
+          <li><a href="interior-upholstery.html">Interior Upholstery</a></li>
+          <li><a href="window-tinting-detailing.html">Window Tinting</a></li>
+          <li><a href="restoration-rebuilds.html">Restoration</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="abita-springs.html">Abita Springs</a></li>
+          <li><a href="covington.html">Covington</a></li>
+          <li><a href="kenner.html">Kenner</a></li>
+          <li><a href="madisonville.html">Madisonville</a></li>
+          <li><a href="mandeville.html">Mandeville</a></li>
+          <li><a href="metairie.html">Metairie</a></li>
+          <li><a href="slidell.html">Slidell</a></li>
+          <li><a href="st-rose.html">St. Rose</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>&#169; 2026 Big Easy Custom Cars. Mockup, not a live page.</span>
+      <span>Terms and Conditions &#183; Privacy Policy</span>
+      <span class="foot-credit">Town Hall Museum photo: <a href="https://commons.wikimedia.org/wiki/File:Madisonville_Town_Hall_Museum.jpg" target="_blank" rel="noopener">Arelby3M</a> via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, cropped.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="fab-quote" id="fabQuote">
+  <a class="btn btn-p" href="#quote-form">Start Your Build <span aria-hidden="true">&rarr;</span></a>
+  <a class="fab-tel" href="tel:+15043848006">(504) 384-8006</a>
+</div>
+
+<script>
+/* Floating CTA bar: slides up once the visitor is past the hero. */
+var fabQ=document.getElementById('fabQuote');
+if(fabQ){
+  var fabCheck=function(){fabQ.classList.toggle('on',window.scrollY>700);};
+  addEventListener('scroll',fabCheck,{passive:true});
+  fabCheck();
+}
+
+/* sticky header shrink */
+var head=document.getElementById('head');
+function onScroll(){head.classList.toggle('shrink',window.scrollY>60);}
+onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+/* phones and tablets: the burger opens and closes the menu. It had no
+   handler before, so below 980px the menu could not be opened at all. */
+var burger=document.querySelector('.burger');
+if(burger&&head){
+  var setMenu=function(open){
+    head.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  };
+  setMenu(false);
+  burger.addEventListener('click',function(){setMenu(!head.classList.contains('nav-open'));});
+  [].slice.call(head.querySelectorAll('.nav a')).forEach(function(a){
+    a.addEventListener('click',function(){setMenu(false);});
+  });
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&head.classList.contains('nav-open')){setMenu(false);burger.focus();}
+  });
+  addEventListener('resize',function(){if(innerWidth>980)setMenu(false);},{passive:true});
+  /* phone panel: a town keeps its twelve services behind its own caret */
+  [].slice.call(head.querySelectorAll('.sub-toggle')).forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var open=b.parentNode.classList.toggle('open');
+      b.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+}
+
+/* reveal on scroll, skipped entirely when reduced motion is requested */
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* Set by the first IntersectionObserver callback of any kind. It tells the
+   safety net below the difference between 'IO is broken' and 'the visitor
+   simply has not scrolled there yet'. Without it the net fired blind after
+   3s and robbed the counters of their animation. */
+var ioAlive=false;
+
+/* Hero video: phones under 768px and anyone with reduce-motion on get the
+   poster image alone. The source is detached before it downloads, so those
+   visitors never pay for the 3.4 MB file.
+
+   Two guards, both learned the hard way on the deployed build:
+   1. innerWidth can report 0 when the page is not laid out yet (hidden tab,
+      zero-size frame, some embeds). 0 is NOT a phone, so only strip the
+      source when the width is a real number below 768.
+   2. Re-run on resize, so rotating a phone or widening a window restores the
+      video instead of leaving it detached for the rest of the session. */
+var vids=[].slice.call(document.querySelectorAll('#heroVid,#quoteVid')).map(function(v){
+  var src=v.querySelector('source');
+  return {el:v, src:src, url:src?src.getAttribute('src'):null};
+}).filter(function(o){return o.url;});
+
+if(vids.length){
+  var videoMedia=function(){
+    var w=window.innerWidth||document.documentElement.clientWidth||0;
+    var posterOnly=reduce||(w>0&&w<768);
+    vids.forEach(function(o){
+      var attached=!!o.src.getAttribute('src');
+      if(posterOnly&&attached){
+        o.el.removeAttribute('autoplay');
+        o.src.removeAttribute('src');
+        o.el.removeAttribute('preload');
+        o.el.load();      /* re-evaluates sources; the poster stays on screen */
+        o.el.pause();
+      }else if(!posterOnly&&!attached){
+        o.src.setAttribute('src',o.url);
+        o.el.setAttribute('preload','metadata');
+        o.el.load();
+        var p=o.el.play();
+        if(p&&p.catch)p.catch(function(){});
+      }
+    });
+  };
+  videoMedia();
+  addEventListener('resize',videoMedia,{passive:true});
+}
+var rv=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver' in window)){
+  rv.forEach(function(el){el.classList.add('in');});
+}else{
+  var io=new IntersectionObserver(function(es){
+    ioAlive=true;
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  rv.forEach(function(el,i){el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+}
+
+/* trust strip: figures count up once, when the strip scrolls into view */
+var tCounts=[].slice.call(document.querySelectorAll('.tcount'));
+if(tCounts.length){
+  function tRun(el){
+    var to=parseFloat(el.dataset.to), dp=+(el.dataset.dp||0),
+        sfx=el.dataset.suffix||'', dur=1100, t0=null;
+    if(reduce){el.textContent=to.toFixed(dp)+sfx;return;}
+    function frame(ts){
+      if(t0===null)t0=ts;
+      var k=Math.min((ts-t0)/dur,1);
+      k=1-Math.pow(1-k,3);               /* ease out, so it lands softly */
+      el.textContent=(to*k).toFixed(dp)+sfx;
+      if(k<1)requestAnimationFrame(frame); else el.textContent=to.toFixed(dp)+sfx;
+    }
+    requestAnimationFrame(frame);
+  }
+  function tFinal(){
+    tCounts.forEach(function(el){
+      el.textContent=parseFloat(el.dataset.to).toFixed(+(el.dataset.dp||0))
+                     +(el.dataset.suffix||'');
+    });
+  }
+  /* Observe the STRIP, not each figure. Observing them individually meant a
+     number scrolled past unseen kept a literal "0" on screen, which reads as
+     broken. The whole set now runs together, once. */
+  var tStrip=document.querySelector('.trust'),tDone=false;
+  function tStart(){
+    if(tDone)return;
+    tDone=true;
+    tCounts.forEach(tRun);
+  }
+  if(!tStrip||!('IntersectionObserver' in window)){
+    tFinal();
+  }else{
+    /* already scrolled past on load? show the finished figures, do not animate */
+    var tr=tStrip.getBoundingClientRect();
+    if(tr.bottom<0){tDone=true;tFinal();}
+    else{
+      var tIo=new IntersectionObserver(function(es){
+        ioAlive=true;
+        es.forEach(function(e){if(e.isIntersecting){tStart();tIo.disconnect();}});
+      },{threshold:.25});
+      tIo.observe(tStrip);
+    }
+  }
+}
+
+/* Coverage map: the card stretches to the height of the side list, so the
+   map's viewBox is grown to match the stage's real aspect instead of leaving
+   dead space under a fixed 1000x640 box. The land and water rects already
+   run from -200 to 1200 and -200 to 1040, so widening the view just shows
+   more of them. Pins are then repositioned from their true SVG coords. */
+var amMap=document.querySelector('.am-map'),
+    amStage=document.querySelector('.am-stage');
+if(amMap&&amStage){
+  var amPins=[].slice.call(document.querySelectorAll('.am-pin[data-x]'));
+  function amFit(){
+    var w=amStage.clientWidth,h=amStage.clientHeight;
+    if(!w||!h)return;
+    var vbH=Math.round(1000*h/w);          /* keep 1000 units wide, grow height */
+    if(vbH<640)vbH=640;                    /* never crop the designed content */
+    var minY=Math.round((640-vbH)/2);      /* keep the map centred as it grows */
+    amMap.setAttribute('viewBox','0 '+minY+' 1000 '+vbH);
+    amPins.forEach(function(pin){
+      pin.style.setProperty('--px',(+pin.dataset.x/10)+'%');
+      pin.style.setProperty('--py',(((+pin.dataset.y-minY)/vbH)*100).toFixed(4)+'%');
+    });
+  }
+  amFit();
+  addEventListener('resize',amFit,{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(amFit).observe(amStage);
+}
+
+/* Hovering a city in the list opens its pin on the map, and the other way
+   round, so the two halves of the section stay tied together. */
+var amRows=[].slice.call(document.querySelectorAll('.am-row')),
+    amPinEls=[].slice.call(document.querySelectorAll('.am-pin'));
+if(amRows.length&&amRows.length===amPinEls.length){
+  function amLink(i,on){
+    if(amPinEls[i])amPinEls[i].classList.toggle('on',on);
+    if(amRows[i])amRows[i].classList.toggle('on',on);
+  }
+  amRows.forEach(function(r,i){
+    r.addEventListener('mouseenter',function(){amLink(i,true);});
+    r.addEventListener('mouseleave',function(){amLink(i,false);});
+    r.addEventListener('focus',function(){amLink(i,true);});
+    r.addEventListener('blur',function(){amLink(i,false);});
+  });
+  amPinEls.forEach(function(pn,i){
+    pn.addEventListener('mouseenter',function(){amLink(i,true);});
+    pn.addEventListener('mouseleave',function(){amLink(i,false);});
+  });
+}
+
+/* process: the build tacho */
+var tcSteps=[].slice.call(document.querySelectorAll('.tc-step'));
+if(tcSteps.length){
+  var tcNeedle=document.getElementById('tcNeedle'),
+      tcNum=document.getElementById('tcNum'),
+      tcArcs=[].slice.call(document.querySelectorAll('.tc-arc')),
+      tcNums=[].slice.call(document.querySelectorAll('.tc-numl[data-i]'));
+  document.getElementById('tcOf').textContent='of 0'+tcSteps.length;
+
+  /* The needle takes the colour of the stage it is pointing at, so it runs
+     yellow at idle through to red at redline. */
+  var tcColours=['#F7D14A','#F5B02E','#F08F2E','#E97129','#DE4E25'];
+
+  /* Once the sweep has run, the dial STAYS lit across the full yellow to
+     orange ramp. Only the needle moves after that: the gauge is powered on,
+     it does not switch itself back off. */
+  var tcAllLit=false;
+
+  /* Paint a stage. withList=false is used during the ignition sweep so the
+     step cards do not flash open and shut while the needle is travelling. */
+  function tcPaint(i,withList){
+    /* five 36-degree stages across a 180-degree sweep; the needle points at
+       the middle of the active stage, so stage 3 sits straight up. */
+    tcNeedle.style.transform='rotate('+((i-2)*36)+'deg)';
+    tcNeedle.style.setProperty('--nc',tcColours[i]);
+    tcNum.textContent='0'+(i+1);
+    var lit=tcAllLit?tcArcs.length-1:i;
+    tcArcs.forEach(function(a,n){a.classList.toggle('on',n<=lit);});
+    tcNums.forEach(function(t,n){t.classList.toggle('on',n<=lit);});
+    if(withList){
+      tcSteps.forEach(function(s,n){
+        s.classList.toggle('on',n===i);
+        s.setAttribute('aria-expanded',n===i?'true':'false');
+      });
+    }
+  }
+  function tcGo(i){tcPaint(i,true);}
+
+  /* Ignition sweep: the needle runs up to redline lighting each stage as it
+     passes, holds, then falls back to stage one. The lights STAY on for the
+     fall, so the dial settles showing the whole yellow to orange ramp.
+     Fires once, when the section first scrolls into view. */
+  var tcRevved=false;
+  function tcRev(){
+    if(tcRevved)return;
+    tcRevved=true;
+    tcNeedle.classList.add('revving');
+    var t=0,plan=[];
+    for(var i=0;i<5;i++){plan.push([t,i,false]);t+=170;}   // up, lighting as it goes
+    t+=460;                                                // hold at redline
+    for(var j=3;j>=0;j--){plan.push([t,j,true]);t+=140;}   // fall back, stays lit
+    plan.forEach(function(p){
+      setTimeout(function(){
+        if(p[2])tcAllLit=true;
+        tcPaint(p[1],false);
+      },p[0]);
+    });
+    setTimeout(function(){
+      tcNeedle.classList.remove('revving');
+      tcAllLit=true;
+      tcPaint(0,true);
+    },t+80);
+  }
+
+  tcSteps.forEach(function(s){
+    s.addEventListener('click',function(){
+      tcRevved=true;               /* a click means they are driving it now */
+      tcNeedle.classList.remove('revving');
+      tcGo(+s.dataset.i);
+    });
+  });
+
+  /* No sweep for reduced-motion visitors, so light the dial straight away
+     rather than leaving them looking at a dead gauge. */
+  if(reduce||!('IntersectionObserver' in window))tcAllLit=true;
+  tcGo(0);
+  if(!reduce&&'IntersectionObserver' in window){
+    var tcIo=new IntersectionObserver(function(es){
+      ioAlive=true;
+      es.forEach(function(e){
+        if(e.isIntersecting){tcRev();tcIo.disconnect();}
+      });
+    },{threshold:.35});
+    tcIo.observe(document.querySelector('.tc-dial'));
+  }
+}
+
+/* ---------------------------------------------------------------------
+   SAFETY NET. Reveals, the counters and the tacho sweep are all driven by
+   IntersectionObserver. In some embedded and background rendering contexts
+   IO exists but never fires a callback, and the page would then sit with
+   invisible content and counters reading a literal zero. That is exactly
+   the failure the client's live site has today, where a dead scroll library
+   leaves eight service cards invisible. So: if anything has not reached its
+   finished state after 3 seconds, force it there.
+   --------------------------------------------------------------------- */
+setTimeout(function(){
+  /* IO is working, the visitor just has not scrolled down yet. Leave it be. */
+  if(ioAlive)return;
+  var stuck=document.querySelectorAll('.rv:not(.in)');
+  if(stuck.length){
+    [].forEach.call(stuck,function(el){el.classList.add('in');});
+  }
+  try{
+    if(typeof tCounts!=='undefined'&&tCounts.length&&parseFloat(tCounts[0].textContent)===0){
+      if(typeof tFinal==='function')tFinal();
+    }
+  }catch(e){}
+  try{
+    if(typeof tcArcs!=='undefined'&&tcArcs.length&&!document.querySelector('.tc-arc.on:nth-of-type(5)')){
+      tcAllLit=true;
+      if(typeof tcPaint==='function')tcPaint(0,true);
+    }
+  }catch(e){}
+},3000);
+
+/* services: the bay board. Picking a job shuts the roll-up door, swaps the
+   photograph and the spec behind it, then lifts the door again.
+   One instance per .bay, with every part looked up INSIDE its own board, so a
+   page can carry more than one: service pages show their own services, then
+   the rest of the shop's. (Page-wide lookups made two boards share photos and
+   titles.) The blog post's table of contents reuses .bay-row outside any
+   .bay, so this script never binds to it. */
+[].slice.call(document.querySelectorAll('.bay')).forEach(function(bay){
+  var rows=[].slice.call(bay.querySelectorAll('.bay-list .bay-row')),
+      imgs=[].slice.call(bay.querySelectorAll('.bay-img')),
+      door=bay.querySelector('.bay-door'),
+      meta=bay.querySelector('.bay-meta'),
+      title=meta&&meta.querySelector('h3'),
+      desc=meta&&meta.querySelector(':scope > p'),
+      at=0,busy=false;
+  if(!rows.length||!door||!title||!desc)return;
+
+  /* Reserve the tallest title and description, so switching jobs never
+     changes the panel height. Measured without this: list rows shifted up
+     to 23px under the cursor on an 11-row board as descriptions changed. */
+  function reserve(){
+    title.style.minHeight=desc.style.minHeight='';
+    var t0=title.innerHTML,d0=desc.textContent,mt=0,md=0;
+    rows.forEach(function(r){
+      title.innerHTML=r.querySelector('.bay-name').innerHTML;
+      desc.textContent=r.dataset.desc;
+      mt=Math.max(mt,title.offsetHeight);md=Math.max(md,desc.offsetHeight);
+    });
+    title.innerHTML=t0;desc.textContent=d0;
+    title.style.minHeight=mt+'px';desc.style.minHeight=md+'px';
+  }
+  reserve();
+  addEventListener('resize',reserve,{passive:true});
+
+  function apply(i){
+    imgs.forEach(function(im,n){im.classList.toggle('on',n===i);});
+    title.innerHTML=rows[i].querySelector('.bay-name').innerHTML;
+    desc.textContent=rows[i].dataset.desc;
+  }
+
+  function go(i){
+    if(i===at||busy)return;
+    at=i;
+    rows.forEach(function(r,n){
+      r.classList.toggle('on',n===i);
+      r.setAttribute('aria-current',n===i?'true':'false');
+    });
+    if(reduce){apply(i);return;}
+    busy=true;
+    door.classList.add('shut');      /* door comes down */
+    meta.classList.add('swap');
+    setTimeout(function(){
+      apply(i);                      /* swap behind the closed door */
+      door.classList.remove('shut'); /* and lift it again */
+      meta.classList.remove('swap');
+      setTimeout(function(){busy=false;},520);
+    },420);
+  }
+
+  rows.forEach(function(r){
+    r.addEventListener('click',function(){go(+r.dataset.i);});
+    r.addEventListener('mouseenter',function(){go(+r.dataset.i);});
+    r.addEventListener('focus',function(){go(+r.dataset.i);});
+  });
+  rows[0].setAttribute('aria-current','true');
+});
+
+/* builds collection carousel */
+var bcSlides=[].slice.call(document.querySelectorAll('.bc-slide'));
+if(bcSlides.length){
+  var bcName=document.getElementById('bcName'),
+      bcPills=document.getElementById('bcPills'),
+      bcDots=document.getElementById('bcDots'),
+      bcIndex=0, bcN=bcSlides.length;
+
+  bcSlides.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.type='button';
+    d.setAttribute('role','tab');
+    d.setAttribute('aria-label','Build '+(i+1)+' of '+bcN);
+    d.addEventListener('click',function(){bcGo(i);});
+    bcDots.appendChild(d);
+  });
+
+  function bcGo(n){
+    bcIndex=(n%bcN+bcN)%bcN;
+    var prev=(bcIndex-1+bcN)%bcN, next=(bcIndex+1)%bcN;
+    bcSlides.forEach(function(s,i){
+      s.className='bc-slide '+(i===bcIndex?'is-active':i===prev?'is-prev':i===next?'is-next':'is-far');
+      s.setAttribute('aria-hidden',i===bcIndex?'false':'true');
+    });
+    var cur=bcSlides[bcIndex];
+    bcName.textContent=cur.dataset.name;
+    bcPills.innerHTML='';
+    (cur.dataset.pills||'').split('|').forEach(function(t){
+      if(!t)return;
+      var p=document.createElement('span');
+      p.className='bc-pill';
+      p.textContent=t;
+      bcPills.appendChild(p);
+    });
+    [].forEach.call(bcDots.children,function(d,i){
+      d.setAttribute('aria-current',i===bcIndex?'true':'false');
+    });
+  }
+
+  document.getElementById('bcPrev').addEventListener('click',function(){bcGo(bcIndex-1);});
+  document.getElementById('bcNext').addEventListener('click',function(){bcGo(bcIndex+1);});
+  /* arrow keys work once the carousel has been used */
+  document.getElementById('bcStage').addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft')bcGo(bcIndex-1);
+    if(e.key==='ArrowRight')bcGo(bcIndex+1);
+  });
+  bcGo(0);
+}
+
+/* FAQ dashboard: pick a warning light, the driver display prints the answer */
+var tells=[].slice.call(document.querySelectorAll('.tell'));
+if(tells.length){
+  var ro=document.getElementById('readout'),
+      roQ=document.getElementById('roQ'),
+      roA=document.getElementById('roA'),
+      roCode=document.getElementById('roCode'),
+      roBusy=false;
+  function two(n){return (n<10?'0':'')+n;}   /* 10 read as "010" before */
+  function roGo(i){
+    if(roBusy)return;
+    tells.forEach(function(t,n){
+      t.classList.toggle('on',n===i);
+      t.setAttribute('aria-pressed',n===i?'true':'false');
+    });
+    var t=tells[i];
+    if(reduce){
+      roQ.textContent=t.dataset.q;roA.textContent=t.dataset.a;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
+      return;
+    }
+    roBusy=true;
+    ro.classList.add('swap');
+    setTimeout(function(){
+      roQ.textContent=t.dataset.q;
+      roA.textContent=t.dataset.a;
+      roCode.textContent='Question '+two(i+1)+' of '+two(tells.length);
+      ro.classList.remove('swap');
+      setTimeout(function(){roBusy=false;},300);
+    },290);
+  }
+  tells.forEach(function(t){
+    t.addEventListener('click',function(){roGo(+t.dataset.i);});
+  });
+}
+</script>
+</body>
+</html>

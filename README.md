@@ -8,8 +8,8 @@ TurnKey Pool redesigns.
 
 ## What this is
 
-Twenty-nine static pages. No build step, no dependencies. Open `index.html`
-or serve the folder.
+124 static pages. No build step, no dependencies. Open `index.html` or serve
+the folder.
 
 | File | What it is |
 |---|---|
@@ -25,7 +25,7 @@ or serve the folder.
 | `engine-tuning-performance.html`, `body-kits-modifications.html`, `custom-paint-graphics.html`, `interior-upholstery.html`, `lighting-upgrades.html`, `restoration-rebuilds.html`, `window-tinting-detailing.html` | The other seven live services, same template |
 | `lift-kits-suspension.html`, `wheels-tires.html`, `off-road-builds.html`, `blackout-packages.html` | **NEW services with no live page.** Copy written; client must approve |
 | `abita-springs.html`, `covington.html`, `madisonville.html`, `mandeville.html`, `slidell.html`, `metairie.html`, `kenner.html`, `st-rose.html` | **The eight city pages** (live: `/services-areas/<town>/`). Abita Springs is the model |
-| `abita-springs-engine-tuning-performance.html` | **The model location+service page** (live: `/services-areas/<town>/<service>/`), on the turnkeypoolbuilders.com pattern |
+| `<town>-<service>.html` (96 of them) | **Every service in every town** (live: `/services-areas/<town>/<service>/`), on the turnkeypoolbuilders.com pattern |
 | `hero-preview.html` | Earlier hero-only study, kept for reference |
 | `assets/hero.mp4` | Hero video, 1280x720, 10s, 24fps, audio stripped, 3.4 MB |
 | `assets/hero-poster.jpg` | Poster frame, 71 KB, used on mobile and reduced-motion |
@@ -531,8 +531,9 @@ us to copy from their other site, turnkeypoolbuilders.com.
 - Every page links up to its city page and across to the city's other
   service pages. One H1, self canonical, no structured data.
 
-**Ours**, in our own components. Model:
-`abita-springs-engine-tuning-performance.html`
+**Ours**, in our own components, for all **96** pages (8 towns x 12
+services), built by `scratch/build-loc-service.py` from the copy in
+`scratch/loc_copy.py`. Model: `abita-springs-engine-tuning-performance.html`
 
 | Part | Where the words come from |
 |---|---|
@@ -546,8 +547,24 @@ us to copy from their other site, turnkeypoolbuilders.com.
 | FAQ | Four of the live service page's nine questions, verbatim |
 | Quote band, footer | The service page's live closing copy; the town photo credit |
 
-1,799 words, of which **169 are written**. Title 57, meta 126. `Service`
-and `FAQPage` schema (TurnKey publishes none).
+1,217 to 2,006 words a page (average 1,520), of which **235 to 292 are
+written** (average 252). Titles 60 characters or fewer, meta descriptions
+155 or fewer. `Service` and `FAQPage` schema (TurnKey publishes none).
+
+**What is written, and how it is kept honest.** Per service: a heading
+pattern, one paragraph about the service, a meta phrase and the quote-band
+heading. Per page: the hero lede and the opening paragraph, which carry the
+local angle. One closing paragraph is shared. Every local fact comes from
+that town's own live page (roads, distances, landmarks, how people get
+around) or from the client's own service copy; nothing about a town is
+invented. The build refuses a page whose opening paragraph does not name its
+town, whose written copy carries a banned word or a British spelling, or
+whose title or meta runs long, and it checks that no two pages share an
+opening.
+
+**In the menu** (client request): Services Areas lists the eight towns, and
+each town opens its own twelve pages. On a phone the twelve stay behind a
+caret, because 96 links in an open menu would be unusable.
 
 **Linking, both ways:** the town page's Engine Tuning row now opens this
 page (`LOC_PAGES` in `build-area.py`, which fills `ROW_LINKS`), and this
@@ -555,10 +572,11 @@ page links up to the town page and across to the other eleven services.
 Rows point at a service's general page until that town's page for it
 exists, which is what the live town pages do today.
 
-**To add a page:** write its plan in `build-loc-service.py` (lede, three
-paragraphs, headings, meta, which FAQ questions), add the pair to
-`LOC_PAGES` in `build-area.py`, run `build-loc-service.py` then
-`build-area.py`.
+**To add or change a page:** edit `scratch/loc_copy.py` (the service entry,
+or that pair's lede and opening paragraph), then run
+`python scratch/build-loc-service.py` and `python scratch/build-area.py`.
+`build-area.py` reads the pairs from the same file, so a new page is linked
+from its town page automatically.
 
 ### Flags
 
@@ -566,7 +584,8 @@ paragraphs, headings, meta, which FAQ questions), add the pair to
 |---|---|
 | Written copy | Lede, three paragraphs, headings and meta are written for the mockup from the client's own claims and the town's live facts. **Client must approve.** |
 | Repeated blocks | The All About block and the other-services board repeat the town page's, as TurnKey does on every service page of a city. About 1,000 of the 1,799 words are shared with other pages. |
-| Scale | Eight towns x twelve services = 96 pages. Each one needs its own local angle in those three paragraphs, or the set reads as doorway pages: near-identical pages differing only by town name, which Google's spam policies name directly. The model's angle (highway and towing miles for a Northshore town) will not carry to all 96 by itself. |
+| Scale | All 96 are built. Each has its own opening, and the checks refuse duplicates, but about 1,000 of the 1,520 words on a page are shared with its town page and its sister pages. That is how turnkeypoolbuilders.com does it; it is also what Google's spam policies mean by doorway pages when the unique part is thin. **The written 250 words per page are what keeps them apart: they need a client read before launch.** |
+| Photos | A location+service page carries the town's photo and the service's own photos. No new images. |
 | Services without a live FAQ | Nine of the twelve services have FAQs written for the mockup rather than live ones; a location+service page for those reuses that written FAQ, so it needs approving once per service, not once per page. |
 
 ## Known robustness fixes worth keeping
